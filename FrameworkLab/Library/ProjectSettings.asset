@@ -4,14 +4,14 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 14
-  productGUID: cf8eabe1f7e63fd4285652dd9c76066b
+  productGUID: 135986b7e3c9d4941aee14dd6e5517ea
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: absolutehh
   productName: FrameworkLab
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -268,7 +268,7 @@ PlayerSettings:
       m_Icon: {fileID: 0}
       m_Width: 1
       m_Height: 1
-      m_Kind: 36664
+      m_Kind: 39901
   m_BuildTargetBatching:
   - m_BuildTarget: Standalone
     m_StaticBatching: 1
@@ -302,7 +302,7 @@ PlayerSettings:
     m_Enabled: 0
     m_Devices: []
   - m_BuildTarget: Standalone
-    m_Enabled: 0
+    m_Enabled: 1
     m_Devices:
     - OpenVR
   - m_BuildTarget: Tizen
@@ -717,7 +717,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 37734e54-e7d0-40cc-9952-eb1a9fd15089
-  projectName: FrameworkLab
+  projectName: 
   organizationId: as_go
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: d30a7424daa649548aa06e490b1194c0
+timeCreated: 1517327239
+licenseType: Pro
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - LeftTrackedObject: {instanceID: 0}
+  - RightTrackedObject: {instanceID: 0}
+  - LeftEventsDictionnary: {fileID: 11400000, guid: 2c508056f438a354d9460a3dfc460a67,
+      type: 2}
+  - RightEventsDictionnary: {fileID: 11400000, guid: 3480dbb1f647740498312069dd3dcd1d,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
