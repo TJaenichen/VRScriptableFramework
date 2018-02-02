@@ -1,8 +1,9 @@
 ﻿using Framework.Events;
 using Framework.RuntimeSet;
+using Framework.Variables;
 using UnityEngine;
 
-namespace Absolute.VR.Inputs
+namespace Framework.VR.Inputs
 {
     /// <summary>
     /// Set the GameEvent depending on the Vive Inputs
@@ -11,9 +12,7 @@ namespace Absolute.VR.Inputs
     {
         #region PUBLIC_VARIABLES
         [Header("SteamVR Tracked Object from the two Controllers")]
-        [HideInInspector]
         public SteamVR_TrackedObject LeftTrackedObject;
-        [HideInInspector]
         public SteamVR_TrackedObject RightTrackedObject;
 
         [Header("Left Controller GameEvents Dictionnary")]
@@ -21,6 +20,16 @@ namespace Absolute.VR.Inputs
 
         [Header("Right Controller GameEvents Dictionnary")]
         public VRInputsEvents RightEventsDictionnary;
+
+        [Header("Left Controller BoolVariable Dictionnary")]
+        public VRInputsBoolean LeftVariablesDictionnary;
+
+        [Header("Right Controller BoolVariable Dictionnary")]
+        public VRInputsBoolean RightVariablesDictionnary;
+
+        [Header("Thumbs positions on the stick/touchpad")]
+        public Vector3Variable LeftThumbOrientation;
+        public Vector3Variable RightThumbOrientation;
         #endregion PUBLIC_VARIABLES
 
         #region PRIVATE_VARIABLES
@@ -35,25 +44,13 @@ namespace Absolute.VR.Inputs
         }
 
         #region Left_Controller_Variables
-        private bool leftTriggerIsDown;
-        private bool leftMenuIsDown;
-        private bool leftGripIsDown;
-        private bool leftThumbIsDown;
-
-        GameEvent leftBasicEvent;
-        GameEventBool leftBoolEvent;
-        GameEventVector3 leftVector3Event;
+        GameEvent _leftEvent;
+        GameEventBool _leftEventBool;
         #endregion Left_Controller_Variables
 
         #region Right_Controller_Variables
-        private bool rightTriggerIsDown;
-        private bool rightMenuIsDown;
-        private bool rightGripIsDown;
-        private bool rightThumbIsDown;
-
-        GameEvent rightBasicEvent;
-        GameEventBool rightBoolEvent;
-        GameEventVector3 rightVector3Event;
+        GameEvent _rightEvent;
+        GameEventBool _rightEventBool;
         #endregion Right_Controller_Variables
 
         #endregion PRIVATE_VARIABLES
@@ -61,13 +58,11 @@ namespace Absolute.VR.Inputs
         #region MONOBEHAVIOURS
         private void Start()
         {
-            leftBasicEvent = new GameEvent();
-            leftBoolEvent = new GameEventBool();
-            leftVector3Event = new GameEventVector3();
+            _leftEvent = new GameEvent();
+            _leftEventBool = new GameEventBool();
 
-            rightBasicEvent = new GameEvent();
-            rightBoolEvent = new GameEventBool();
-            rightVector3Event = new GameEventVector3();
+            _rightEvent = new GameEvent();
+            _rightEventBool = new GameEventBool();
         }
 
         // Update is called once per frame
@@ -88,77 +83,88 @@ namespace Absolute.VR.Inputs
         /// </summary>
         void CheckLeftControllerInput()
         {
-            // ------------------------------------------------------ Trigger ------------------------------------------------------ 
-            if (LeftController.GetHairTriggerDown())
-            {
-                leftTriggerIsDown = true;
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftTriggerDown");
-                leftBasicEvent.Raise();
-            }
-            else if (LeftController.GetHairTriggerUp())
-            {
-                leftTriggerIsDown = false;
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftTriggerUp");
-                leftBasicEvent.Raise();
-            }
+            BoolVariable temp;
 
-            // ------------------------------------------------------ Touchpad ------------------------------------------------------ 
-            if (LeftController.GetAxis() != Vector2.zero)
-            {
-                leftVector3Event = (GameEventVector3)LeftEventsDictionnary.Get("LeftThumbOrientation");
-                leftVector3Event.Raise(LeftController.GetAxis());
-            }
+            #region TRIGGER
+            temp = LeftVariablesDictionnary.Get("TriggerIsDown");
 
-            if (LeftController.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+            if (!temp.Value && LeftController.GetHairTriggerDown())
             {
-                leftThumbIsDown = true;
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
-                leftBasicEvent.Raise();
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftTriggerDown");
+                _leftEvent.Raise();
             }
-            else if (LeftController.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
+            else if (temp.Value && LeftController.GetHairTriggerUp())
             {
-                leftThumbIsDown = false;
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbUp");
-                leftBasicEvent.Raise();
+                temp.SetValue(false);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftTriggerUp");
+                _leftEvent.Raise();
+            }
+            #endregion TRIGGER
+
+            #region TOUCHPAD
+            temp = LeftVariablesDictionnary.Get("ThumbIsDown");
+
+            LeftThumbOrientation.SetValue(LeftController.GetAxis());
+            
+            if (!temp.Value && LeftController.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+            {
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
+                _leftEvent.Raise();
+            }
+            else if (temp.Value && LeftController.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
+            {
+                temp.SetValue(false);
+                _leftEvent = (GameEvent)RightEventsDictionnary.Get("LeftThumbUp");
+                _leftEvent.Raise();
             }
 
             if (LeftController.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                leftBoolEvent = (GameEventBool)LeftEventsDictionnary.Get("LeftThumbTouching");
-                leftBoolEvent.Raise(true);
+                _leftEventBool = (GameEventBool)LeftEventsDictionnary.Get("LeftThumbTouching");
+                _leftEventBool.Raise(true);
             }
             else if (LeftController.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                leftBoolEvent = (GameEventBool)LeftEventsDictionnary.Get("LeftThumbTouching");
-                leftBoolEvent.Raise(false);
+                _leftEventBool = (GameEventBool)LeftEventsDictionnary.Get("LeftThumbTouching");
+                _leftEventBool.Raise(false);
             }
+            #endregion TOUCHPAD
 
-            // ------------------------------------------------------ Grip ------------------------------------------------------ 
-            if (LeftController.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
-            {
-                leftGripIsDown = true;
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftGripDown");
-                leftBasicEvent.Raise();
-            }
-            else if (LeftController.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
-            {
-                leftGripIsDown = false;
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftGripUp");
-                leftBasicEvent.Raise();
-            }
+            #region GRIP
+            temp = LeftVariablesDictionnary.Get("GripIsDown");
 
+            if (!temp.Value && LeftController.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+            {
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftGripDown");
+                _leftEvent.Raise();
+            }
+            else if (temp.Value && LeftController.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+            {
+                temp.SetValue(false);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftGripUp");
+                _leftEvent.Raise();
+            }
+            #endregion GRIP
 
-            // ------------------------------------------------------ Menu ------------------------------------------------------ 
-            if (LeftController.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
+            #region MENU
+            temp = LeftVariablesDictionnary.Get("MenuIsDown");
+
+            if (!temp.Value && LeftController.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
             {
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftMenuDown");
-                leftBasicEvent.Raise();
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftMenuDown");
+                _leftEvent.Raise();
             }
-            else if (LeftController.GetPressUp(SteamVR_Controller.ButtonMask.ApplicationMenu))
+            else if (temp.Value && LeftController.GetPressUp(SteamVR_Controller.ButtonMask.ApplicationMenu))
             {
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftMenuUp");
-                leftBasicEvent.Raise();
+                temp.SetValue(false);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftMenuUp");
+                _leftEvent.Raise();
             }
+            #endregion MENU
         }
 
         /// <summary>
@@ -166,78 +172,88 @@ namespace Absolute.VR.Inputs
         /// </summary>
         void CheckRightControllerInput()
         {
-            // ------------------------------------------------------ Trigger ------------------------------------------------------ 
-            if (RightController.GetHairTriggerDown())
-            {
-                rightTriggerIsDown = true;
-                rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightTriggerDown");
-                rightBasicEvent.Raise();
-            }
-            else if (RightController.GetHairTriggerUp())
-            {
-                rightTriggerIsDown = false;
-                rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightTriggerUp");
-                rightBasicEvent.Raise();
-            }
+            BoolVariable temp;
 
-            // ------------------------------------------------------ Touchpad ------------------------------------------------------ 
-            if (RightController.GetAxis() != Vector2.zero)
-            {
-                rightVector3Event = (GameEventVector3)RightEventsDictionnary.Get("RightThumbOrientation");
-                rightVector3Event.Raise(RightController.GetAxis());
-            }
+            #region TRIGGER
+            temp = RightVariablesDictionnary.Get("TriggerIsDown");
 
-            if (!rightThumbIsDown && RightController.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+            if (!temp.Value && RightController.GetHairTriggerDown())
             {
-                rightThumbIsDown = true;
-                rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");
-                rightBasicEvent.Raise();
+                temp.SetValue(true);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightTriggerDown");
+                _rightEvent.Raise();
             }
-            else if (rightThumbIsDown && !RightController.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+            else if (temp.Value && RightController.GetHairTriggerUp())
             {
-                rightThumbIsDown = false;
-                rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbUp");
-                rightBasicEvent.Raise();
+                temp.SetValue(false);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightTriggerUp");
+                _rightEvent.Raise();
+            }
+            #endregion TRIGGER
+
+            #region TOUCHPAD
+            temp = RightVariablesDictionnary.Get("ThumbIsDown");
+
+            RightThumbOrientation.SetValue(RightController.GetAxis());
+
+            if (!temp.Value && RightController.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+            {
+                temp.SetValue(true);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");
+                _rightEvent.Raise();
+            }
+            else if (temp.Value && !RightController.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+            {
+                temp.SetValue(false);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbUp");
+                _rightEvent.Raise();
             }
 
             if (RightController.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                rightBoolEvent = (GameEventBool)RightEventsDictionnary.Get("RightThumbTouching");
-                rightBoolEvent.Raise(true);
+                _leftEventBool = (GameEventBool)RightEventsDictionnary.Get("RightThumbTouching");
+                _leftEventBool.Raise(true);
             }
             else if (RightController.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                rightBoolEvent = (GameEventBool)RightEventsDictionnary.Get("RightThumbTouching");
-                rightBoolEvent.Raise(false);
+                _leftEventBool = (GameEventBool)RightEventsDictionnary.Get("RightThumbTouching");
+                _leftEventBool.Raise(false);
             }
+            #endregion TOUCHPAD
 
-            // ------------------------------------------------------ Grip ------------------------------------------------------ 
-            if (RightController.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
-            {
-                rightGripIsDown = true;
-                rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightGripDown");
-                rightBasicEvent.Raise();
-            }
-            else if (RightController.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
-            {
-                rightGripIsDown = false;
-                rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightGripUp");
-                rightBasicEvent.Raise();
-            }
+            #region GRIP
+            temp = RightVariablesDictionnary.Get("GripIsDown");
 
-            // ------------------------------------------------------ Menu ------------------------------------------------------ 
-            if (RightController.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
+            if (!temp.Value && RightController.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
             {
-                rightMenuIsDown = true;
-                rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightMenuDown");
-                rightBasicEvent.Raise();
+                temp.SetValue(true);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightGripDown");
+                _rightEvent.Raise();
             }
-            else if (RightController.GetPressUp(SteamVR_Controller.ButtonMask.ApplicationMenu))
+            else if (temp.Value && RightController.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
             {
-                rightMenuIsDown = false;
-                rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightMenuUp");
-                rightBasicEvent.Raise();
+                temp.SetValue(false);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightGripUp");
+                _rightEvent.Raise();
             }
+            #endregion GRIP
+
+            #region MENU
+            temp = RightVariablesDictionnary.Get("MenuIsDown");
+
+            if (!temp.Value && RightController.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
+            {
+                temp.SetValue(true);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightMenuDown");
+                _rightEvent.Raise();
+            }
+            else if (temp.Value && RightController.GetPressUp(SteamVR_Controller.ButtonMask.ApplicationMenu))
+            {
+                temp.SetValue(false);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightMenuUp");
+                _rightEvent.Raise();
+            }
+            #endregion MENU
         }
         #endregion PRIVATE_METHODS
     }

@@ -1,5 +1,6 @@
 ﻿using Framework.Events;
 using Framework.RuntimeSet;
+using Framework.Variables;
 using UnityEngine;
 
 namespace Framework.VR
@@ -15,30 +16,28 @@ namespace Framework.VR
 
         [Header("Right Controller GameEvents Dictionnary")]
         public VRInputsEvents RightEventsDictionnary;
+
+        [Header("Left Controller BoolVariable Dictionnary")]
+        public VRInputsBoolean LeftVariablesDictionnary;
+
+        [Header("Right Controller BoolVariable Dictionnary")]
+        public VRInputsBoolean RightVariablesDictionnary;
+
+        [Header("Thumbs positions on the stick/touchpad")]
+        public Vector3Variable LeftThumbOrientation;
+        public Vector3Variable RightThumbOrientation;
         #endregion
 
         #region PRIVATE_VARIABLES
 
         #region Left_Controller_Variables
-        private bool leftTriggerIsDown;
-        private bool leftMenuIsDown;
-        private bool leftGripIsDown;
-        private bool leftThumbIsDown;
-
-        GameEvent leftBasicEvent;
-        GameEventBool leftBoolEvent;
-        GameEventVector3 leftVector3Event;
+        GameEvent _leftEvent;
+        GameEventBool _leftEventBool;
         #endregion Left_Controller_Variables
 
         #region Right_Controller_Variables
-        private bool rightTriggerIsDown;
-        private bool rightMenuIsDown;
-        private bool rightGripIsDown;
-        private bool rightThumbIsTouching;
-        private bool rightThumbIsDown;
-        GameEvent rightBasicEvent;
-        GameEventBool rightBoolEvent;
-        GameEventVector3 rightVector3Event;
+        GameEvent _rightEvent;
+        GameEventBool _rightEventBool;
         #endregion Right_Controller_Variables
 
         #endregion
@@ -46,13 +45,11 @@ namespace Framework.VR
         #region MONOBEHAVIOURS
         private void Start()
         {
-            leftBasicEvent = new GameEvent();
-            leftBoolEvent = new GameEventBool();
-            leftVector3Event = new GameEventVector3();
+            _leftEvent = new GameEvent();
+            _leftEventBool = new GameEventBool();
 
-            rightBasicEvent = new GameEvent();
-            rightBoolEvent = new GameEventBool();
-            rightVector3Event = new GameEventVector3();
+            _rightEvent = new GameEvent();
+            _rightEventBool = new GameEventBool();
         }
 
         // Update is called once per frame
@@ -73,78 +70,88 @@ namespace Framework.VR
         /// </summary>
         void CheckLeftControllerInput()
         {
-            // ------------------------------------------------------ Trigger ------------------------------------------------------ 
-            if (!leftTriggerIsDown && OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
-            {
-                leftTriggerIsDown = true;
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftTriggerDown");
-                leftBasicEvent.Raise();
-            }
-            else if (leftTriggerIsDown && !OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
-            {
-                leftTriggerIsDown = false;
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftTriggerUp");
-                leftBasicEvent.Raise();
-            }
+            BoolVariable temp;
 
-            // ------------------------------------------------------ Thumbstick ------------------------------------------------------ 
-            if (OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick) != Vector2.zero)
-            {
-                leftVector3Event = (GameEventVector3)LeftEventsDictionnary.Get("LeftThumbOrientation");
-                leftVector3Event.Raise(OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick));
-            }
+            #region TRIGGER
+            temp = LeftVariablesDictionnary.Get("TriggerIsDown");
 
-            if (!leftThumbIsDown && OVRInput.Get(OVRInput.Button.PrimaryThumbstick))
+            if (!temp.Value && OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
             {
-                leftThumbIsDown = true;
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
-                leftBasicEvent.Raise();
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftTriggerDown");
+                _leftEvent.Raise();
             }
-            else if (leftThumbIsDown && !OVRInput.Get(OVRInput.Button.PrimaryThumbstick))
+            else if (temp.Value && !OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
             {
-                leftThumbIsDown = false;
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbUp");
-                leftBasicEvent.Raise();
+                temp.SetValue(false);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftTriggerUp");
+                _leftEvent.Raise();
+            }
+            #endregion TRIGGER
+
+            #region THUMBSTICK
+            temp = LeftVariablesDictionnary.Get("ThumbIsDown");
+
+            LeftThumbOrientation.SetValue(OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick));
+            
+            if (!temp.Value && OVRInput.Get(OVRInput.Button.PrimaryThumbstick))
+            {
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
+                _leftEvent.Raise();
+            }
+            else if (temp.Value && !OVRInput.Get(OVRInput.Button.PrimaryThumbstick))
+            {
+                temp.SetValue(false);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbUp");
+                _leftEvent.Raise();
             }
 
             if (OVRInput.Get(OVRInput.Touch.PrimaryThumbstick))
             {
-                leftBoolEvent = (GameEventBool)LeftEventsDictionnary.Get("LeftThumbTouching");
-                leftBoolEvent.Raise(true);
+                _leftEventBool = (GameEventBool)LeftEventsDictionnary.Get("LeftThumbTouching");
+                _leftEventBool.Raise(true);
             }
             else if (!OVRInput.Get(OVRInput.Touch.PrimaryThumbstick))
             {
-                leftBoolEvent = (GameEventBool)LeftEventsDictionnary.Get("LeftThumbTouching");
-                leftBoolEvent.Raise(false);
+                _leftEventBool = (GameEventBool)LeftEventsDictionnary.Get("LeftThumbTouching");
+                _leftEventBool.Raise(false);
             }
+            #endregion THUMBSTICK
 
-            // ------------------------------------------------------ Grip ------------------------------------------------------ 
-            if (!leftGripIsDown && OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
-            {
-                leftGripIsDown = true;
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftGripDown");
-                leftBasicEvent.Raise();
-            }
-            else if (leftGripIsDown && !OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
-            {
-                leftGripIsDown = false;
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftGripUp");
-                leftBasicEvent.Raise();
-            }
+            #region GRIP
+            temp = LeftVariablesDictionnary.Get("GripIsDown");
 
-            // ------------------------------------------------------ Menu ------------------------------------------------------ 
-            if (!leftMenuIsDown && OVRInput.Get(OVRInput.Button.Start))
+            if (!temp.Value && OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
             {
-                leftMenuIsDown = true;
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftMenuDown");
-                leftBasicEvent.Raise();
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftGripDown");
+                _leftEvent.Raise();
             }
-            else if (leftMenuIsDown && !OVRInput.Get(OVRInput.Button.Start))
+            else if (temp.Value && !OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
             {
-                leftMenuIsDown = false;
-                leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftMenuUp");
-                leftBasicEvent.Raise();
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftGripUp");
+                _leftEvent.Raise();
             }
+            #endregion GRIP
+
+            #region MENU
+            temp = LeftVariablesDictionnary.Get("MenuIsDown");
+
+            if (!temp.Value && OVRInput.Get(OVRInput.Button.Start))
+            {
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftMenuDown");
+                _leftEvent.Raise();
+            }
+            else if (temp.Value && !OVRInput.Get(OVRInput.Button.Start))
+            {
+                temp.SetValue(false);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftMenuUp");
+                _leftEvent.Raise();
+            }
+            #endregion MENU
         }
 
         /// <summary>
@@ -152,70 +159,75 @@ namespace Framework.VR
         /// </summary>
         void CheckRightControllerInput()
         {
-            // ------------------------------------------------------ Trigger ------------------------------------------------------ 
-            if (!rightTriggerIsDown && OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
+            BoolVariable temp;
+
+            #region TRIGGER
+            temp = RightVariablesDictionnary.Get("TriggerIsDown");
+
+            if (!temp.Value && OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
             {
-                rightTriggerIsDown = true;
-                rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightTriggerDown");
-                rightBasicEvent.Raise();
+                temp.SetValue(true);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightTriggerDown");
+                _rightEvent.Raise();
             }
-            else if (rightTriggerIsDown && !OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
+            else if (temp.Value && !OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
             {
-                rightTriggerIsDown = false;
-                rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightTriggerUp");
-                rightBasicEvent.Raise();
+                temp.SetValue(false);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightTriggerUp");
+                _rightEvent.Raise();
+            }
+            #endregion TRIGGER
+
+            #region THUMBSTICK
+            temp = RightVariablesDictionnary.Get("ThumbIsDown");
+
+            RightThumbOrientation.SetValue(OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick));
+            
+            if (!temp.Value && OVRInput.Get(OVRInput.Button.SecondaryThumbstick))
+            {
+                temp.SetValue(true);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");
+                _rightEvent.Raise();
+            }
+            else if (temp.Value && !OVRInput.Get(OVRInput.Button.SecondaryThumbstick))
+            {
+                temp.SetValue(false);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbUp");
+                _rightEvent.Raise();
             }
 
-            // ------------------------------------------------------ Thumbstick ------------------------------------------------------ 
-            if (OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick) != Vector2.zero)
+            if (OVRInput.Get(OVRInput.Touch.SecondaryThumbstick))
             {
-                rightVector3Event = (GameEventVector3)RightEventsDictionnary.Get("RightThumbOrientation");
-                rightVector3Event.Raise(OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick));
+                _rightEventBool = (GameEventBool)RightEventsDictionnary.Get("RightThumbTouching");
+                _rightEventBool.Raise(true);
             }
+            else if (!OVRInput.Get(OVRInput.Touch.SecondaryThumbstick))
+            {
+                _rightEventBool = (GameEventBool)RightEventsDictionnary.Get("RightThumbTouching");
+                _rightEventBool.Raise(false);
+            }
+            #endregion THUMBSTICK
 
-            if (!rightThumbIsDown && OVRInput.Get(OVRInput.Button.SecondaryThumbstick))
-            {
-                rightThumbIsDown = true;
-                rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");
-                rightBasicEvent.Raise();
-            }
-            else if (rightThumbIsDown && !OVRInput.Get(OVRInput.Button.SecondaryThumbstick))
-            {
-                rightThumbIsDown = false;
-                rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbUp");
-                rightBasicEvent.Raise();
-            }
+            #region GRIP
+            temp = RightVariablesDictionnary.Get("GripIsDown");
 
-            if (!rightThumbIsTouching && OVRInput.Get(OVRInput.Touch.SecondaryThumbstick))
+            if (!temp.Value && OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
             {
-                rightThumbIsTouching = true;
-                rightBoolEvent = (GameEventBool)RightEventsDictionnary.Get("RightThumbTouching");
-                rightBoolEvent.Raise(true);
+                temp.SetValue(true);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightGripDown");
+                _rightEvent.Raise();
             }
-            else if (rightThumbIsTouching && !OVRInput.Get(OVRInput.Touch.SecondaryThumbstick))
+            else if (temp.Value && !OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
             {
-                rightThumbIsTouching = false;
-                rightBoolEvent = (GameEventBool)RightEventsDictionnary.Get("RightThumbTouching");
-                rightBoolEvent.Raise(false);
+                temp.SetValue(false);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightGripUp");
+                _rightEvent.Raise();
             }
-
-            // ------------------------------------------------------ Grip ------------------------------------------------------ 
-            if (!rightGripIsDown && OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
-            {
-                rightGripIsDown = true;
-                rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightGripDown");
-                rightBasicEvent.Raise();
-            }
-            else if (rightGripIsDown && !OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
-            {
-                rightGripIsDown = false;
-                rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightGripUp");
-                rightBasicEvent.Raise();
-            }
+            #endregion GRIP
 
             //No Right menu button on the oculus
 
-            ////Button B
+            ////Button B    TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //if (!bButtonIsDown && OVRInput.Get(OVRInput.Button.Two))
             //{
             //    RightBButton.Raise();

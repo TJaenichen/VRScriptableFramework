@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using Absolute.VR;
 using Framework.Variables;
-using Framework.Events;
 
 namespace Framework.VR
 {

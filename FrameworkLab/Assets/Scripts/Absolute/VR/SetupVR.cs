@@ -37,8 +37,8 @@ namespace Framework.VR
         [SerializeField] [HideInInspector]
         string SDKToLoad;
 
-        private static Transform RightController;
-        private static Transform LeftController;
+        private static Transform RightControllerScripts;
+        private static Transform LeftControllerScripts;
 
         private bool _loaded;  //True when SDK Instantiate, false when everything is setup
         private bool _controllerSetup;
@@ -49,6 +49,7 @@ namespace Framework.VR
         #region MONOBEHAVIOUR_METHODS
         private void Awake()
         {
+            DontDestroyOnLoad(this);
             CheckCommandLine();
         }
 
@@ -104,11 +105,6 @@ namespace Framework.VR
                 else if (commandLineArg.ToUpper().Contains("SIMULATOR"))
                 {
                     SDKToLoad = "Simulator";
-                    break;
-                }
-                else
-                {
-                    Debug.LogError("Error whlie Checking Command Line Arg : " + commandLineArg);
                     break;
                 }
             }
@@ -167,19 +163,29 @@ namespace Framework.VR
         /// </summary>
         void CheckControllersReferences()
         {
-            if (_loaded && (RightController == null || LeftController == null))
+            if (_loaded && (RightControllerScripts == null || LeftControllerScripts == null))
             {
                 try
                 {
-                    //Always attached to the controller, contains Left Controller scripts 
-                    LeftController = ActiveSDK.transform.Find("LeftControllerScripts").transform;
-                    //Always attached to the controller, contains Right Controller scripts 
-                    RightController = ActiveSDK.transform.Find("RightControllerScripts").transform;
-                    _controllerSetup = true;
+                    foreach(Transform t in GetComponentInChildren<Transform>())
+                    {
+                        foreach (Transform grand_t in t.GetComponentInChildren<Transform>())
+                        {
+                            //Always attached to the controller, contains Left Controller scripts 
+                            if (grand_t.name.Contains("LeftControllerScripts"))
+                                LeftControllerScripts = grand_t;
+                            //Always attached to the controller, contains Right Controller scripts 
+                            else if (grand_t.name.Contains("RightControllerScripts"))
+                                RightControllerScripts = grand_t;
+                        }
+                    }
+
+                    if (LeftControllerScripts != null && RightControllerScripts != null)
+                        _controllerSetup = true;
                 }
                 catch
                 {
-                    Debug.LogError("Can't setup Left and Right Controllers");
+                    Debug.LogError("Can't setup Left and Right Controllers : " + ActiveSDK);
                 }
             }
         }
@@ -209,12 +215,12 @@ namespace Framework.VR
         {
             get
             {
-                if (RightController == null)
+                if (RightControllerScripts == null)
                 {
                     return Vector3.zero;
                 }
-                return RightController.transform.TransformPoint(
-                    RightController.transform.position);
+                return RightControllerScripts.transform.TransformPoint(
+                    RightControllerScripts.transform.position);
             }
         }
 
@@ -225,11 +231,11 @@ namespace Framework.VR
         {
             get
             {
-                if (RightController == null)
+                if (RightControllerScripts == null)
                 {
                     return null;
                 }
-                return RightController.transform;
+                return RightControllerScripts.transform;
             }
         }
 
@@ -240,12 +246,12 @@ namespace Framework.VR
         {
             get
             {
-                if (LeftController == null)
+                if (LeftControllerScripts == null)
                 {
                     return Vector3.zero;
                 }
-                return LeftController.transform.TransformPoint(
-                    LeftController.transform.position);
+                return LeftControllerScripts.transform.TransformPoint(
+                    LeftControllerScripts.transform.position);
             }
         }
 
@@ -256,11 +262,11 @@ namespace Framework.VR
         {
             get
             {
-                if (LeftController == null)
+                if (LeftControllerScripts == null)
                 {
                     return null;
                 }
-                return LeftController.transform;
+                return LeftControllerScripts.transform;
             }
         }
         #endregion
