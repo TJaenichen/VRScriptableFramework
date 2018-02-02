@@ -1,34 +1,45 @@
 ﻿using UnityEngine;
-using System;
 using Absolute.VR;
-using Framework.Events;
 using Framework.Variables;
+using Framework.Events;
 
 namespace Framework.VR
 {
+    /// <summary>
+    /// Allow the user to fly with the thumb and teleport with the grip. 
+    /// Place this script on a Controller Script, and set the public variable to use it.
+    /// 
+    /// To use the flying mode, a Vector3Reference link to the thumb position on the touchpad 
+    /// and a BoolReference to check if the user is pressing the touchpad are necessary. Those are set
+    /// in the InputCapture script (this one is normally placed on the first GameObject of the SDK prefab).
+    /// </summary>
+    [RequireComponent(typeof(Vector3Reference), typeof(BoolReference))]
     public class FlyAndTeleport : MonoBehaviour
     {
         #region PUBLIC_VARIABLES
-        [Header("Teleport Settings")]
+        [Header("Flying Mode Settings")]
+        public bool UseFlyingMode = false;
+        public float MaxFlightSpeed = 8.0f;
+        public float AccelerationFactorOnStart = 5.0f;
         public float MinAvatarPositionY = -5;
         public float MaxAvatarPositionY = 780;
-        public float AccelerationFactorOnStart = 5.0f;
+        [Tooltip("This Reference is set in the InputCapture script on the first Gameobject of the SDK.\n" +
+            "You can find them in the folder Assets/Variables/VR.")]
+        public Vector3Reference thumbPosition;
+        [Tooltip("This Reference is set in the InputCapture script on the first Gameobject of the SDK.\n" +
+            "You can find them in the folder Assets/Variables/VR.")]
+        public BoolReference touchpadIsPressed;
 
-        [Header("Flying Mode Settings")]
-        public float FlightVelocity = 1.0f;
-        public float FlightScaleSensitivity = 1.0f;
-        public float GroundVelocity = 5f;
-
-        [Header("OPTIONAL : If no UI is used, just set it to constant false")]
-        [Tooltip("BoolVariable to set if you use a UI, to check if the right ray has hit a Canvas.")]
+        [Header("BoolReference to set if you use a UI")]
+        [Tooltip("If no UI is used, just set it to constant false.")]
         public BoolReference HasHitUiRight;
-        [Tooltip("BoolVariable to set if you use a UI, to check if the left ray has hit a Canvas.")]
+        [Tooltip("If no UI is used, just set it to constant false.")]
         public BoolReference HasHitUiLeft;
         #endregion
 
         #region PRIVATE_VARIABLES
-        private GameObject AvatarObject;
-        private PointerRayCast pointerRaycast;
+        private GameObject AvatarObject;                //The CameraRig object
+        private PointerRayCast pointerRaycast;          //The pointerRaycast on the Avatar Object
 
         private bool _FlyForward = true;
         private Vector3 _FlightDirection;
@@ -40,8 +51,6 @@ namespace Framework.VR
 
         private RaycastHit hit;
         private LayerMask GroundLayer;
-        private GameEventListenerVector3 rightThumbPosition;
-        private bool pressingTouchpad;
         #endregion
 
         #region MONOBEHAVIOUR_METHODS
@@ -52,39 +61,23 @@ namespace Framework.VR
             pointerRaycast = AvatarObject.GetComponent<PointerRayCast>();
             AvatarObject.transform.localScale = Vector3.one;
             GroundLayer = LayerMask.NameToLayer("ground");
-            rightThumbPosition = GetComponent<GameEventListenerVector3>();
         }
 
         private void Update()
         {
-            CheckInput();
-
-            if (_WantToFly)
+            if (UseFlyingMode)
             {
-                if (timeSinceStartFlying < 1 && timeSinceStartFlying >= 0)
-                    timeSinceStartFlying += (Time.deltaTime / AccelerationFactorOnStart);
-
-                if (oldTimer > 0)
-                {
-                    timeSinceStartFlying = oldTimer;
-                    oldTimer = 0;
-                }
-
-                _CurrentFlightVelocity = FlightVelocity * timeSinceStartFlying;
+                CheckInput();
+                CheckFlyingMode();
             }
-            else
-            {
-                if (oldTimer != 0)
-                    oldTimer -= (Time.deltaTime / AccelerationFactorOnStart);
-            }
-
-            Fly();
         }
         #endregion
 
         #region PUBLIC_METHODS
         /// <summary>
-        /// Method called when teleport button is clicked
+        /// To use the Teleport feature, add a collider and a layer named "ground" on your ground plane.
+        /// Create a GameEventListener for the button you want to use as Teleport button, and link it to
+        /// the GameEvent concerned in the Event folder.
         /// </summary>
         public void Teleport()
         {
@@ -112,9 +105,8 @@ namespace Framework.VR
         private void CheckInput()
         {
             //Right thumbstick is moved. ActivateFlyingMode is set in editor with the RightThumbMove GameEventVector3.
-            if (rightThumbPosition.vectorValue != Vector3.zero && pressingTouchpad)
+            if (touchpadIsPressed.Value)
             {
-                CheckAvatarHeight();
                 CalculateFlyForward();
             }
             //if the user was pressing the touchpad and he just stopped to do that
@@ -122,6 +114,32 @@ namespace Framework.VR
             {
                 StopMoving();
             }
+        }
+
+        /// <summary>
+        /// Add an acceleration sensation when the user is flying
+        /// </summary>
+        private void CheckFlyingMode()
+        {
+            //If the user is pressing the flying button
+            if (_WantToFly)
+            {
+                if (timeSinceStartFlying >= 0 && timeSinceStartFlying < 1)
+                    timeSinceStartFlying += (Time.deltaTime / AccelerationFactorOnStart);
+
+                if (oldTimer > 0)
+                {
+                    timeSinceStartFlying = oldTimer;
+                    oldTimer = 0;
+                }
+            }
+            else
+            {
+                if (oldTimer != 0)
+                    oldTimer -= (Time.deltaTime / AccelerationFactorOnStart);
+            }
+
+            Fly();
         }
 
         /// <summary>
@@ -139,7 +157,7 @@ namespace Framework.VR
         /// <param name="pressingTouchpad">If the user press the thumbstick/touchpad</param>
         private void CalculateFlyForward()
         {
-            _FlyForward = (rightThumbPosition.vectorValue.y >= 0.0f) ? true : false;
+            _FlyForward = (thumbPosition.Value.y >= 0.0f) ? true : false;
             if (!_WantToFly)
             {
                 timeSinceStartFlying = 0.0f;
@@ -147,6 +165,9 @@ namespace Framework.VR
             }
         }
 
+        /// <summary>
+        /// Check if the user fly forward or backward
+        /// </summary>
         private void SetFlyDirection()
         {
             if (_WantToFly)
@@ -156,6 +177,9 @@ namespace Framework.VR
             }
         }
 
+        /// <summary>
+        /// Actual script to make the user fly
+        /// </summary>
         private void Fly()
         {
             if (!_WantToFly)
@@ -165,7 +189,7 @@ namespace Framework.VR
                     return;
                 }
                 //Sliding effect when touchpad is released
-                _CurrentFlightVelocity = Mathf.Clamp(_CurrentFlightVelocity - Time.deltaTime, 0.0f, 10.0f);
+                _CurrentFlightVelocity = Mathf.Clamp(timeSinceStartFlying - Time.deltaTime, 0.0f, MaxFlightSpeed);
             }
 
             SetFlyDirection();
@@ -180,28 +204,24 @@ namespace Framework.VR
             movementOnGroundPlane.Normalize();
 
             AvatarObject.transform.position += _CurrentFlightVelocity * scaleTimesdeltaTIme * movementOnGroundPlane;
-
-            // Scale the avatar
-            float mappedAngle = MapRangeClamped(angleInDegrees, 60.0f, 120.0f, -1.0f, 1.0f) * FlightScaleSensitivity * 0.002f * scaleTimesdeltaTIme;
+            
+            float mappedAngle = MapRangeClamped(angleInDegrees, 60.0f, 120.0f, -1.0f, 1.0f) * 0.002f * scaleTimesdeltaTIme;
 
             float newAvatarPositionY = AvatarObject.transform.localPosition.y - mappedAngle * MaxAvatarPositionY;
             newAvatarPositionY = Mathf.Clamp(newAvatarPositionY, MinAvatarPositionY, MaxAvatarPositionY);
 
-            //To avoid getting blocked on top of the map
-            if (newAvatarPositionY > MaxAvatarPositionY)
-            {
-                SetYPositionAvatar(MaxAvatarPositionY - 5);
-                return;
-            }
-            else if (newAvatarPositionY < MinAvatarPositionY)
-            {
-                SetYPositionAvatar(MinAvatarPositionY + 1);
-                return;
-            }
-
-            SetYPositionAvatar(newAvatarPositionY);
+            CheckAvatarYPosition(newAvatarPositionY);
         }
 
+        /// <summary>
+        /// Some magical stuffs
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="srcMin"></param>
+        /// <param name="srcMax"></param>
+        /// <param name="dstMin"></param>
+        /// <param name="dstMax"></param>
+        /// <returns></returns>
         private float MapRangeClamped(float val, float srcMin, float srcMax, float dstMin, float dstMax)
         {
             if (val >= srcMax) return dstMax;
@@ -209,6 +229,28 @@ namespace Framework.VR
             return dstMin + (val - srcMin) / (srcMax - srcMin) * (dstMax - dstMin);
         }
 
+        /// <summary>
+        /// Check if the Avatar is not too high or to low
+        /// </summary>
+        /// <param name="newAvatarPositionY">The new position of the avatar</param>
+        void CheckAvatarYPosition(float newAvatarPositionY)
+        {
+            //To avoid getting blocked on top of the map
+            if (newAvatarPositionY > MaxAvatarPositionY)
+                SetYPositionAvatar(MaxAvatarPositionY - 2);
+
+            //To avoid getting blocked under the map
+            else if (newAvatarPositionY < MinAvatarPositionY)
+                SetYPositionAvatar(MinAvatarPositionY + 1);
+
+            else
+                SetYPositionAvatar(newAvatarPositionY);
+        }
+
+        /// <summary>
+        /// Set the position of the Avatar on the Y axis
+        /// </summary>
+        /// <param name="newYPosition"></param>
         private void SetYPositionAvatar(float newYPosition)
         {
             //Set the height of the avatar to the same values as the scale
@@ -219,43 +261,9 @@ namespace Framework.VR
                 AvatarObject.transform.localPosition.z
                 );
         }
-
-        private void CheckAvatarHeight()
-        {
-            var height = AvatarObject.transform.localPosition;
-            var scale = AvatarObject.transform.localScale;
-
-            if (height.y + 5 > MaxAvatarPositionY)
-                AvatarObject.transform.localPosition = new Vector3(height.x, height.y - 10, height.z);
-        }
         #endregion
-
+        
         #region GETTERS_SETTERS
-        public bool PressingTouchpad
-        {
-            get
-            {
-                return pressingTouchpad;
-            }
-
-            set
-            {
-                pressingTouchpad = value;
-            }
-        }
-
-        public bool IsInNormalMode
-        {
-            get
-            {
-                return isInNormalMode;
-            }
-
-            set
-            {
-                isInNormalMode = value;
-            }
-        }
         #endregion
     }
 }

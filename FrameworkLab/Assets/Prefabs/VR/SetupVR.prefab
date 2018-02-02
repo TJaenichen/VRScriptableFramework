@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4325968150092906}
   - component: {fileID: 114386473515599950}
-  - component: {fileID: 114197650631821810}
   m_Layer: 0
   m_Name: SetupVR
   m_TagString: Untagged
@@ -41,23 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114197650631821810
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1147815568228318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4052e4e22bee0224597243813c7b47d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CullingSettings:
-  - Layer: buildings
-    Distance: 10000
-  - Layer: depths
-    Distance: 5000
-  Camera: {fileID: 0}
 --- !u!114 &114386473515599950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -69,9 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b806b447e15b7c4b9480adfe25aca12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartingPoint: {x: 0, y: 0, z: 0}
   ViveSDK: {fileID: 1759397171052066, guid: 0d75aa34135783b42902b783e8aec06f, type: 2}
   OculusSDK: {fileID: 1739226735981406, guid: e904b3b8f1309244a99b76f0f02e6a74, type: 2}
   SimulatorSDK: {fileID: 1489117826308322, guid: b979e6804adc6604385ff362628275cc,
-    type: 2}
-  PostProcessingProfile: {fileID: 11400000, guid: 36cc1a2633333c34e9e993994b27667e,
     type: 2}

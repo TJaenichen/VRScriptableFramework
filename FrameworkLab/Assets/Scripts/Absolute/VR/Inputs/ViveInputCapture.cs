@@ -17,10 +17,10 @@ namespace Absolute.VR.Inputs
         public SteamVR_TrackedObject RightTrackedObject;
 
         [Header("Left Controller GameEvents Dictionnary")]
-        public VRInputs LeftEventsDictionnary;
+        public VRInputsEvents LeftEventsDictionnary;
 
         [Header("Right Controller GameEvents Dictionnary")]
-        public VRInputs RightEventsDictionnary;
+        public VRInputsEvents RightEventsDictionnary;
         #endregion PUBLIC_VARIABLES
 
         #region PRIVATE_VARIABLES
@@ -39,7 +39,7 @@ namespace Absolute.VR.Inputs
         private bool leftMenuIsDown;
         private bool leftGripIsDown;
         private bool leftThumbIsDown;
-        private bool leftThumbIsTouching;
+
         GameEvent leftBasicEvent;
         GameEventBool leftBoolEvent;
         GameEventVector3 leftVector3Event;
@@ -49,8 +49,8 @@ namespace Absolute.VR.Inputs
         private bool rightTriggerIsDown;
         private bool rightMenuIsDown;
         private bool rightGripIsDown;
-        private bool rightThumbIsTouching;
         private bool rightThumbIsDown;
+
         GameEvent rightBasicEvent;
         GameEventBool rightBoolEvent;
         GameEventVector3 rightVector3Event;
@@ -124,13 +124,11 @@ namespace Absolute.VR.Inputs
 
             if (LeftController.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                leftThumbIsTouching = true;
                 leftBoolEvent = (GameEventBool)LeftEventsDictionnary.Get("LeftThumbTouching");
                 leftBoolEvent.Raise(true);
             }
             else if (LeftController.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                leftThumbIsTouching = false;
                 leftBoolEvent = (GameEventBool)LeftEventsDictionnary.Get("LeftThumbTouching");
                 leftBoolEvent.Raise(false);
             }
@@ -204,13 +202,11 @@ namespace Absolute.VR.Inputs
 
             if (RightController.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                rightThumbIsTouching = true;
                 rightBoolEvent = (GameEventBool)RightEventsDictionnary.Get("RightThumbTouching");
                 rightBoolEvent.Raise(true);
             }
             else if (RightController.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                rightThumbIsTouching = false;
                 rightBoolEvent = (GameEventBool)RightEventsDictionnary.Get("RightThumbTouching");
                 rightBoolEvent.Raise(false);
             }

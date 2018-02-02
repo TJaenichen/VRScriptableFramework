@@ -1,42 +1,40 @@
 ﻿using Framework.Events;
 using Framework.RuntimeSet;
+using Framework.Variables;
 using UnityEngine;
 
 /// <summary>
 /// Set the GameEvent depending on the Keyboard and Mouse Inputs
+/// TODO : THE EVENTS FOR THE OCULUS PARTICULARITIES
 /// </summary>
 public class SimulatorInputCapture : MonoBehaviour
 {
     #region PUBLIC_VARIABLES
     [Header("Left Controller GameEvents Dictionnary")]
-    public VRInputs LeftEventsDictionnary;
+    public VRInputsEvents LeftEventsDictionnary;
 
     [Header("Right Controller GameEvents Dictionnary")]
-    public VRInputs RightEventsDictionnary;
+    public VRInputsEvents RightEventsDictionnary;
+
+    [Header("Left Controller BoolVariable Dictionnary")]
+    public VRInputsBoolean LeftVariablesDictionnary;
+
+    [Header("Right Controller BoolVariable Dictionnary")]
+    public VRInputsBoolean RightVariablesDictionnary;
+
+    [Header("Thumbs positions on the stick/touchpad")]
+    public Vector3Variable LeftThumbOrientation;
+    public Vector3Variable RightThumbOrientation;
     #endregion
 
     #region PRIVATE_VARIABLES
 
     #region Left_Controller_Variables
-    private bool leftTriggerIsDown;
-    private bool leftMenuIsDown;
-    private bool leftGripIsDown;
-    private bool leftThumbIsDown;
-    private bool leftThumbIsTouching;
-    GameEvent leftBasicEvent;
-    GameEventBool leftBoolEvent;
-    GameEventVector3 leftVector3Event;
+    GameEvent _leftEvent;
     #endregion Left_Controller_Variables
 
     #region Right_Controller_Variables
-    private bool rightTriggerIsDown;
-    private bool rightMenuIsDown;
-    private bool rightGripIsDown;
-    private bool rightThumbIsTouching;
-    private bool rightThumbIsDown;
-    GameEvent rightBasicEvent;
-    GameEventBool rightBoolEvent;
-    GameEventVector3 rightVector3Event;
+    GameEvent _rightEvent;
     #endregion Right_Controller_Variables
 
     #endregion
@@ -60,89 +58,130 @@ public class SimulatorInputCapture : MonoBehaviour
     /// </summary>
     void CheckLeftControllerInput()
     {
-        // ------------------------------------------------------ Trigger ------------------------------------------------------ 
-        //if (!leftTriggerIsDown && OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
-        //{
-        //    leftTriggerIsDown = true;
-        //    leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftTriggerDown");
-        //    leftBasicEvent.Raise();
-        //}
-        //else if (leftTriggerIsDown && !OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
-        //{
-        //    leftTriggerIsDown = false;
-        //    leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftTriggerUp");
-        //    leftBasicEvent.Raise();
-        //}
+        BoolVariable temp;
 
-        //for now, only one trigger is set 
+        //Left Click
+        #region TRIGGER
+        temp = LeftVariablesDictionnary.Get("TriggerIsDown");
 
-        // ------------------------------------------------------ Thumbstick ------------------------------------------------------ 
-        //close/open options
+        if (!temp.Value && Input.GetMouseButtonDown(0))
+        {
+            temp.SetValue(true);
+            _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftTriggerDown");
+            _leftEvent.Raise();
+        }
+        else if (temp.Value && Input.GetMouseButtonUp(0))
+        {
+            temp.SetValue(false);
+            _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftTriggerUp");
+            _leftEvent.Raise();
+        }
+        #endregion TRIGGER
+
+        //W, A, S and D
+        #region THUMBSTICK
+        temp = LeftVariablesDictionnary.Get("ThumbIsDown");
+
+        //GO UP
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            temp.SetValue(true);
+            LeftThumbOrientation.SetValue(Vector3.forward);
+            _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
+            _leftEvent.Raise();
+        }
+        else if (temp.Value && LeftThumbOrientation.Value.Equals(Vector3.forward))
+        {
+            temp.SetValue(false);
+            LeftThumbOrientation.SetValue(Vector3.zero);
+            _leftEvent = (GameEvent)RightEventsDictionnary.Get("LeftThumbUp");
+            _leftEvent.Raise();
+        }
+
+        // GO DOWN
         if (Input.GetKeyDown(KeyCode.S))
         {
-            leftThumbIsDown = true;
-            leftVector3Event = (GameEventVector3)LeftEventsDictionnary.Get("LeftThumbOrientation");
-            leftVector3Event.Raise(Vector3.down);
-
-            leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
-            leftBasicEvent.Raise();
+            temp.SetValue(true);
+            LeftThumbOrientation.SetValue(Vector3.back);
+            _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
+            _leftEvent.Raise();
         }
-        //close/open project list
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (temp.Value && LeftThumbOrientation.Value.Equals(Vector3.back))
         {
-            leftThumbIsDown = true;
-            leftVector3Event = (GameEventVector3)LeftEventsDictionnary.Get("LeftThumbOrientation");
-            leftVector3Event.Raise(Vector3.right);
-
-            leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
-            leftBasicEvent.Raise();
+            temp.SetValue(false);
+            LeftThumbOrientation.SetValue(Vector3.zero);
+            _leftEvent = (GameEvent)RightEventsDictionnary.Get("LeftThumbUp");
+            _leftEvent.Raise();
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+
+        //GO RIGHT
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            leftThumbIsDown = true;
-            leftVector3Event = (GameEventVector3)LeftEventsDictionnary.Get("LeftThumbOrientation");
-            leftVector3Event.Raise(Vector3.left);
-
-            leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
-            leftBasicEvent.Raise();
+            temp.SetValue(true);
+            LeftThumbOrientation.SetValue(Vector3.right);
+            _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
+            _leftEvent.Raise();
         }
-        else if (Input.GetKeyDown(KeyCode.W))
+        else if (temp.Value && LeftThumbOrientation.Value.Equals(Vector3.right))
         {
-            leftThumbIsDown = true;
-            leftVector3Event = (GameEventVector3)LeftEventsDictionnary.Get("LeftThumbOrientation");
-            leftVector3Event.Raise(Vector3.up);
-
-            leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
-            leftBasicEvent.Raise();
+            temp.SetValue(false);
+            LeftThumbOrientation.SetValue(Vector3.zero);
+            _leftEvent = (GameEvent)RightEventsDictionnary.Get("LeftThumbUp");
+            _leftEvent.Raise();
         }
 
-        // ------------------------------------------------------ Grip ------------------------------------------------------ 
-        if (!leftGripIsDown && Input.GetKeyDown(KeyCode.Tab))
+        //GO LEFT
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            leftGripIsDown = true;
-            leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftGripDown");
-            leftBasicEvent.Raise();
+            temp.SetValue(true);
+            LeftThumbOrientation.SetValue(Vector3.left);
+            _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
+            _leftEvent.Raise();
         }
-        else if (leftGripIsDown && !Input.GetKeyDown(KeyCode.Tab))
+        else if (temp.Value && LeftThumbOrientation.Value.Equals(Vector3.left))
         {
-            leftGripIsDown = false;
-            leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftGripUp");
-            leftBasicEvent.Raise();
+            temp.SetValue(false);
+            LeftThumbOrientation.SetValue(Vector3.zero);
+            _leftEvent = (GameEvent)RightEventsDictionnary.Get("LeftThumbUp");
+            _leftEvent.Raise();
         }
+        #endregion THUMBSTICK
+        
+        //Left Shift
+        #region GRIP
+        temp = LeftVariablesDictionnary.Get("GripIsDown");
 
-        // ------------------------------------------------------ Menu ------------------------------------------------------ 
-        //if (!leftMenuIsDown && OVRInput.Get(OVRInput.Button.Start))
-        //{
-        //    leftMenuIsDown = true;
-        //    leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftMenuDown");
-        //    leftBasicEvent.Raise();
-        //}
-        //else if (leftMenuIsDown && !OVRInput.Get(OVRInput.Button.Start))
-        //{
-        //    leftMenuIsDown = false;
-        //    leftBasicEvent = (GameEvent)LeftEventsDictionnary.Get("LeftMenuUp");
-        //    leftBasicEvent.Raise();
-        //}
+        if (!temp.Value && Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            temp.SetValue(true);
+            _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftGripDown");
+            _leftEvent.Raise();
+        }
+        else if (temp.Value && Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            temp.SetValue(false);
+            _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftGripUp");
+            _leftEvent.Raise();
+        }
+        #endregion GRIP
+
+        //Left Control
+        #region MENU
+        temp = LeftVariablesDictionnary.Get("MenuIsDown");
+
+        if (!temp.Value && Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            temp.SetValue(true);
+            _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftMenuDown");
+            _leftEvent.Raise();
+        }
+        else if (temp.Value && Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            temp.SetValue(false);
+            _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftMenuUp");
+            _leftEvent.Raise();
+        }
+        #endregion MENU
     }
 
     /// <summary>
@@ -150,53 +189,130 @@ public class SimulatorInputCapture : MonoBehaviour
     /// </summary>
     void CheckRightControllerInput()
     {
-        // ------------------------------------------------------ Trigger ------------------------------------------------------ 
-        if (!rightTriggerIsDown && Input.GetMouseButtonDown(0))
+        BoolVariable temp;
+
+        //Right Click
+        #region TRIGGER
+        temp = RightVariablesDictionnary.Get("TriggerIsDown");
+
+        if (!temp.Value && Input.GetMouseButtonDown(1))
         {
-            rightTriggerIsDown = true;
-            rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightTriggerDown");
-            rightBasicEvent.Raise();
+            temp.SetValue(true);
+            _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightTriggerDown");
+            _rightEvent.Raise();
         }
-        else if (rightTriggerIsDown && Input.GetMouseButtonUp(0))
+        else if (temp.Value && Input.GetMouseButtonUp(1))
         {
-            rightTriggerIsDown = false;
-            rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightTriggerUp");
-            rightBasicEvent.Raise();
+            temp.SetValue(false);
+            _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightTriggerUp");
+            _rightEvent.Raise();
+        }
+        #endregion TRIGGER
+        
+        //Up, Down, Left and Right Arrows
+        #region THUMB
+        temp = RightVariablesDictionnary.Get("ThumbIsDown");
+
+        //GO UP
+        if (!temp.Value && Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            RightThumbOrientation.SetValue(Vector3.forward);
+            temp.SetValue(true);
+            _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");
+            _rightEvent.Raise();
+        }
+        else if (temp.Value && RightThumbOrientation.Value.Equals(Vector3.forward))
+        {
+            RightThumbOrientation.SetValue(Vector3.zero);
+            temp.SetValue(false);
+            _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbUp");
+            _rightEvent.Raise();
         }
 
-        // ------------------------------------------------------ Thumbstick ------------------------------------------------------ 
-        if (!rightThumbIsDown && Input.GetKeyDown(KeyCode.UpArrow))
+        //GO DOWN
+        if (!temp.Value && Input.GetKeyDown(KeyCode.DownArrow))
         {
-            rightVector3Event = (GameEventVector3)RightEventsDictionnary.Get("RightThumbOrientation");
-            rightVector3Event.Raise(Vector3.forward);
-
-            rightThumbIsDown = true;
-            rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");
-            rightBasicEvent.Raise();
+            RightThumbOrientation.SetValue(Vector3.back);
+            temp.SetValue(true);
+            _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");
+            _rightEvent.Raise();
         }
-        else if (rightThumbIsDown && Input.GetKeyUp(KeyCode.UpArrow))
+        else if (temp.Value && RightThumbOrientation.Value.Equals(Vector3.back))
         {
-            rightVector3Event = (GameEventVector3)RightEventsDictionnary.Get("RightThumbOrientation");
-            rightVector3Event.Raise(Vector3.zero);
-
-            rightThumbIsDown = false;
-            rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbUp");
-            rightBasicEvent.Raise();
+            RightThumbOrientation.SetValue(Vector3.zero);
+            temp.SetValue(false);
+            _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbUp");
+            _rightEvent.Raise();
         }
 
-        // ------------------------------------------------------ Grip ------------------------------------------------------ 
-        if (!rightGripIsDown && Input.GetMouseButton(1))
+        //GO RIGHT
+        if (!temp.Value && Input.GetKeyDown(KeyCode.RightArrow))
         {
-            rightGripIsDown = true;
-            rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightGripDown");
-            rightBasicEvent.Raise();
+            RightThumbOrientation.SetValue(Vector3.right);
+            temp.SetValue(true);
+            _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");
+            _rightEvent.Raise();
         }
-        else if (rightGripIsDown && !Input.GetMouseButton(1))
+        else if (temp.Value && RightThumbOrientation.Value.Equals(Vector3.right))
         {
-            rightGripIsDown = false;
-            rightBasicEvent = (GameEvent)RightEventsDictionnary.Get("RightGripUp");
-            rightBasicEvent.Raise();
+            RightThumbOrientation.SetValue(Vector3.zero);
+            temp.SetValue(false);
+            _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbUp");
+            _rightEvent.Raise();
         }
+
+        //GO LEFT
+        if (!temp.Value && Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            RightThumbOrientation.SetValue(Vector3.left);
+            temp.SetValue(true);
+            _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");
+            _rightEvent.Raise();
+        }
+        else if (temp.Value && RightThumbOrientation.Value.Equals(Vector3.left))
+        {
+            RightThumbOrientation.SetValue(Vector3.zero);
+            temp.SetValue(false);
+            _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbUp");
+            _rightEvent.Raise();
+        }
+        #endregion THUMB
+
+        //Right Shift
+        #region GRIP
+        temp = RightVariablesDictionnary.Get("GripIsDown");
+
+        if (!temp.Value && Input.GetKeyDown(KeyCode.RightShift))
+        {
+            temp.SetValue(true);
+            _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightGripDown");
+            _rightEvent.Raise();
+        }
+        else if (temp.Value && Input.GetKeyUp(KeyCode.RightShift))
+        {
+            temp.SetValue(false);
+            _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightGripUp");
+            _rightEvent.Raise();
+        }
+        #endregion GRIP
+
+        //Right Control
+        #region MENU
+        temp = RightVariablesDictionnary.Get("MenuIsDown");
+
+        if (!temp.Value && Input.GetKeyDown(KeyCode.RightControl))
+        {
+            temp.SetValue(true);
+            _rightEvent = (GameEvent)RightEventsDictionnary.Get("LeftMenuDown");
+            _rightEvent.Raise();
+        }
+        else if (temp.Value && Input.GetKeyUp(KeyCode.RightControl))
+        {
+            temp.SetValue(false);
+            _rightEvent = (GameEvent)RightEventsDictionnary.Get("LeftMenuUp");
+            _rightEvent.Raise();
+        }
+        #endregion MENU
     }
     #endregion
 }
