@@ -40,7 +40,7 @@ namespace Framework.VR
         private static Transform RightControllerScripts;
         private static Transform LeftControllerScripts;
 
-        private bool _loaded;  //True when SDK Instantiate, false when everything is setup
+        private bool _loaded;
         private bool _controllerSetup;
         private bool _playerPositionned;
         private GameObject _sdk;

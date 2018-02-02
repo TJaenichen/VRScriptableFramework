@@ -107,7 +107,7 @@ namespace Framework.VR.Inputs
 
             LeftThumbOrientation.SetValue(LeftController.GetAxis());
             
-            if (!temp.Value && LeftController.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+            if (LeftController.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
             {
                 temp.SetValue(true);
                 _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
@@ -196,7 +196,7 @@ namespace Framework.VR.Inputs
 
             RightThumbOrientation.SetValue(RightController.GetAxis());
 
-            if (!temp.Value && RightController.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+            if (RightController.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
             {
                 temp.SetValue(true);
                 _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");

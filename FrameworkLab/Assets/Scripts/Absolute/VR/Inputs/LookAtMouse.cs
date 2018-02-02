@@ -10,7 +10,7 @@ public class LookAtMouse : MonoBehaviour
         // Generate a ray from the cursor position
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.Space))
         {
             // Get the point along the ray that hits the calculated distance.
             Vector3 targetPoint = ray.GetPoint(100);

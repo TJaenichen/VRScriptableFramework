@@ -216,7 +216,7 @@ namespace Framework.VR.Inputs
             temp = RightVariablesDictionnary.Get("ThumbIsDown");
 
             //GO UP
-            if (!temp.Value && Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 RightThumbOrientation.SetValue(Vector3.forward);
                 temp.SetValue(true);
@@ -232,7 +232,7 @@ namespace Framework.VR.Inputs
             }
 
             //GO DOWN
-            if (!temp.Value && Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 RightThumbOrientation.SetValue(Vector3.back);
                 temp.SetValue(true);
@@ -248,7 +248,7 @@ namespace Framework.VR.Inputs
             }
 
             //GO RIGHT
-            if (!temp.Value && Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 RightThumbOrientation.SetValue(Vector3.right);
                 temp.SetValue(true);
@@ -264,7 +264,7 @@ namespace Framework.VR.Inputs
             }
 
             //GO LEFT
-            if (!temp.Value && Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 RightThumbOrientation.SetValue(Vector3.left);
                 temp.SetValue(true);
@@ -305,13 +305,13 @@ namespace Framework.VR.Inputs
             if (!temp.Value && Input.GetKeyDown(KeyCode.RightControl))
             {
                 temp.SetValue(true);
-                _rightEvent = (GameEvent)RightEventsDictionnary.Get("LeftMenuDown");
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightMenuDown");
                 _rightEvent.Raise();
             }
             else if (temp.Value && Input.GetKeyUp(KeyCode.RightControl))
             {
                 temp.SetValue(false);
-                _rightEvent = (GameEvent)RightEventsDictionnary.Get("LeftMenuUp");
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightMenuUp");
                 _rightEvent.Raise();
             }
             #endregion MENU

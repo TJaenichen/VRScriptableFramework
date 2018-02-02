@@ -94,7 +94,7 @@ namespace Framework.VR
 
             LeftThumbOrientation.SetValue(OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick));
             
-            if (!temp.Value && OVRInput.Get(OVRInput.Button.PrimaryThumbstick))
+            if (OVRInput.Get(OVRInput.Button.PrimaryThumbstick))
             {
                 temp.SetValue(true);
                 _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
@@ -183,7 +183,7 @@ namespace Framework.VR
 
             RightThumbOrientation.SetValue(OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick));
             
-            if (!temp.Value && OVRInput.Get(OVRInput.Button.SecondaryThumbstick))
+            if (OVRInput.Get(OVRInput.Button.SecondaryThumbstick))
             {
                 temp.SetValue(true);
                 _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");
