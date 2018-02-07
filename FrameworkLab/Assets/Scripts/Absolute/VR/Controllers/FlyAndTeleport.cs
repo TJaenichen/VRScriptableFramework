@@ -11,7 +11,6 @@ namespace Framework.VR
     /// and a BoolReference to check if the user is pressing the touchpad are necessary. Those are set
     /// in the InputCapture script (this one is normally placed on the first GameObject of the SDK prefab).
     /// </summary>
-    [RequireComponent(typeof(Vector3Reference), typeof(BoolReference))]
     public class FlyAndTeleport : MonoBehaviour
     {
         #region PUBLIC_VARIABLES
@@ -21,6 +20,10 @@ namespace Framework.VR
         public float AccelerationFactorOnStart = 5.0f;
         public float MinAvatarPositionY = -5;
         public float MaxAvatarPositionY = 780;
+        [Tooltip("Only relevant for Oculus, as sensors can lose track of the Controllers")]
+        public bool RotateCamera = false;
+
+        [Header("Framework Variables References")]
         [Tooltip("This Reference is set in the InputCapture script on the first Gameobject of the SDK.\n" +
             "You can find them in the folder Assets/Variables/VR.")]
         public Vector3Reference thumbPosition;
@@ -59,6 +62,8 @@ namespace Framework.VR
             pointerRaycast = AvatarObject.GetComponent<PointerRayCast>();
             AvatarObject.transform.localScale = Vector3.one;
             GroundLayer = LayerMask.NameToLayer("ground");
+            if (!SetupVR.SDKLoaded.Contains("Rift"))
+                RotateCamera = false;
         }
 
         private void Update()
@@ -111,6 +116,10 @@ namespace Framework.VR
             else if (_WantToFly)
             {
                 StopMoving();
+            }
+            else if (RotateCamera)
+            {
+                Rotate();
             }
         }
 
@@ -258,6 +267,18 @@ namespace Framework.VR
                 newYPosition,
                 AvatarObject.transform.localPosition.z
                 );
+        }
+
+        /// <summary>
+        /// Only for the Oculus, as the sensors are not following the controllers if the user is in front of them
+        /// </summary>
+        void Rotate()
+        {
+            var x = thumbPosition.Value.x;
+            if (x > 0.5f || x < -0.5f)
+            {
+                AvatarObject.transform.Rotate(new Vector3(0, x, 0) * 2);
+            }
         }
         #endregion
         

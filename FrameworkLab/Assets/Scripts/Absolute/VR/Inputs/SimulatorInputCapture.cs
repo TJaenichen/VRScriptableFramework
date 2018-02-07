@@ -78,7 +78,7 @@ namespace Framework.VR.Inputs
                 _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftTriggerUp");
                 _leftEvent.Raise();
             }
-            #endregion TRIGGER
+            #endregion TRIGGERa
 
             //W, A, S and D
             #region THUMBSTICK
@@ -96,7 +96,7 @@ namespace Framework.VR.Inputs
             {
                 temp.SetValue(false);
                 LeftThumbOrientation.SetValue(Vector3.zero);
-                _leftEvent = (GameEvent)RightEventsDictionnary.Get("LeftThumbUp");
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbUp");
                 _leftEvent.Raise();
             }
 
@@ -112,7 +112,7 @@ namespace Framework.VR.Inputs
             {
                 temp.SetValue(false);
                 LeftThumbOrientation.SetValue(Vector3.zero);
-                _leftEvent = (GameEvent)RightEventsDictionnary.Get("LeftThumbUp");
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbUp");
                 _leftEvent.Raise();
             }
 
@@ -128,7 +128,7 @@ namespace Framework.VR.Inputs
             {
                 temp.SetValue(false);
                 LeftThumbOrientation.SetValue(Vector3.zero);
-                _leftEvent = (GameEvent)RightEventsDictionnary.Get("LeftThumbUp");
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbUp");
                 _leftEvent.Raise();
             }
 
@@ -144,7 +144,7 @@ namespace Framework.VR.Inputs
             {
                 temp.SetValue(false);
                 LeftThumbOrientation.SetValue(Vector3.zero);
-                _leftEvent = (GameEvent)RightEventsDictionnary.Get("LeftThumbUp");
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbUp");
                 _leftEvent.Raise();
             }
             #endregion THUMBSTICK

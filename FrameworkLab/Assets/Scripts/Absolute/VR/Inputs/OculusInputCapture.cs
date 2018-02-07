@@ -227,7 +227,7 @@ namespace Framework.VR
 
             //No Right menu button on the oculus
 
-            ////Button B    TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            ////Button B    TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //if (!bButtonIsDown && OVRInput.Get(OVRInput.Button.Two))
             //{
             //    RightBButton.Raise();

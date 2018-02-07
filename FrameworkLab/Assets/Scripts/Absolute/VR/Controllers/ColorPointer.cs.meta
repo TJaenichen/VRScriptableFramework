@@ -5,7 +5,12 @@ licenseType: Pro
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - RightHandPointer: {instanceID: 0}
+  - LeftHandPointer: {instanceID: 0}
+  - MatOn: {fileID: 2100000, guid: f704dcd2dfa818a4abe8f7bd648e64c3, type: 2}
+  - MatOff: {fileID: 2100000, guid: fb766f2bde315db49a0ee8ff016cd289, type: 2}
+  - MatSelectable: {fileID: 2100000, guid: fb766f2bde315db49a0ee8ff016cd289, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

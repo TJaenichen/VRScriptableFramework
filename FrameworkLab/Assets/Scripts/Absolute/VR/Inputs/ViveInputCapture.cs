@@ -116,7 +116,7 @@ namespace Framework.VR.Inputs
             else if (temp.Value && LeftController.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
             {
                 temp.SetValue(false);
-                _leftEvent = (GameEvent)RightEventsDictionnary.Get("LeftThumbUp");
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbUp");
                 _leftEvent.Raise();
             }
 

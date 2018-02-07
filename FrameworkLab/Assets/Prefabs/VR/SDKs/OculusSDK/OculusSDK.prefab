@@ -75,6 +75,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4715731632440534}
   - component: {fileID: 114479015381735264}
+  - component: {fileID: 114663485615159036}
   m_Layer: 0
   m_Name: RightControllerScripts
   m_TagString: Untagged
@@ -1418,6 +1419,39 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114663485615159036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1212548888025100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ef73229f6b95f44b5af9d635ec4db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseFlyingMode: 0
+  MaxFlightSpeed: 8
+  AccelerationFactorOnStart: 5
+  MinAvatarPositionY: -5
+  MaxAvatarPositionY: 780
+  RotateCamera: 1
+  thumbPosition:
+    UseConstant: 0
+    ConstantValue: {x: 0, y: 0, z: 0}
+    Variable: {fileID: 0}
+  touchpadIsPressed:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  HasHitUiRight:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  HasHitUiLeft:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
 --- !u!114 &114701085247069946
 MonoBehaviour:
   m_ObjectHideFlags: 1
