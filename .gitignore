@@ -30,6 +30,22 @@ ExportedObj/
 *.svd
 *.pdb
 
+#VR Libraries
+FrameworkLab/Assets/SteamVR
+FrameworkLab/Assets/OculusPlatform
+FrameworkLab/Assets/OSPNative
+FrameworkLab/Assets/OVR
+FrameworkLab/Assets/OVRAudioManager
+FrameworkLab/Assets/OvrAvatar
+FrameworkLab/Assets/SteamVR.meta
+FrameworkLab/Assets/OculusPlatform.meta
+FrameworkLab/Assets/OVR.meta
+FrameworkLab/Assets/OVRAudioManager.meta
+FrameworkLab/Assets/OvrAvatar.meta
+FrameworkLab/Assets/OSPNative.meta
+FrameworkLab/Assets/LICENSE.txt
+FrameworkLab/Assets/LICENSE.txt.meta
+
 # Unity3D generated meta files
 *.pidb.meta
 
