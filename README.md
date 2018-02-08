@@ -6,7 +6,7 @@ The Scriptable Framework in this repository is based on Scriptable Objects and t
 
 
 ## Credits
-I want to thanks [Thomas Masquart](https://github.com/ThmsMsqrt) and [Thorsten Jänichen](https://github.com/TJaenichen) for there work on this project, as they largely participated in the programmation of this Framework.
+I want to thanks [Thomas Masquart](https://github.com/ThmsMsqrt) and [Thorsten Jänichen](https://github.com/TJaenichen) for their works on this project, as they largely participated in the programmation of this Framework.
 
 
 ## Documentation
