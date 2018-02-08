@@ -2,7 +2,7 @@
 This repository group a Unity framework based on the Scriptable Objects. 
 
 ## Description
-The Scriptable Framework in this repository is based on Scriptable Objects and the Unite Talk 2017 [available here](https://www.youtube.com/watch?v=raQ3iHhE_Kk&t=1884s). 
+The Scriptable Framework in this repository is based on Scriptable Objects and the Unite Talk 2017 [available here](https://youtu.be/raQ3iHhE_Kk). 
 
 
 ## Credits
