@@ -167,18 +167,8 @@ namespace Framework.VR
             {
                 try
                 {
-                    foreach(Transform t in GetComponentInChildren<Transform>())
-                    {
-                        foreach (Transform grand_t in t.GetComponentInChildren<Transform>())
-                        {
-                            //Always attached to the controller, contains Left Controller scripts 
-                            if (grand_t.name.Contains("LeftControllerScripts"))
-                                LeftControllerScripts = grand_t;
-                            //Always attached to the controller, contains Right Controller scripts 
-                            else if (grand_t.name.Contains("RightControllerScripts"))
-                                RightControllerScripts = grand_t;
-                        }
-                    }
+                    LeftControllerScripts = ActiveSDK.transform.FindDeepChild("LeftControllerScripts");
+                    RightControllerScripts = ActiveSDK.transform.FindDeepChild("RightControllerScripts");
 
                     if (LeftControllerScripts != null && RightControllerScripts != null)
                         _controllerSetup = true;

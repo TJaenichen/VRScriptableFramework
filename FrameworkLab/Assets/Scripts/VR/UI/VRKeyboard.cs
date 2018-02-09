@@ -5,10 +5,33 @@ namespace Absolute.VR
 {
     public class VRKeyboard : MonoBehaviour
     {
-        public static VRKeyboard instance;
-
+        #region PUBLIC_VARIABLES
         public InputField input;
+        #endregion PUBLIC_VARIABLES
 
+        //EMPTY
+        #region PRIVATE_VARIABLES
+        #endregion PRIVATE_VARIABLES
+
+        #region MONOBEHAVIOUR_METHODS
+        private void Start()
+        {
+            input = GetComponentInChildren<InputField>();
+
+            Button[] buttons = GetComponentsInChildren<Button>();
+            foreach (Button button in buttons)
+            {
+                button.onClick.AddListener(delegate { ClickKey(button.name); });
+            }
+        }
+
+        void Update()
+        {
+            
+        }
+        #endregion MONOBEHAVIOUR_METHODS
+
+        #region PUBLIC_METHODS
         public void ClickKey(string character)
         {
             if (!input) return;
@@ -46,18 +69,10 @@ namespace Absolute.VR
         {
             Debug.Log("You've typed [" + input.text + "]");
         }
+        #endregion PUBLIC_METHODS
 
-        private void Start()
-        {
-            instance = this;
-
-            input = GetComponentInChildren<InputField>();
-
-            Button [] buttons = GetComponentsInChildren<Button>();
-            foreach (Button button in buttons)
-            {
-                button.onClick.AddListener(delegate { ClickKey(button.name); });
-            }
-        }
+        #region PRIVATE_METHODS
+        
+        #endregion PRIVATE_METHODS
     }
 }
