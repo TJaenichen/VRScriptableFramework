@@ -152,7 +152,7 @@ namespace Framework.VR
                 _leftEvent.Raise();
             }
             #endregion MENU
-
+            
             #region Button X
             temp = LeftVariablesDictionnary.Get("XButtonIsDown");
 
@@ -260,7 +260,7 @@ namespace Framework.VR
             #endregion GRIP
 
             //No Right menu button on the oculus
-
+            
             #region Button A
             temp = RightVariablesDictionnary.Get("AButtonIsDown");
 

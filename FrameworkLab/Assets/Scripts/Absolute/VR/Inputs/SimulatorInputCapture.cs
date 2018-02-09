@@ -81,18 +81,18 @@ namespace Framework.VR.Inputs
             #endregion TRIGGERa
 
             //W, A, S and D
-            #region THUMBSTICK
+            #region THUMB
             temp = LeftVariablesDictionnary.Get("ThumbIsDown");
 
             //GO UP
-            if (Input.GetKeyDown(KeyCode.W))
+            if (!temp.Value && Input.GetKeyDown(KeyCode.W))
             {
                 temp.SetValue(true);
                 LeftThumbOrientation.SetValue(Vector3.forward);
                 _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
                 _leftEvent.Raise();
             }
-            else if (temp.Value && LeftThumbOrientation.Value.Equals(Vector3.forward))
+            else if (temp.Value && LeftThumbOrientation.Value.Equals(Vector3.forward) && Input.GetKeyUp(KeyCode.W))
             {
                 temp.SetValue(false);
                 LeftThumbOrientation.SetValue(Vector3.zero);
@@ -101,14 +101,14 @@ namespace Framework.VR.Inputs
             }
 
             // GO DOWN
-            if (Input.GetKeyDown(KeyCode.S))
+            if (!temp.Value && Input.GetKeyDown(KeyCode.S))
             {
                 temp.SetValue(true);
                 LeftThumbOrientation.SetValue(Vector3.back);
                 _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
                 _leftEvent.Raise();
             }
-            else if (temp.Value && LeftThumbOrientation.Value.Equals(Vector3.back))
+            else if (temp.Value && LeftThumbOrientation.Value.Equals(Vector3.back) && Input.GetKeyUp(KeyCode.S))
             {
                 temp.SetValue(false);
                 LeftThumbOrientation.SetValue(Vector3.zero);
@@ -117,14 +117,14 @@ namespace Framework.VR.Inputs
             }
 
             //GO RIGHT
-            if (Input.GetKeyDown(KeyCode.D))
+            if (!temp.Value && Input.GetKeyDown(KeyCode.D))
             {
                 temp.SetValue(true);
                 LeftThumbOrientation.SetValue(Vector3.right);
                 _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
                 _leftEvent.Raise();
             }
-            else if (temp.Value && LeftThumbOrientation.Value.Equals(Vector3.right))
+            else if (temp.Value && LeftThumbOrientation.Value.Equals(Vector3.right) && Input.GetKeyUp(KeyCode.D))
             {
                 temp.SetValue(false);
                 LeftThumbOrientation.SetValue(Vector3.zero);
@@ -133,21 +133,21 @@ namespace Framework.VR.Inputs
             }
 
             //GO LEFT
-            if (Input.GetKeyDown(KeyCode.A))
+            if (!temp.Value && Input.GetKeyDown(KeyCode.A))
             {
                 temp.SetValue(true);
                 LeftThumbOrientation.SetValue(Vector3.left);
                 _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbDown");
                 _leftEvent.Raise();
             }
-            else if (temp.Value && LeftThumbOrientation.Value.Equals(Vector3.left))
+            else if (temp.Value && LeftThumbOrientation.Value.Equals(Vector3.left) && Input.GetKeyUp(KeyCode.A))
             {
                 temp.SetValue(false);
                 LeftThumbOrientation.SetValue(Vector3.zero);
                 _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftThumbUp");
                 _leftEvent.Raise();
             }
-            #endregion THUMBSTICK
+            #endregion THUMB
         
             //Left Shift
             #region GRIP
@@ -184,6 +184,46 @@ namespace Framework.VR.Inputs
                 _leftEvent.Raise();
             }
             #endregion MENU
+
+            #region OCULUS_PARTICULARITIES
+
+            //F
+            #region X BUTTON
+            temp = LeftVariablesDictionnary.Get("XButtonIsDown");
+
+            if (!temp.Value && Input.GetKeyDown(KeyCode.F))
+            {
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("XButtonDown");
+                _leftEvent.Raise();
+            }
+            else if (temp.Value && Input.GetKeyUp(KeyCode.F))
+            {
+                temp.SetValue(false);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("XButtonUp");
+                _leftEvent.Raise();
+            }
+            #endregion X BUTTON
+
+            //R
+            #region Y BUTTON
+            temp = LeftVariablesDictionnary.Get("YButtonIsDown");
+
+            if (!temp.Value && Input.GetKeyDown(KeyCode.R))
+            {
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("YButtonDown");
+                _leftEvent.Raise();
+            }
+            else if (temp.Value && Input.GetKeyUp(KeyCode.R))
+            {
+                temp.SetValue(false);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("YButtonUp");
+                _leftEvent.Raise();
+            }
+            #endregion Y BUTTON
+
+            #endregion OCULUS_PARTICULARITIES
         }
 
         /// <summary>
@@ -216,14 +256,14 @@ namespace Framework.VR.Inputs
             temp = RightVariablesDictionnary.Get("ThumbIsDown");
 
             //GO UP
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (!temp.Value && Input.GetKeyDown(KeyCode.UpArrow))
             {
                 RightThumbOrientation.SetValue(Vector3.forward);
                 temp.SetValue(true);
                 _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");
                 _rightEvent.Raise();
             }
-            else if (temp.Value && RightThumbOrientation.Value.Equals(Vector3.forward))
+            else if (temp.Value && RightThumbOrientation.Value.Equals(Vector3.forward) && Input.GetKeyUp(KeyCode.UpArrow))
             {
                 RightThumbOrientation.SetValue(Vector3.zero);
                 temp.SetValue(false);
@@ -232,14 +272,14 @@ namespace Framework.VR.Inputs
             }
 
             //GO DOWN
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (!temp.Value && Input.GetKeyDown(KeyCode.DownArrow))
             {
                 RightThumbOrientation.SetValue(Vector3.back);
                 temp.SetValue(true);
                 _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");
                 _rightEvent.Raise();
             }
-            else if (temp.Value && RightThumbOrientation.Value.Equals(Vector3.back))
+            else if (temp.Value && RightThumbOrientation.Value.Equals(Vector3.back) && Input.GetKeyUp(KeyCode.DownArrow))
             {
                 RightThumbOrientation.SetValue(Vector3.zero);
                 temp.SetValue(false);
@@ -248,14 +288,14 @@ namespace Framework.VR.Inputs
             }
 
             //GO RIGHT
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (!temp.Value && Input.GetKeyDown(KeyCode.RightArrow))
             {
                 RightThumbOrientation.SetValue(Vector3.right);
                 temp.SetValue(true);
                 _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");
                 _rightEvent.Raise();
             }
-            else if (temp.Value && RightThumbOrientation.Value.Equals(Vector3.right))
+            else if (temp.Value && RightThumbOrientation.Value.Equals(Vector3.right) && Input.GetKeyUp(KeyCode.RightArrow))
             {
                 RightThumbOrientation.SetValue(Vector3.zero);
                 temp.SetValue(false);
@@ -264,14 +304,14 @@ namespace Framework.VR.Inputs
             }
 
             //GO LEFT
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (!temp.Value && Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 RightThumbOrientation.SetValue(Vector3.left);
                 temp.SetValue(true);
                 _rightEvent = (GameEvent)RightEventsDictionnary.Get("RightThumbDown");
                 _rightEvent.Raise();
             }
-            else if (temp.Value && RightThumbOrientation.Value.Equals(Vector3.left))
+            else if (temp.Value && RightThumbOrientation.Value.Equals(Vector3.left) && Input.GetKeyUp(KeyCode.LeftArrow))
             {
                 RightThumbOrientation.SetValue(Vector3.zero);
                 temp.SetValue(false);
@@ -298,6 +338,8 @@ namespace Framework.VR.Inputs
             }
             #endregion GRIP
 
+            #region VIVE_PARTICULARITY
+
             //Right Control
             #region MENU
             temp = RightVariablesDictionnary.Get("MenuIsDown");
@@ -315,6 +357,48 @@ namespace Framework.VR.Inputs
                 _rightEvent.Raise();
             }
             #endregion MENU
+
+            #endregion VIVE_PARTICULARITY
+
+            #region OCULUS_PARTICULARITIES
+
+            //L
+            #region A BUTTON
+            temp = RightVariablesDictionnary.Get("AButtonIsDown");
+
+            if (!temp.Value && Input.GetKeyDown(KeyCode.L))
+            {
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)RightEventsDictionnary.Get("AButtonDown");
+                _leftEvent.Raise();
+            }
+            else if (temp.Value && Input.GetKeyUp(KeyCode.L))
+            {
+                temp.SetValue(false);
+                _leftEvent = (GameEvent)RightEventsDictionnary.Get("AButtonUp");
+                _leftEvent.Raise();
+            }
+            #endregion A BUTTON
+
+            //O
+            #region B BUTTON
+            temp = RightVariablesDictionnary.Get("BButtonIsDown");
+
+            if (!temp.Value && Input.GetKeyDown(KeyCode.O))
+            {
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)RightEventsDictionnary.Get("BButtonDown");
+                _leftEvent.Raise();
+            }
+            else if (temp.Value && Input.GetKeyUp(KeyCode.O))
+            {
+                temp.SetValue(false);
+                _leftEvent = (GameEvent)RightEventsDictionnary.Get("BButtonUp");
+                _leftEvent.Raise();
+            }
+            #endregion B BUTTON
+
+            #endregion OCULUS_PARTICULARITIES
         }
         #endregion
     }

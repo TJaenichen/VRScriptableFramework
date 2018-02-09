@@ -301,7 +301,7 @@ Prefab:
     - target: {fileID: 114386473515599950, guid: bc49bde1c2e008942bd59fd92b11985a,
         type: 2}
       propertyPath: SDKToLoad
-      value: Rift
+      value: Simulator
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc49bde1c2e008942bd59fd92b11985a, type: 2}
