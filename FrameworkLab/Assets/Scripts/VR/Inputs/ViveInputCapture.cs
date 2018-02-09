@@ -6,7 +6,8 @@ using UnityEngine;
 namespace Framework.VR.Inputs
 {
     /// <summary>
-    /// Set the GameEvent depending on the Vive Inputs
+    /// Script attached to the ViveSDK Prefab.
+    /// Set the GameEvent depending on the Vive Inputs.
     /// </summary>
     public class ViveInputCapture : MonoBehaviour
     {

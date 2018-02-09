@@ -3,20 +3,28 @@
 namespace Framework.VR
 {
     /// <summary>
+    /// Script attached to the CameraRig of each VR SDK Prefab.
     /// Check if the PointerRayCast has hit something.
     /// </summary>
     public class CheckRayLength : MonoBehaviour
     {
         #region PUBLIC_VARIABLE
-        public PointerRayCast PointerRayCast;
+        [Header("The maximum length of the Ray pointer")]
         public float MaxLengthLineRenderer = 1000.0f;
         #endregion PUBLIC_VARIABLE
-
-        //EMPTY
+        
         #region PRIVATE_VARIABLE
+        private PointerRayCast PointerRayCast;
+        private LayerMask uiLayer;
         #endregion PRIVATE_VARIABLE
 
         #region MONOBEHAVIOUR_METHODS
+        void Start()
+        {
+            uiLayer = LayerMask.NameToLayer("UI");
+            PointerRayCast = GetComponent<PointerRayCast>();
+        }
+
         void Update()
         {
             CheckRightController();
@@ -29,15 +37,17 @@ namespace Framework.VR
         #endregion PUBLIC_METHODS
 
         #region PRIVATE_METHODS
+        /// <summary>
+        /// Check if the right ray has hit something on the way
+        /// </summary>
         void CheckRightController()
         {
             var hasHit = false;
 
             foreach (var hit in PointerRayCast.RightHits)
             {
-                if (hit.collider.GetComponent<Canvas>() != null ||
-                    hit.collider.GetComponentInParent<Canvas>() != null ||
-                    hit.collider.GetComponentInChildren<Canvas>() != null)
+                //If the collider is not a UI element
+                if (hit.collider.gameObject.layer != uiLayer)
                 {
                     //Reduce lineRenderer from the controllers position to the object that was hit
                     PointerRayCast.RightController.GetComponent<LineRenderer>().SetPositions(new Vector3[]
@@ -70,9 +80,8 @@ namespace Framework.VR
 
             foreach (var hit in PointerRayCast.LeftHits)
             {
-                if (hit.collider.GetComponent<Canvas>() != null ||
-                    hit.collider.GetComponentInParent<Canvas>() != null ||
-                    hit.collider.GetComponentInChildren<Canvas>() != null)
+                //If the collider is not a UI element
+                if (hit.collider.gameObject.layer != uiLayer)
                 {
                     //Reduce lineRenderer from the controllers position to the object that was hit
                     PointerRayCast.LeftController.GetComponent<LineRenderer>().SetPositions(new Vector3[]

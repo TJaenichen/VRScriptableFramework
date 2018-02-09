@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Framework.VR;
 using Framework.Variables;
 #if UNITY_EDITOR
 #endif

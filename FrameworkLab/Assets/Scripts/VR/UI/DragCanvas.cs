@@ -1,20 +1,24 @@
 ﻿using Framework.Variables;
-using Framework.VR;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 namespace Framework.VR.UI
 {
+    /// <summary>
+    /// Allow the user to drag a Canvas. 
+    /// To use this feature, you'll need to create a 3D UI like the VRKeyboard or the UIExample prefabs.
+    /// On this window, you need then to create a GameObject containing some colliders (Those are the place
+    /// where the user can drag the window). 
+    /// Finally, the object with the colliders needs a tag named UIBorder.
+    /// </summary>
     public class DragCanvas : MonoBehaviour
     {
         #region PUBLIC_VARIABLES
-        [Header("BoolReference to verify if the UI is Hit")]
-        public BoolVariable HasHitUiRight;
-        public BoolVariable HasHitUiLeft;
-
         [Header("BoolReference to check if the Trigger is down")]
-        public BoolReference RightTriggerDown;
-        public BoolReference LeftTriggerDown;
+        public BoolVariable RightTriggerDown;
+        public BoolVariable LeftTriggerDown;
+
+        [Header("RaycastHitReference to where the user has clicked")]
+        public RaycastHitVariable HitPoint;
         #endregion
 
         #region PRIVATE_VARIABLES
@@ -24,65 +28,39 @@ namespace Framework.VR.UI
         private Vector3 _lastDragPos;
         private GameObject _draggedThing;
         private float _distance;
-        private int uiLayer;
 
         private PointerRayCast PointerRayCast;
 
         private Transform RightHand;
         private Transform LeftHand;
-
-        enum Hand
-        {
-            Left,
-            Right
-        }
         #endregion
 
         #region MONOBEHAVIOUR_METHODS
-        // Use this for initialization
-        void Start()
-        {
-            uiLayer = LayerMask.NameToLayer("UI");
-        }
-
         // Update is called once per frame
         void Update()
         {
             if (!CheckReferences())
                 return;
 
-            if (!RightTriggerDown.Value && HasHitUiRight)
-            {
-                HasHitUiRight.SetValue(false);
-            }
-            if (!LeftTriggerDown.Value && HasHitUiLeft)
-            {
-                HasHitUiLeft.SetValue(false);
-            }
-
-            if (CheckDragging())
-            {
-                return;
-            }
-
-            if (RightTriggerDown.Value && !HasHitUiRight)
-            {
-                Debug.DrawRay(RightHand.transform.position, RightHand.transform.TransformDirection(Vector3.forward),
-                              Color.green, 5);
-                HandleHits(PointerRayCast.RightHits, Hand.Right);
-            }
-            if (LeftTriggerDown.Value && !HasHitUiLeft)
-            {
-                Debug.DrawRay(LeftHand.transform.position, LeftHand.transform.TransformDirection(Vector3.forward),
-                              Color.yellow, 5);
-                HandleHits(PointerRayCast.LeftHits, Hand.Left);
-            }
+            CheckDragging();
         }
         #endregion
         
-        //EMPTY
         #region PUBLIC_METHODS
-
+        /// <summary>
+        /// Called from the GameEventTransformListener using UIObjectHit
+        /// </summary>
+        /// <param name="objectHit">The UI object that was hit</param>
+        public void CheckObjectHit(Transform objectHit)
+        {
+            if (objectHit.tag == "UIBorder")
+            {
+                if (LeftTriggerDown.Value)
+                    StartDragging(HitPoint.Value, "Left");
+                else
+                    StartDragging(HitPoint.Value, "Right");
+            }
+        }
         #endregion
         
         #region PRIVATE_METHODS
@@ -90,7 +68,7 @@ namespace Framework.VR.UI
         /// Check if the user is already dragging a Canvas
         /// </summary>
         /// <returns>true if the user is dragging a canvas</returns>
-        bool CheckDragging()
+        void CheckDragging()
         {
             if (_draggingLeft && !LeftTriggerDown.Value)
             {
@@ -104,15 +82,11 @@ namespace Framework.VR.UI
             if (_draggingLeft)
             {
                 KeepDragging();
-                return true;
             }
             if (_draggingRight)
             {
                 KeepDragging();
-                return true;
             }
-
-            return false;
         }
 
         /// <summary>
@@ -120,7 +94,7 @@ namespace Framework.VR.UI
         /// </summary>
         /// <param name="raycastHit">The raycastHit hitting the UI</param>
         /// <param name="hand">The hand with which the user is dragging the Canvas</param>
-        void StartDragging(RaycastHit raycastHit, Hand hand)
+        void StartDragging(RaycastHit raycastHit, string hand)
         {
             if (!(_draggingLeft || _draggingRight))
             {
@@ -128,7 +102,7 @@ namespace Framework.VR.UI
                 _curDragPos = raycastHit.point;
             }
 
-            if (hand == Hand.Left)
+            if (hand.Contains("Left"))
             {
                 _draggingLeft = true;
                 _distance = Vector3.Distance(PointerRayCast.LeftPos, raycastHit.point);
@@ -170,40 +144,7 @@ namespace Framework.VR.UI
                     Quaternion.LookRotation(_draggedThing.transform.parent.parent.transform.position - PointerRayCast.LeftPos);
             }
         }
-
-        /// <summary>
-        /// Set the BoolVariable that is dragging the canvas
-        /// </summary>
-        /// <param name="hand">The hand that press the trigger</param>
-        void SetUiHandHit(Hand hand)
-        {
-            if (hand == Hand.Left)
-                HasHitUiLeft.SetValue(true);
-            else
-                HasHitUiRight.SetValue(true);
-        }
-
-        /// <summary>
-        /// Handle the raycastHits to check if one of them touch the UI
-        /// </summary>
-        /// <param name="hits">The list hits link to the hand</param>
-        /// <param name="hand">The hand to test</param>
-        void HandleHits(List<RaycastHit> hits, Hand hand)
-        {
-            foreach (var raycastHit in hits)
-            {
-                var raycastCollider = raycastHit.collider;
-                if (raycastCollider.gameObject.layer == uiLayer)
-                {
-                    SetUiHandHit(hand);
-
-                    //When a user click on the border surrounding a canvas
-                    if (raycastCollider.gameObject.name == "Border")
-                        StartDragging(raycastHit, hand);
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Set the references for the pointerRayCast, the LeftHand and the RightHand
         /// </summary>

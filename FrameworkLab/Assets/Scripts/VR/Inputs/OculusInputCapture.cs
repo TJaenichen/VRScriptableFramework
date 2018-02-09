@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Framework.VR
 {
     /// <summary>
+    /// Script attached to the OculusSDK Prefab.
     /// Set the GameEvent depending on the Oculus Inputs
     /// </summary>
     public class OculusInputCapture : MonoBehaviour

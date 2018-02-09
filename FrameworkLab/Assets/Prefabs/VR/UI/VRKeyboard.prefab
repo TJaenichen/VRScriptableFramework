@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 65671854139562870}
   m_Layer: 5
   m_Name: Border
-  m_TagString: Untagged
+  m_TagString: UIBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 65050092079912512}
   m_Layer: 5
   m_Name: K
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 65584224787938020}
   m_Layer: 5
   m_Name: H
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 65449807853798342}
   m_Layer: 5
   m_Name: O
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 65626580146425600}
   m_Layer: 5
   m_Name: 5
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 65572659992048290}
   m_Layer: 5
   m_Name: '"'
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 65567172760283464}
   m_Layer: 5
   m_Name: .
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 65911784681013918}
   m_Layer: 5
   m_Name: W
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 65835563503816612}
   m_Layer: 5
   m_Name: R
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 65717486919937852}
   m_Layer: 5
   m_Name: N
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 65024246505570810}
   m_Layer: 5
   m_Name: 9
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 65648244399592728}
   m_Layer: 5
   m_Name: Y
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 65321575054880066}
   m_Layer: 5
   m_Name: S
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -376,7 +376,7 @@ GameObject:
   - component: {fileID: 65244258329742816}
   m_Layer: 5
   m_Name: L
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 65530630610240408}
   m_Layer: 5
   m_Name: F
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -567,7 +567,7 @@ GameObject:
   - component: {fileID: 65956733631051114}
   m_Layer: 5
   m_Name: Enter
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 65513359422789922}
   m_Layer: 5
   m_Name: =
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 65340417138823430}
   m_Layer: 5
   m_Name: I
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 65143095767158790}
   m_Layer: 5
   m_Name: 7
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -728,7 +728,7 @@ GameObject:
   - component: {fileID: 65145571170167820}
   m_Layer: 5
   m_Name: Z
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -747,7 +747,7 @@ GameObject:
   - component: {fileID: 65345828601599896}
   m_Layer: 5
   m_Name: Backspace
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -766,7 +766,7 @@ GameObject:
   - component: {fileID: 65107172587086258}
   m_Layer: 5
   m_Name: '?'
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -819,7 +819,7 @@ GameObject:
   - component: {fileID: 65115939348381290}
   m_Layer: 5
   m_Name: E
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -872,7 +872,7 @@ GameObject:
   - component: {fileID: 65945600813765194}
   m_Layer: 5
   m_Name: +
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -959,7 +959,7 @@ GameObject:
   - component: {fileID: 65119185885491500}
   m_Layer: 5
   m_Name: B
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -978,7 +978,7 @@ GameObject:
   - component: {fileID: 65074228081735072}
   m_Layer: 5
   m_Name: M
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -997,7 +997,7 @@ GameObject:
   - component: {fileID: 65785680487221084}
   m_Layer: 5
   m_Name: A
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1016,7 +1016,7 @@ GameObject:
   - component: {fileID: 65817732233458568}
   m_Layer: 5
   m_Name: P
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1087,7 +1087,7 @@ GameObject:
   - component: {fileID: 65820283644934170}
   m_Layer: 5
   m_Name: V
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1157,7 +1157,7 @@ GameObject:
   - component: {fileID: 65283688876670170}
   m_Layer: 5
   m_Name: J
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1176,7 +1176,7 @@ GameObject:
   - component: {fileID: 65044286453499214}
   m_Layer: 5
   m_Name: G
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1246,7 +1246,7 @@ GameObject:
   - component: {fileID: 65170661915744610}
   m_Layer: 5
   m_Name: 3
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1282,7 +1282,7 @@ GameObject:
   - component: {fileID: 65755737977689098}
   m_Layer: 5
   m_Name: '@'
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1318,7 +1318,7 @@ GameObject:
   - component: {fileID: 65690535061573202}
   m_Layer: 5
   m_Name: '!'
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1371,7 +1371,7 @@ GameObject:
   - component: {fileID: 65140564243482082}
   m_Layer: 5
   m_Name: /
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1390,7 +1390,7 @@ GameObject:
   - component: {fileID: 65805804516326954}
   m_Layer: 5
   m_Name: 8
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1409,7 +1409,7 @@ GameObject:
   - component: {fileID: 65762235393883278}
   m_Layer: 5
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1428,7 +1428,7 @@ GameObject:
   - component: {fileID: 65234057383018106}
   m_Layer: 5
   m_Name: U
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1447,7 +1447,7 @@ GameObject:
   - component: {fileID: 65700485598317322}
   m_Layer: 5
   m_Name: '#'
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1466,7 +1466,7 @@ GameObject:
   - component: {fileID: 65714230312534884}
   m_Layer: 5
   m_Name: 4
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1553,7 +1553,7 @@ GameObject:
   - component: {fileID: 65064358910415282}
   m_Layer: 5
   m_Name: '*'
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1571,6 +1571,7 @@ GameObject:
   - component: {fileID: 114108650666933354}
   - component: {fileID: 222870818214178940}
   - component: {fileID: 114163641386631240}
+  - component: {fileID: 114091937272309128}
   m_Layer: 5
   m_Name: VRKeyboard
   m_TagString: MovableCanvas
@@ -1592,7 +1593,7 @@ GameObject:
   - component: {fileID: 65232827853616112}
   m_Layer: 5
   m_Name: Space
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1622,6 +1623,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224386583039758432}
+  - component: {fileID: 114286570081596144}
   m_Layer: 5
   m_Name: GameEventListenersVRKeyboard
   m_TagString: Untagged
@@ -1643,7 +1645,7 @@ GameObject:
   - component: {fileID: 65912479294257398}
   m_Layer: 5
   m_Name: '-'
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1662,7 +1664,7 @@ GameObject:
   - component: {fileID: 65444708839964896}
   m_Layer: 5
   m_Name: D
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1698,7 +1700,7 @@ GameObject:
   - component: {fileID: 65576916311914512}
   m_Layer: 5
   m_Name: T
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1734,7 +1736,7 @@ GameObject:
   - component: {fileID: 65002946357935558}
   m_Layer: 5
   m_Name: ','
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1770,7 +1772,7 @@ GameObject:
   - component: {fileID: 65463737327058130}
   m_Layer: 5
   m_Name: 6
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1800,7 +1802,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224749194821053876}
-  - component: {fileID: 114596794915376306}
   m_Layer: 5
   m_Name: Keys
   m_TagString: Untagged
@@ -1839,7 +1840,7 @@ GameObject:
   - component: {fileID: 65784021941453574}
   m_Layer: 5
   m_Name: C
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1858,7 +1859,7 @@ GameObject:
   - component: {fileID: 65740724546895506}
   m_Layer: 5
   m_Name: Q
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1911,7 +1912,7 @@ GameObject:
   - component: {fileID: 65194011356800174}
   m_Layer: 5
   m_Name: X
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1930,7 +1931,7 @@ GameObject:
   - component: {fileID: 65124176083351308}
   m_Layer: 5
   m_Name: 2
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1949,7 +1950,7 @@ GameObject:
   - component: {fileID: 65951839089720882}
   m_Layer: 5
   m_Name: 0
-  m_TagString: Untagged
+  m_TagString: KeyboardKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3146,6 +3147,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114091937272309128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1785500155881488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b00dc89444db443b063d884fe59d04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasHitUiRight: {fileID: 11400000, guid: 53fc7375e651fb949bb4d4ddcb235110, type: 2}
+  HasHitUiLeft: {fileID: 11400000, guid: 618ea11461b082f49a6fa75558d2c447, type: 2}
+  RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
+  LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
 --- !u!114 &114106523949401626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3657,16 +3673,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116ef2cb6e17c4143b7565c69ab26b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasHitUiRight: {fileID: 0}
-  HasHitUiLeft: {fileID: 0}
-  RightTriggerDown:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
-  LeftTriggerDown:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
+  RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
+  LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
+  HitPoint: {fileID: 11400000, guid: 59d5466b3e75ec547bb1920296fcfa00, type: 2}
 --- !u!114 &114164020334351288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4300,6 +4309,45 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 8
+--- !u!114 &114286570081596144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1828741375002362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ce43305813d064a88068c35a07d1c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 15ddfd9adffbaa74da38eada75f74d63, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114163641386631240}
+        m_MethodName: CheckObjectHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1927017360398276}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Framework.Events.UnityEvents.EventTransform, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114295719746098672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5566,18 +5614,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114596794915376306
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1927017360398276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55b00dc89444db443b063d884fe59d04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input: {fileID: 0}
 --- !u!114 &114601113774392730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10545,8 +10581,8 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1785500155881488}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 8.939}
   m_LocalScale: {x: 0.012, y: 0.012, z: 0.012}
   m_Children:
   - {fileID: 224430875881768212}
@@ -10556,7 +10592,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1.587, y: 0}
   m_SizeDelta: {x: 240, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224941958453688856

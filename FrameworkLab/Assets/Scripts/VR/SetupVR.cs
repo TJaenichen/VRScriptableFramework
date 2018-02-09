@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using Framework.Util;
 using UnityEditor;
 #endif
 using UnityEngine;
@@ -7,6 +8,10 @@ using UnityEngine.XR;
 
 namespace Framework.VR
 {
+    /// <summary>
+    /// Script placed on the SetupVR Prefab.
+    /// Load the selected SDK at runtime, and stock all the references to the important VR components.
+    /// </summary>
 #if UNITY_EDITOR
     [CanEditMultipleObjects]
 #endif
@@ -19,7 +24,7 @@ namespace Framework.VR
         [Tooltip("The name of the SDK that has been loaded")]
         public static string SDKLoaded;
 
-        [Header("The World Position to set the CameraRig at runtime.")]
+        [Header("OPTIONAL : The World Position to set the CameraRig at runtime.")]
         public Vector3 StartingPoint;
 
         [Header("OPTIONAL : The Scene where to load the VR SDK")]
@@ -35,7 +40,7 @@ namespace Framework.VR
         #region PRIVATE_VARIABLES
         [Tooltip("The name of the SDK that needs to be loaded")]
         [SerializeField] [HideInInspector]
-        string SDKToLoad;
+        private string SDKToLoad;
 
         private static Transform RightControllerScripts;
         private static Transform LeftControllerScripts;
@@ -123,7 +128,6 @@ namespace Framework.VR
                     XRSettings.enabled = true;
                     _sdk = Instantiate(OculusSDK);
                     _sdk.transform.name = OculusSDK.name;
-                    //sdk.transform.position = new Vector3(sdk.transform.position.x, 200, sdk.transform.position.z);
                     //Active SDK is set to the cameraRig, as it's the only object that will be moved
                     ActiveSDK = _sdk.transform.GetChild(0).gameObject;
                     SDKLoaded = "Rift";

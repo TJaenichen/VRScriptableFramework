@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4325968150092906}
   - component: {fileID: 114386473515599950}
   - component: {fileID: 114470361991225018}
+  - component: {fileID: 114804770337605678}
   m_Layer: 0
   m_Name: SetupVR
   m_TagString: Untagged
@@ -52,13 +53,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b806b447e15b7c4b9480adfe25aca12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingPoint: {x: 0, y: 0, z: 0}
+  StartingPoint: {x: 0, y: 0, z: 5}
   SceneToUse: 
   ViveSDK: {fileID: 1646625136078428, guid: 0d75aa34135783b42902b783e8aec06f, type: 2}
   OculusSDK: {fileID: 1739226735981406, guid: e904b3b8f1309244a99b76f0f02e6a74, type: 2}
   SimulatorSDK: {fileID: 1489117826308322, guid: b979e6804adc6604385ff362628275cc,
     type: 2}
-  SDKToLoad: Simulator
+  SDKToLoad: Rift
 --- !u!114 &114470361991225018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,3 +71,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec19f0f501fc07408f2e9a4fd74313e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114804770337605678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1147815568228318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43ce60615c96981468036900d4ebc654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
+  LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
+  HasHitUiRight: {fileID: 11400000, guid: 53fc7375e651fb949bb4d4ddcb235110, type: 2}
+  HasHitUiLeft: {fileID: 11400000, guid: 618ea11461b082f49a6fa75558d2c447, type: 2}
+  ObjectHit: {fileID: 11400000, guid: 15ddfd9adffbaa74da38eada75f74d63, type: 2}
+  HitPoint: {fileID: 11400000, guid: 59d5466b3e75ec547bb1920296fcfa00, type: 2}

@@ -6,8 +6,9 @@ using UnityEngine;
 namespace Framework.VR.Inputs
 {
     /// <summary>
-    /// Set the GameEvent depending on the Keyboard and Mouse Inputs
-    /// TODO : THE EVENTS FOR THE OCULUS PARTICULARITIES
+    /// Script attached to the SimulatorSDK Prefab.
+    /// Set the GameEvent depending on the Keyboard and Mouse Inputs.
+    /// You can find a layout of the current mapping in the Wiki of the Repository.
     /// </summary>
     public class SimulatorInputCapture : MonoBehaviour
     {
@@ -30,15 +31,8 @@ namespace Framework.VR.Inputs
         #endregion
 
         #region PRIVATE_VARIABLES
-
-        #region Left_Controller_Variables
         GameEvent _leftEvent;
-        #endregion Left_Controller_Variables
-
-        #region Right_Controller_Variables
         GameEvent _rightEvent;
-        #endregion Right_Controller_Variables
-
         #endregion
 
         #region MONOBEHAVIOURS

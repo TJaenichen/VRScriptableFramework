@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using Framework.Variables;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Framework.VR
+namespace Framework.VR.UI
 {
     /// <summary>
     /// Script to attach to the GameObject containing the scrollbar and the viewport
     /// This GameObject must also contains box colliders for the zone where the user is allow to
     /// grab and scroll the UI.
     /// </summary>
-    [RequireComponent(typeof(BoxCollider))]
+    [RequireComponent(typeof(Collider))]
     public class ScrollrectHandler : MonoBehaviour
     {
         #region PUBLIC_VARIABLES
@@ -18,13 +19,14 @@ namespace Framework.VR
         public float ThresholdDifference = 0.005f;
         [Tooltip("The speed at which the view is scrolling.")]
         public float Speed = 0.015f;
+
+        [Header("BoolVariable for the Triggers")]
+        public BoolVariable LeftTriggerDown;
+        public BoolVariable RightTriggerDown;
         #endregion PUBLIC_VARIABLES
 
         #region PRIVATE_VARIABLES
         bool controllerAreSetup;
-
-        bool leftTriggerDown;
-        bool rightTriggerDown;
 
         float oldYPosition = 0.0f;
 
@@ -52,10 +54,10 @@ namespace Framework.VR
                 return;
             }
 
-            if (leftTriggerDown)
+            if (LeftTriggerDown.Value)
                 CheckRayCast(pointerRayCast.LeftHits);
 
-            if (rightTriggerDown)
+            if (RightTriggerDown.Value)
                 CheckRayCast(pointerRayCast.RightHits);
         }
         #endregion MONOBEHAVIOUR_METHODS
@@ -101,31 +103,6 @@ namespace Framework.VR
         #endregion PRIVATE_METHODS
 
         #region GETTERS_SETTERS
-        public bool LeftTriggerDown
-        {
-            get
-            {
-                return leftTriggerDown;
-            }
-
-            set
-            {
-                leftTriggerDown = value;
-            }
-        }
-
-        public bool RightTriggerDown
-        {
-            get
-            {
-                return rightTriggerDown;
-            }
-
-            set
-            {
-                rightTriggerDown = value;
-            }
-        }
         #endregion GETTERS_SETTERS
     }
 }
