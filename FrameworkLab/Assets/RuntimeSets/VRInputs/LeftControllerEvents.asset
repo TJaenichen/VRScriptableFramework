@@ -21,6 +21,10 @@ MonoBehaviour:
   - LeftThumbDown
   - LeftThumbUp
   - LeftThumbTouching
+  - XButtonDown
+  - XButtonUp
+  - YButtonDown
+  - YButtonUp
   ValueList:
   - {fileID: 11400000, guid: 858cf80469eeb0644b031fbcf5c392c1, type: 2}
   - {fileID: 11400000, guid: bd5f86fb0ba245a49b69b97e6efb5ad3, type: 2}
@@ -31,3 +35,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0f7af83ba99821b4fb7ec16a26c95935, type: 2}
   - {fileID: 11400000, guid: 3e45d1a9e97525f45b716709e2bdcae2, type: 2}
   - {fileID: 11400000, guid: 53a7d1b1269dda14f94e16b193c7142d, type: 2}
+  - {fileID: 11400000, guid: 7f27a3e04701c6f4398ee2908db02022, type: 2}
+  - {fileID: 11400000, guid: 2d716455fe0e06a4eb9aa6ad968fb834, type: 2}
+  - {fileID: 11400000, guid: c728a8380fa47554c9b924594ed9f9b6, type: 2}
+  - {fileID: 11400000, guid: 775dcb3b1bbba97488226830635febff, type: 2}

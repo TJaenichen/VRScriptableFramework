@@ -16,8 +16,12 @@ MonoBehaviour:
   - TriggerIsDown
   - GripIsDown
   - MenuIsDown
+  - XButtonIsDown
+  - YButtonIsDown
   ValueList:
   - {fileID: 11400000, guid: 8f612cffb3bc8034a9bd2ca0408b4599, type: 2}
   - {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
   - {fileID: 11400000, guid: 4b08a74ec8dfd0842b052b6c0a1972f6, type: 2}
   - {fileID: 11400000, guid: 9dade4fd28099ec4da1fa839cacbe5de, type: 2}
+  - {fileID: 11400000, guid: 78c91a512de868f4892c9ce0098a5a2c, type: 2}
+  - {fileID: 11400000, guid: 0ec326320b039b9468ebb3077605af78, type: 2}

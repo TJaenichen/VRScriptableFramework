@@ -130,7 +130,7 @@ namespace Framework.VR
             }
             else if (temp.Value && !OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
             {
-                temp.SetValue(true);
+                temp.SetValue(false);
                 _leftEvent = (GameEvent)LeftEventsDictionnary.Get("LeftGripUp");
                 _leftEvent.Raise();
             }
@@ -152,6 +152,40 @@ namespace Framework.VR
                 _leftEvent.Raise();
             }
             #endregion MENU
+
+            #region Button X
+            temp = LeftVariablesDictionnary.Get("XButtonIsDown");
+
+            if (!temp.Value && OVRInput.Get(OVRInput.Button.Three))
+            {
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("XButtonDown");
+                _leftEvent.Raise();
+            }
+            else if (temp.Value && !OVRInput.Get(OVRInput.Button.Three))
+            {
+                temp.SetValue(false);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("XButtonUp");
+                _leftEvent.Raise();
+            }
+            #endregion Button X
+
+            #region Button Y
+            temp = LeftVariablesDictionnary.Get("YButtonIsDown");
+
+            if (!temp.Value && OVRInput.Get(OVRInput.Button.Four))
+            {
+                temp.SetValue(true);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("YButtonDown");
+                _leftEvent.Raise();
+            }
+            else if (temp.Value && !OVRInput.Get(OVRInput.Button.Four))
+            {
+                temp.SetValue(false);
+                _leftEvent = (GameEvent)LeftEventsDictionnary.Get("YButtonUp");
+                _leftEvent.Raise();
+            }
+            #endregion Button Y
         }
 
         /// <summary>
@@ -227,16 +261,39 @@ namespace Framework.VR
 
             //No Right menu button on the oculus
 
-            ////Button B    TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //if (!bButtonIsDown && OVRInput.Get(OVRInput.Button.Two))
-            //{
-            //    RightBButton.Raise();
-            //    bButtonIsDown = true;
-            //} else if (bButtonIsDown && !OVRInput.Get(OVRInput.Button.Two))
-            //{
-            //    //Can add here an event OnBButtonUp if necessary
-            //    bButtonIsDown = false;
-            //}
+            #region Button A
+            temp = RightVariablesDictionnary.Get("AButtonIsDown");
+
+            if (!temp.Value && OVRInput.Get(OVRInput.Button.One))
+            {
+                temp.SetValue(true);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("AButtonDown");
+                _rightEvent.Raise();
+            }
+            else if (temp.Value && !OVRInput.Get(OVRInput.Button.One))
+            {
+                temp.SetValue(false);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("AButtonUp");
+                _rightEvent.Raise();
+            }
+            #endregion
+
+            #region Button B
+            temp = RightVariablesDictionnary.Get("BButtonIsDown");
+
+            if (!temp.Value && OVRInput.Get(OVRInput.Button.Two))
+            {
+                temp.SetValue(true);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("BButtonDown");
+                _rightEvent.Raise();
+            }
+            else if (temp.Value && !OVRInput.Get(OVRInput.Button.Two))
+            {
+                temp.SetValue(false);
+                _rightEvent = (GameEvent)RightEventsDictionnary.Get("BButtonUp");
+                _rightEvent.Raise();
+            }
+            #endregion
         }
         #endregion
     }
