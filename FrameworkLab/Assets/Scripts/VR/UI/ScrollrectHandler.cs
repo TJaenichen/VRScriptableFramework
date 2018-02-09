@@ -47,12 +47,7 @@ namespace Framework.VR.UI
 
         private void Update()
         {
-            if (!controllerAreSetup)
-            {
-                pointerRayCast = SetupVR.ActiveSDK.GetComponent<PointerRayCast>();
-                controllerAreSetup = true;
-                return;
-            }
+            CheckControllersReferences();
 
             if (LeftTriggerDown.Value)
                 CheckRayCast(pointerRayCast.LeftHits);
@@ -99,6 +94,25 @@ namespace Framework.VR.UI
                 scrollbar.value -= Speed;
 
             oldYPosition = newPos;
+        }
+
+        /// <summary>
+        /// Assign the PointerRayCast script to its variable
+        /// </summary>
+        void CheckControllersReferences()
+        {
+            try
+            {
+                if (!controllerAreSetup)
+                {
+                    pointerRayCast = SetupVR.ActiveSDK.GetComponent<PointerRayCast>();
+                    controllerAreSetup = true;
+                    return;
+                }
+            } catch
+            {
+                Debug.Log("Couldn't find the ActiveSDK");
+            }
         }
         #endregion PRIVATE_METHODS
 

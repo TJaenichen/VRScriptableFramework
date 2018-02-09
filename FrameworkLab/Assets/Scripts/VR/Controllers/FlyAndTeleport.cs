@@ -31,10 +31,8 @@ namespace Framework.VR
             "You can find them in the folder Assets/Variables/VR.")]
         public BoolVariable TouchpadIsPressed;
 
-        [Header("BoolReference to set if you use a UI")]
-        [Tooltip("If no UI is used, just set it to constant false.")]
+        [Header("BoolVariable to check if the user aim to the UI")]
         public BoolVariable HasHitUiRight;
-        [Tooltip("If no UI is used, just set it to constant false.")]
         public BoolVariable HasHitUiLeft;
         #endregion
 

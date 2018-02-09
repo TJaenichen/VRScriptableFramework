@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 114771041863158868}
   - component: {fileID: 114297626087160882}
   m_Layer: 5
-  m_Name: UIExample
+  m_Name: BasicUIExample
   m_TagString: MovableCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -632,7 +632,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: VRKeyboard is on
+  m_Text: VRKeyboard Activation
 --- !u!114 &114095577540430394
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -855,7 +855,6 @@ MonoBehaviour:
   RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
   LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
   HitPoint: {fileID: 11400000, guid: 59d5466b3e75ec547bb1920296fcfa00, type: 2}
-  ToggleLabel: {fileID: 114071033009142270}
 --- !u!114 &114336581983649968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1137,7 +1136,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter text...
+  m_Text: Click here to enter your text with the VRKeyboard !
 --- !u!114 &114583868790203304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1623,7 +1622,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1689929679579476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 11.2359}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 0.012, y: 0.012, z: 0.012}
   m_Children:
   - {fileID: 224448891833099770}

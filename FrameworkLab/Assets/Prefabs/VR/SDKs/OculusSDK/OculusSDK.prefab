@@ -1061,15 +1061,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1746175853381144}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8538dec43efe954eb58e9301e2ece3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThumbOrientation:
-    UseConstant: 0
-    ConstantValue: {x: 0, y: 0, z: 0}
-    Variable: {fileID: 11400000, guid: a29e5a6662438614d84e6d00582b82cb, type: 2}
+  ThumbOrientation: {fileID: 11400000, guid: a29e5a6662438614d84e6d00582b82cb, type: 2}
 --- !u!114 &114147468813274276
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1222,7 +1219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a8268a1ac4cea40b2434a517035c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointerRayCast: {fileID: 114147468813274276}
   MaxLengthLineRenderer: 1000
 --- !u!114 &114354027786793304
 MonoBehaviour:
@@ -1268,14 +1264,8 @@ MonoBehaviour:
   MatOn: {fileID: 2100000, guid: f704dcd2dfa818a4abe8f7bd648e64c3, type: 2}
   MatOff: {fileID: 2100000, guid: fb766f2bde315db49a0ee8ff016cd289, type: 2}
   MatSelectable: {fileID: 2100000, guid: bdf8431f5039d28418f989a9f788edf2, type: 2}
-  HasHitUiRight:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 53fc7375e651fb949bb4d4ddcb235110, type: 2}
-  HasHitUiLeft:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 618ea11461b082f49a6fa75558d2c447, type: 2}
+  HasHitUiRight: {fileID: 11400000, guid: 53fc7375e651fb949bb4d4ddcb235110, type: 2}
+  HasHitUiLeft: {fileID: 11400000, guid: 618ea11461b082f49a6fa75558d2c447, type: 2}
 --- !u!114 &114375517906483048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1332,15 +1322,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1212548888025100}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8538dec43efe954eb58e9301e2ece3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThumbOrientation:
-    UseConstant: 0
-    ConstantValue: {x: 0, y: 0, z: 0}
-    Variable: {fileID: 11400000, guid: f2ca5b38feb1e4b488c75b39bacd7345, type: 2}
+  ThumbOrientation: {fileID: 11400000, guid: f2ca5b38feb1e4b488c75b39bacd7345, type: 2}
 --- !u!114 &114526592082068754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1498,22 +1485,10 @@ MonoBehaviour:
   MinAvatarPositionY: -5
   MaxAvatarPositionY: 780
   RotateCamera: 1
-  thumbPosition:
-    UseConstant: 0
-    ConstantValue: {x: 0, y: 0, z: 0}
-    Variable: {fileID: 11400000, guid: f2ca5b38feb1e4b488c75b39bacd7345, type: 2}
-  touchpadIsPressed:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: c0085cb0e08dcad4d82d69ee72870e43, type: 2}
-  HasHitUiRight:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  HasHitUiLeft:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
+  ThumbPosition: {fileID: 11400000, guid: f2ca5b38feb1e4b488c75b39bacd7345, type: 2}
+  TouchpadIsPressed: {fileID: 11400000, guid: c0085cb0e08dcad4d82d69ee72870e43, type: 2}
+  HasHitUiRight: {fileID: 11400000, guid: 53fc7375e651fb949bb4d4ddcb235110, type: 2}
+  HasHitUiLeft: {fileID: 11400000, guid: 618ea11461b082f49a6fa75558d2c447, type: 2}
 --- !u!114 &114676470296068196
 MonoBehaviour:
   m_ObjectHideFlags: 1

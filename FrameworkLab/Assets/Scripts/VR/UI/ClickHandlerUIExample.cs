@@ -19,9 +19,6 @@ namespace Framework.VR.UI
 
         [Header("RaycastHitReference to where the user has clicked")]
         public RaycastHitVariable HitPoint;
-
-        [Header("Label of the toggle in the UI Example Canvas")]
-        public Text ToggleLabel;
         #endregion PUBLIC_VARIABLES
 
         #region PRIVATE_VARIABLES
@@ -37,8 +34,6 @@ namespace Framework.VR.UI
         private void Start()
         {
             vrKeyboard = GameObject.Find("VRKeyboard");
-            if (vrKeyboard == null)
-                ToggleLabel.text = "On";
         }
 
         // Update is called once per frame
@@ -82,20 +77,7 @@ namespace Framework.VR.UI
             toggleHit.GetComponent<Toggle>().isOn = newStatus;
 
             if (vrKeyboard != null)
-            {
                 vrKeyboard.SetActive(newStatus);
-
-                if (newStatus)
-                    ToggleLabel.text = "VRKeyboard is on";
-                else
-                    ToggleLabel.text = "VRKeyboard is off";
-            } else
-            {
-                if (newStatus)
-                    ToggleLabel.text = "On";
-                else
-                    ToggleLabel.text = "Off";
-            }
         }
 
         /// <summary>
@@ -105,7 +87,7 @@ namespace Framework.VR.UI
         void HandleButton(GameObject buttonHit)
         {
             Text t = buttonHit.GetComponentInChildren<Text>();
-            t.fontSize -= 4; 
+            t.fontSize = 12; 
             t.text = "You're a wonderfull person and I love you";
         }
 

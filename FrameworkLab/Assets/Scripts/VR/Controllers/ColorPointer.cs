@@ -12,16 +12,21 @@ namespace Framework.VR
     public class ColorPointer : MonoBehaviour
     {
         #region PUBLIC_VARIABLES
+        //Pointer State, to switch the color
         public enum UIPointerState { On, Off, Selectable }
 
+        [Header("LineRenderer attached to the right and left controllers")]
         public LineRenderer RightHandPointer;
         public LineRenderer LeftHandPointer;
+
+        [Header("Color Material for LineRenderer")]
         public Material MatOn;
         public Material MatOff;
         public Material MatSelectable;
-    
-        public BoolReference HasHitUiRight;
-        public BoolReference HasHitUiLeft;
+
+        [Header("BoolVariable to check if the user aim to the UI")]
+        public BoolVariable HasHitUiRight;
+        public BoolVariable HasHitUiLeft;
         #endregion PUBLIC_VARIABLES
 
         #region PRIVATE_VARIABLES
