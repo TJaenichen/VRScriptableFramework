@@ -47,17 +47,21 @@ namespace Framework.VR.UI
 
         private void Update()
         {
-            if(!controllerAreSetup)
-                CheckControllersReferences();
+            if(controllerAreSetup)
+            {
+                if (LeftTriggerDown.Value)
+                    CheckRayCast(pointerRayCast.LeftHits);
 
-            if (LeftTriggerDown.Value)
-                CheckRayCast(pointerRayCast.LeftHits);
-
-            if (RightTriggerDown.Value)
-                CheckRayCast(pointerRayCast.RightHits);
+                if (RightTriggerDown.Value)
+                    CheckRayCast(pointerRayCast.RightHits);
+            }
+            else
+            {
+                Initialize();
+            }
         }
         #endregion MONOBEHAVIOUR_METHODS
-
+        
         //EMPTY
         #region PUBLIC_METHODS
         #endregion PUBLIC_METHODS
@@ -100,14 +104,14 @@ namespace Framework.VR.UI
         /// <summary>
         /// Assign the PointerRayCast script to its variable
         /// </summary>
-        void CheckControllersReferences()
+        void Initialize()
         {
             try
             {
                 pointerRayCast = SetupVR.ActiveSDK.GetComponent<PointerRayCast>();
                 controllerAreSetup = true;
-                return;
-            } catch
+            }
+            catch
             {
                 Debug.Log("Couldn't find the ActiveSDK");
             }

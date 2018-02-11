@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using Framework.Events;
 using Framework.Util;
 using UnityEditor;
 #endif
@@ -48,6 +49,7 @@ namespace Framework.VR
         private bool _loaded;
         private bool _controllerSetup;
         private bool _playerPositionned;
+        private bool setupEnded;
         private GameObject _sdk;
         #endregion
 
@@ -60,32 +62,36 @@ namespace Framework.VR
 
         void Update()
         {
-            if (!string.IsNullOrEmpty(SceneToUse))
+            if (!setupEnded)
             {
-                var sceneName = SceneManager.GetActiveScene().name;
-                if (!sceneName.Contains(SceneToUse))
+                if (!string.IsNullOrEmpty(SceneToUse))
+                {
+                    var sceneName = SceneManager.GetActiveScene().name;
+                    if (!sceneName.Contains(SceneToUse))
+                        return;
+                }
+
+                if (!_loaded)
+                    LoadCorrespondingSDK();
+
+                if (!_loaded && ActiveSDK != null)
+                {
+                    _loaded = true;
+                }
+                else if (ActiveSDK == null)
+                {
+                    ActiveSDK = GameObject.FindGameObjectWithTag("CameraRig").gameObject;
                     return;
+                }
+
+                if (!CheckControllersReferences())
+                    return;
+
+                if (_loaded && !SetupPlayerPos())
+                    return;
+
+                setupEnded = true;
             }
-
-            if (!_loaded)
-                LoadCorrespondingSDK();
-
-            if (!_loaded && ActiveSDK != null)
-            {
-                _loaded = true;
-                return;
-            }
-            else if (ActiveSDK == null)
-            {
-                ActiveSDK = GameObject.FindGameObjectWithTag("CameraRig").gameObject;
-                return;
-            }
-
-            if (!_controllerSetup)
-                CheckControllersReferences();
-
-            if (_loaded && !_playerPositionned)
-                SetupPlayerPos();
         }
         #endregion
 
@@ -165,7 +171,7 @@ namespace Framework.VR
         /// <summary>
         /// To setup the controllers reference
         /// </summary>
-        void CheckControllersReferences()
+        bool CheckControllersReferences()
         {
             if (_loaded && (RightControllerScripts == null || LeftControllerScripts == null))
             {
@@ -175,28 +181,36 @@ namespace Framework.VR
                     RightControllerScripts = ActiveSDK.transform.FindDeepChild("RightControllerScripts");
 
                     if (LeftControllerScripts != null && RightControllerScripts != null)
-                        _controllerSetup = true;
+                        return true;
+                    else
+                        return false;
                 }
                 catch
                 {
                     Debug.LogError("Can't setup Left and Right Controllers : " + ActiveSDK);
+                    return false;
                 }
+            }
+            else
+            {
+                return true;
             }
         }
 
         /// <summary>
         /// Setup player position at runtime.
         /// </summary>
-        void SetupPlayerPos()
+        bool SetupPlayerPos()
         {
             try
             {
                 ActiveSDK.transform.position = StartingPoint;
-                _playerPositionned = true;
+                return true;
             }
             catch
             {
                 Debug.LogError("Couldn't set CameraRig StartingPoint : " + StartingPoint);
+                return false;
             }
         }
         #endregion

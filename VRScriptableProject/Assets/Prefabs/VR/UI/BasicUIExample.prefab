@@ -123,6 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224787354695974718}
   - component: {fileID: 114349248092998186}
+  - component: {fileID: 114804497842218812}
   m_Layer: 5
   m_Name: GameEventListenersUIExample
   m_TagString: Untagged
@@ -337,6 +338,7 @@ GameObject:
   - component: {fileID: 222040006596751824}
   - component: {fileID: 114771041863158868}
   - component: {fileID: 114297626087160882}
+  - component: {fileID: 114992422381929042}
   m_Layer: 5
   m_Name: BasicUIExample
   m_TagString: MovableCanvas
@@ -1374,6 +1376,34 @@ MonoBehaviour:
   RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
   LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
   HitPoint: {fileID: 11400000, guid: 59d5466b3e75ec547bb1920296fcfa00, type: 2}
+--- !u!114 &114804497842218812
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1228164725596408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b777e46842179489b7aae1d6426ef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: de806b03a138c634fa0af69e96f16e01, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114992422381929042}
+        m_MethodName: Initialize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114840502906598668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1469,6 +1499,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114992422381929042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1689929679579476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5eef5b39f26a36468c47ea59f56a015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SizeRatio: 0.1
 --- !u!222 &222026111698907162
 CanvasRenderer:
   m_ObjectHideFlags: 1

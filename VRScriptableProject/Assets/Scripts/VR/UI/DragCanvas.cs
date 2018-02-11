@@ -131,17 +131,17 @@ namespace Framework.VR.UI
             _lastDragPos = _curDragPos;
             _curDragPos = ray.GetPoint(_distance);
             var delta = _curDragPos - _lastDragPos;
-            _draggedThing.transform.parent.parent.transform.position += delta;
+            _draggedThing.transform.root.position += delta;
 
             if (_draggingLeft)
             {
-                _draggedThing.transform.parent.parent.transform.rotation =
-                    Quaternion.LookRotation(_draggedThing.transform.parent.parent.transform.position - PointerRayCast.RightPos);
+                _draggedThing.transform.root.rotation =
+                    Quaternion.LookRotation(_draggedThing.transform.root.position - PointerRayCast.RightPos);
             }
             else
             {
-                _draggedThing.transform.parent.parent.transform.rotation =
-                    Quaternion.LookRotation(_draggedThing.transform.parent.parent.transform.position - PointerRayCast.LeftPos);
+                _draggedThing.transform.root.rotation =
+                    Quaternion.LookRotation(_draggedThing.transform.root.position - PointerRayCast.LeftPos);
             }
         }
         

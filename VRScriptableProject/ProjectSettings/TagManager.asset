@@ -5,13 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - MovableCanvas
-  - CameraRig
   - Toggle
   - Button
   - InputField
   - UIBorder
   - KeyboardKey
-  - Scrollable
+  - CameraRig
   layers:
   - Default
   - TransparentFX

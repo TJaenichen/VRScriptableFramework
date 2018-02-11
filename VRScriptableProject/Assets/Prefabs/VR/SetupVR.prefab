@@ -55,6 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingPoint: {x: 0, y: 0, z: 0}
   SceneToUse: 
+  SetupVRFinished: {fileID: 11400000, guid: de806b03a138c634fa0af69e96f16e01, type: 2}
   ViveSDK: {fileID: 1646625136078428, guid: 0d75aa34135783b42902b783e8aec06f, type: 2}
   OculusSDK: {fileID: 1739226735981406, guid: e904b3b8f1309244a99b76f0f02e6a74, type: 2}
   SimulatorSDK: {fileID: 1489117826308322, guid: b979e6804adc6604385ff362628275cc,
