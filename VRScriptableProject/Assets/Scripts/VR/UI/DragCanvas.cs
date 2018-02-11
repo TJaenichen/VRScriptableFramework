@@ -13,11 +13,11 @@ namespace Framework.VR.UI
     public class DragCanvas : MonoBehaviour
     {
         #region PUBLIC_VARIABLES
-        [Header("BoolReference to check if the Trigger is down")]
+        [Header("BoolVariable to check if the Trigger is down")]
         public BoolVariable RightTriggerDown;
         public BoolVariable LeftTriggerDown;
 
-        [Header("RaycastHitReference to where the user has clicked")]
+        [Header("RaycastHitVariable to where the user has clicked")]
         public RaycastHitVariable HitPoint;
         #endregion
 

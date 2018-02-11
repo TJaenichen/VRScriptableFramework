@@ -11,6 +11,7 @@ TagManager:
   - InputField
   - UIBorder
   - KeyboardKey
+  - Scrollable
   layers:
   - Default
   - TransparentFX

@@ -6,11 +6,11 @@ using UnityEngine.UI;
 namespace Framework.VR.UI
 {
     /// <summary>
-    /// Script to attach to the GameObject containing the scrollbar and the viewport
-    /// This GameObject must also contains box colliders for the zone where the user is allow to
+    /// Script to attach to the a Scroll View.
+    /// This GameObject must also contains (a) collider(s) for the zone(s) where the user is allow to
     /// grab and scroll the UI.
     /// </summary>
-    [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(BoxCollider))]
     public class ScrollrectHandler : MonoBehaviour
     {
         #region PUBLIC_VARIABLES
@@ -47,7 +47,8 @@ namespace Framework.VR.UI
 
         private void Update()
         {
-            CheckControllersReferences();
+            if(!controllerAreSetup)
+                CheckControllersReferences();
 
             if (LeftTriggerDown.Value)
                 CheckRayCast(pointerRayCast.LeftHits);
@@ -103,12 +104,9 @@ namespace Framework.VR.UI
         {
             try
             {
-                if (!controllerAreSetup)
-                {
-                    pointerRayCast = SetupVR.ActiveSDK.GetComponent<PointerRayCast>();
-                    controllerAreSetup = true;
-                    return;
-                }
+                pointerRayCast = SetupVR.ActiveSDK.GetComponent<PointerRayCast>();
+                controllerAreSetup = true;
+                return;
             } catch
             {
                 Debug.Log("Couldn't find the ActiveSDK");

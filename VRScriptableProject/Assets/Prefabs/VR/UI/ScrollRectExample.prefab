@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114020806975716836}
   m_Layer: 5
   m_Name: Scroll View
-  m_TagString: Untagged
+  m_TagString: Scrollable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 114710163987817586}
   - component: {fileID: 222622294222182166}
   - component: {fileID: 114267146347551964}
-  - component: {fileID: 114531097361415904}
   m_Layer: 5
   m_Name: ScrollRectExample
   m_TagString: MovableCanvas
@@ -217,6 +216,7 @@ GameObject:
   - component: {fileID: 222026302158105284}
   - component: {fileID: 114394149420653440}
   - component: {fileID: 114591561175421006}
+  - component: {fileID: 65007957241562134}
   m_Layer: 5
   m_Name: Scrollbar Vertical
   m_TagString: Untagged
@@ -567,6 +567,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65007957241562134
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348156991007418}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65041402335198526
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -642,6 +654,7 @@ MonoBehaviour:
   Speed: 0.01
   LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
   RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
+  HitPoint: {fileID: 11400000, guid: 59d5466b3e75ec547bb1920296fcfa00, type: 2}
 --- !u!114 &114158084239088060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1120,20 +1133,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114531097361415904
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1297909833261248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c9162bd49b40ff4ebf218802ca2268f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
-  LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
-  HitPoint: {fileID: 11400000, guid: 59d5466b3e75ec547bb1920296fcfa00, type: 2}
 --- !u!114 &114552556916182054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1433,7 +1432,7 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114531097361415904}
+      - m_Target: {fileID: 114020806975716836}
         m_MethodName: CheckObjectHit
         m_Mode: 0
         m_Arguments:

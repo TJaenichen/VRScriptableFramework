@@ -59,14 +59,12 @@ namespace Framework.VR.UI
 
             if (RightTriggerDown.Value && !HasHitUiRight.Value)
             {
-                Debug.Log("BAM");
                 Debug.DrawRay(RightHand.transform.position, RightHand.transform.TransformDirection(Vector3.forward),
                               Color.green, 5);
                 HandleHits(PointerRayCast.RightHits, "Right");
             }
             if (LeftTriggerDown.Value && !HasHitUiLeft.Value)
             {
-                Debug.Log("BAM 2");
                 Debug.DrawRay(LeftHand.transform.position, LeftHand.transform.TransformDirection(Vector3.forward),
                               Color.yellow, 5);
                 HandleHits(PointerRayCast.LeftHits, "Left");
@@ -107,17 +105,16 @@ namespace Framework.VR.UI
         /// <param name="hand">The hand to test</param>
         private void HandleHits(List<RaycastHit> hits, string hand)
         {
-            Debug.Log("HandleHits");
             foreach (var raycastHit in hits)
             {
                 var transformHit = raycastHit.collider.transform;
                 if (transformHit.gameObject.layer == uiLayer)
                 {
-                    Debug.Log("UI LAYER");
                     SetUiHandHit(hand);
 
                     HitPoint.SetValue(raycastHit);
                     ObjectHit.Raise(transformHit);
+                    return;
                 }
             }
         }

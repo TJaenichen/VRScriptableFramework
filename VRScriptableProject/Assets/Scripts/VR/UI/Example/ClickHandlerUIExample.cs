@@ -1,10 +1,8 @@
 ﻿using Framework.Variables;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Framework.VR.UI
+namespace Framework.VR.UI.Example
 {
     /// <summary>
     /// Script attached to the UIExample Prefabs.
@@ -19,11 +17,12 @@ namespace Framework.VR.UI
 
         [Header("RaycastHitReference to where the user has clicked")]
         public RaycastHitVariable HitPoint;
+
+        [Header("The VRKeyboard in the Scene")]
+        public GameObject VRKeyboard;
         #endregion PUBLIC_VARIABLES
 
         #region PRIVATE_VARIABLES
-        private GameObject vrKeyboard;
-
         private PointerRayCast PointerRayCast;
 
         private Transform RightHand;
@@ -31,11 +30,6 @@ namespace Framework.VR.UI
         #endregion PRIVATE_VARIABLES
 
         #region MONOBEHAVIOUR_METHODS
-        private void Start()
-        {
-            vrKeyboard = GameObject.Find("VRKeyboard");
-        }
-
         // Update is called once per frame
         void Update()
         {
@@ -47,6 +41,8 @@ namespace Framework.VR.UI
         #region PUBLIC_METHODS
         /// <summary>
         /// Called from the GameEventTransformListener using UIObjectHit
+        /// THIS SCRIPT CAN ONLY BE PLACED ONE TIME, AS WE'RE COMPARING TAGS
+        /// YOU CANNOT PUT THIS SCRIPT ON MULTIPLE UIs, OR YOU NEED TO CHECK REFERENCES THAT ARE NOT TAGS
         /// </summary>
         /// <param name="objectHit">The UI object that was hit</param>
         public void CheckObjectHit(Transform objectHit)
@@ -73,11 +69,7 @@ namespace Framework.VR.UI
         /// <param name="toggleHit">The gameObject that was hit</param>
         void HandleToggle(GameObject toggleHit)
         {
-            bool newStatus = !toggleHit.GetComponent<Toggle>().isOn;
-            toggleHit.GetComponent<Toggle>().isOn = newStatus;
-
-            if (vrKeyboard != null)
-                vrKeyboard.SetActive(newStatus);
+            toggleHit.GetComponent<Toggle>().isOn = !toggleHit.GetComponent<Toggle>().isOn;
         }
 
         /// <summary>
@@ -104,8 +96,8 @@ namespace Framework.VR.UI
             }
             inputField.ActivateInputField();
 
-            if (vrKeyboard != null)
-                vrKeyboard.GetComponent<VRKeyboard>().InputField = inputField;
+            if (VRKeyboard != null)
+                VRKeyboard.GetComponent<VRKeyboard>().InputField = inputField;
         }
 
         /// <summary>
