@@ -6,11 +6,11 @@
 /[Bb]uilds/
 /Assets/AssetStoreTools*
 
-FrameworkLab/[Ll]ibrary/
-FrameworkLab/[Tt]emp/
-FrameworkLab/[Oo]bj/
-FrameworkLab/[Bb]uild/
-FrameworkLab/[Bb]uilds/
+VRScriptableProject/[Ll]ibrary/
+VRScriptableProject/[Tt]emp/
+VRScriptableProject/[Oo]bj/
+VRScriptableProject/[Bb]uild/
+VRScriptableProject/[Bb]uilds/
 
 # Visual Studio 2015 cache directory
 /.vs/
@@ -31,20 +31,20 @@ ExportedObj/
 *.pdb
 
 #VR Libraries
-FrameworkLab/Assets/SteamVR
-FrameworkLab/Assets/OculusPlatform
-FrameworkLab/Assets/OSPNative
-FrameworkLab/Assets/OVR
-FrameworkLab/Assets/OVRAudioManager
-FrameworkLab/Assets/OvrAvatar
-FrameworkLab/Assets/SteamVR.meta
-FrameworkLab/Assets/OculusPlatform.meta
-FrameworkLab/Assets/OVR.meta
-FrameworkLab/Assets/OVRAudioManager.meta
-FrameworkLab/Assets/OvrAvatar.meta
-FrameworkLab/Assets/OSPNative.meta
-FrameworkLab/Assets/LICENSE.txt
-FrameworkLab/Assets/LICENSE.txt.meta
+VRScriptableProject/Assets/SteamVR
+VRScriptableProject/Assets/OculusPlatform
+VRScriptableProject/Assets/OSPNative
+VRScriptableProject/Assets/OVR
+VRScriptableProject/Assets/OVRAudioManager
+VRScriptableProject/Assets/OvrAvatar
+VRScriptableProject/Assets/SteamVR.meta
+VRScriptableProject/Assets/OculusPlatform.meta
+VRScriptableProject/Assets/OVR.meta
+VRScriptableProject/Assets/OVRAudioManager.meta
+VRScriptableProject/Assets/OvrAvatar.meta
+VRScriptableProject/Assets/OSPNative.meta
+VRScriptableProject/Assets/LICENSE.txt
+VRScriptableProject/Assets/LICENSE.txt.meta
 
 # Unity3D generated meta files
 *.pidb.meta
