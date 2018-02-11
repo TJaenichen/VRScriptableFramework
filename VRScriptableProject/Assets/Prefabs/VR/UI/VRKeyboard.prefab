@@ -1573,6 +1573,7 @@ GameObject:
   - component: {fileID: 114163641386631240}
   - component: {fileID: 114091937272309128}
   - component: {fileID: 114295518048564522}
+  - component: {fileID: 114137872228751670}
   m_Layer: 5
   m_Name: VRKeyboard
   m_TagString: MovableCanvas
@@ -1625,7 +1626,6 @@ GameObject:
   m_Component:
   - component: {fileID: 224386583039758432}
   - component: {fileID: 114286570081596144}
-  - component: {fileID: 114712776402774012}
   m_Layer: 5
   m_Name: GameEventListenersVRKeyboard
   m_TagString: Untagged
@@ -3450,6 +3450,22 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: ','
+--- !u!114 &114137872228751670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1785500155881488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35bb06ca6169334469b7c671868838d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalPosition: {x: 2, y: 0, z: 5}
+  LocalScale: {x: 0, y: 0, z: 0}
+  LocalRotation: {x: 0, y: 0, z: 0}
+  InstantiateCanvas: 1
+  FollowUser: 1
 --- !u!114 &114138892814506826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6399,34 +6415,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: '?'
---- !u!114 &114712776402774012
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1828741375002362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b777e46842179489b7aae1d6426ef3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: de806b03a138c634fa0af69e96f16e01, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114295518048564522}
-        m_MethodName: Initialize
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114726651065675958
 MonoBehaviour:
   m_ObjectHideFlags: 1
