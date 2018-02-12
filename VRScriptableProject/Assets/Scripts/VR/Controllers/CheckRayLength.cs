@@ -46,8 +46,8 @@ namespace Framework.VR
 
             foreach (var hit in PointerRayCast.RightHits)
             {
-                //If the collider is not a UI element
-                if (hit.collider.gameObject.layer != uiLayer)
+                //If the collider is a UI element
+                if (hit.collider != null)
                 {
                     //Reduce lineRenderer from the controllers position to the object that was hit
                     PointerRayCast.RightController.GetComponent<LineRenderer>().SetPositions(new Vector3[]
@@ -57,6 +57,7 @@ namespace Framework.VR
                     });
 
                     hasHit = true;
+                    break;
                 }
             }
 
@@ -81,7 +82,7 @@ namespace Framework.VR
             foreach (var hit in PointerRayCast.LeftHits)
             {
                 //If the collider is not a UI element
-                if (hit.collider.gameObject.layer != uiLayer)
+                if (hit.collider != null)
                 {
                     //Reduce lineRenderer from the controllers position to the object that was hit
                     PointerRayCast.LeftController.GetComponent<LineRenderer>().SetPositions(new Vector3[]
@@ -91,6 +92,7 @@ namespace Framework.VR
                     });
 
                     hasHit = true;
+                    break;
                 }
             }
 
