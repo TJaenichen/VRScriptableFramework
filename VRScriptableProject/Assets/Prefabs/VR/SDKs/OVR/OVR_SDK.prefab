@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4611412048727828}
   - component: {fileID: 114600978692373076}
   m_Layer: 0
-  m_Name: OculusSDK
+  m_Name: OVR_SDK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

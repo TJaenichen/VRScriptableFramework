@@ -60,7 +60,7 @@ namespace Framework.VR
             pointerRaycast = avatarObject.GetComponent<PointerRayCast>();
             avatarObject.transform.localScale = Vector3.one;
             groundLayer = LayerMask.NameToLayer("ground");
-            if (!SetupVR.SDKLoaded.Contains("Rift"))
+            if (!SetupVR.SDKLoaded.Contains("Oculus"))
                 RotateCamera = false;
         }
 

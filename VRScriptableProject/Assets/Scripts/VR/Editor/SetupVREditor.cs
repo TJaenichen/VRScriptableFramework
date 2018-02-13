@@ -14,7 +14,7 @@ namespace Framework.VR.Editor
     public class SetupVREditor : UnityEditor.Editor
     {
         #region PRIVATE_VARIABLE
-        private string[] _choices = new []{"Rift", "Vive", "Simulator"};
+        private string[] _choices = new []{"OVR", "OpenVR", "Simulator"}; 
         private int _choiceIndex;
         private SerializedProperty SDKToLoadProperty;
         #endregion PRIVATE_VARIABLE

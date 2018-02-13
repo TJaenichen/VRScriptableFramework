@@ -152,6 +152,29 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114386473515599950, guid: bc49bde1c2e008942bd59fd92b11985a,
+        type: 2}
+      propertyPath: SDKToLoad
+      value: OVR
+      objectReference: {fileID: 0}
+    - target: {fileID: 114386473515599950, guid: bc49bde1c2e008942bd59fd92b11985a,
+        type: 2}
+      propertyPath: OpenVR_SDK
+      value: 
+      objectReference: {fileID: 1646625136078428, guid: 0d75aa34135783b42902b783e8aec06f,
+        type: 2}
+    - target: {fileID: 114386473515599950, guid: bc49bde1c2e008942bd59fd92b11985a,
+        type: 2}
+      propertyPath: Simulator_SDK
+      value: 
+      objectReference: {fileID: 1489117826308322, guid: b979e6804adc6604385ff362628275cc,
+        type: 2}
+    - target: {fileID: 114386473515599950, guid: bc49bde1c2e008942bd59fd92b11985a,
+        type: 2}
+      propertyPath: OVR_SDK
+      value: 
+      objectReference: {fileID: 1739226735981406, guid: e904b3b8f1309244a99b76f0f02e6a74,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc49bde1c2e008942bd59fd92b11985a, type: 2}
   m_IsPrefabParent: 0
