@@ -63,6 +63,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4660839801167226}
   - component: {fileID: 114162219713730038}
+  - component: {fileID: 114403459520671702}
+  - component: {fileID: 114960546233972828}
   m_Layer: 0
   m_Name: RightControllerScripts
   m_TagString: Untagged
@@ -620,6 +622,25 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114403459520671702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1205189837753274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ef73229f6b95f44b5af9d635ec4db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementParameters: {fileID: 11400000, guid: 8095eaf75e8864c438dd85b86d6de8c1, type: 2}
+  RightThumbPosition: {fileID: 11400000, guid: f2ca5b38feb1e4b488c75b39bacd7345, type: 2}
+  LeftThumbPosition: {fileID: 11400000, guid: a29e5a6662438614d84e6d00582b82cb, type: 2}
+  RightTouchpadIsPressed: {fileID: 11400000, guid: c0085cb0e08dcad4d82d69ee72870e43,
+    type: 2}
+  LeftTouchpadIsPressed: {fileID: 11400000, guid: 8f612cffb3bc8034a9bd2ca0408b4599,
+    type: 2}
+  Hand: 1
 --- !u!114 &114414963939704904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1099,6 +1120,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+--- !u!114 &114960546233972828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1205189837753274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8192582de0fd61648ad4d52ba91d5122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasHitUiRight: {fileID: 11400000, guid: 53fc7375e651fb949bb4d4ddcb235110, type: 2}
+  HasHitUiLeft: {fileID: 11400000, guid: 618ea11461b082f49a6fa75558d2c447, type: 2}
+  hand: 1
 --- !u!120 &120078494142190842
 LineRenderer:
   m_ObjectHideFlags: 1

@@ -129,7 +129,7 @@ namespace Framework.VR
             // Default to Simulator
             if (!string.IsNullOrEmpty(SDKToLoad))
             {
-                if (SDKToLoad.Contains("Oculus"))
+                if (SDKToLoad.Contains("OVR"))
                 {
                     XRSettings.enabled = true;
                     _sdk = Instantiate(OVR_SDK);
