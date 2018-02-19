@@ -36,7 +36,15 @@ namespace Framework.VR.MoveAround
         {
             groundLayer = LayerMask.NameToLayer("Ground");
             avatarObject = SetupVR.ActiveSDK;
-            raycastHits = GetRaycastHits();
+        }
+
+        void Update()
+        {
+            if (avatarObject == null) 
+            {
+                avatarObject = SetupVR.ActiveSDK;
+                return;
+            }
         }
         #endregion
 
@@ -47,13 +55,11 @@ namespace Framework.VR.MoveAround
         /// </summary>
         public void OnClickHandler()
         {
-            if (HasHitUiRight.Value || HasHitUiLeft.Value)
-            {
-                return;
-            }
-
+            raycastHits = GetRaycastHits();
             foreach (RaycastHit hit in raycastHits)
             {
+                Debug.Log(hit.collider.gameObject);
+                Debug.Log(hit.collider.gameObject.layer);
                 if (hit.collider.gameObject.layer == groundLayer.value)
                 {
                     avatarObject.transform.position = new Vector3(hit.point.x, avatarObject.transform.position.y,
@@ -76,6 +82,16 @@ namespace Framework.VR.MoveAround
                 return avatarObject.GetComponent<PointerRayCast>().LeftHits;
             else
                 return avatarObject.GetComponent<PointerRayCast>().RightHits;
+        }
+
+        bool CheckReferences()
+        {
+            if (avatarObject != null)
+                return true;
+
+            groundLayer = LayerMask.NameToLayer("Ground");
+            Debug.Log("Return False");
+            return false;
         }
         #endregion
 

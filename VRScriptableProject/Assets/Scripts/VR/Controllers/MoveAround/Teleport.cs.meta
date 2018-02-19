@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7f6cb7ccd42e34e46a31f316de18bacd
+timeCreated: 1518791332
+licenseType: Pro
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - HasHitUiRight: {fileID: 11400000, guid: 53fc7375e651fb949bb4d4ddcb235110, type: 2}
+  - HasHitUiLeft: {fileID: 11400000, guid: 618ea11461b082f49a6fa75558d2c447, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

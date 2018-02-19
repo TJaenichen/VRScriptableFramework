@@ -8,15 +8,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80f41046a71854a43bed2664f536a603, type: 3}
+  m_Script: {fileID: 11500000, guid: aecf538fcf35ce84882edf766c8df155, type: 3}
   m_Name: FlyingParameters
   m_EditorClassIdentifier: 
-  DeveloperDescription: "Group all parameters for the flying mode. \nFor more info,
+  DeveloperDescription: "Group all parameters for the flying mode. \nFor more info,\r
     check the tooltips for each parameters"
   MaxFlightSpeed: 8
-  SlidingEffectFactor: 5
-  BaseFlightVelocityFactor: 1
-  YAxisSpeed: 0.02
+  BasicFlightVelocityFactor: 1
+  YAxisSpeed: 0.001
   MinAvatarPositionY: -5
   MaxAvatarPositionY: 1000
-  RotateCamera: 0
+  SlidingEffectFactor: 5
+  RotateCamera: 1

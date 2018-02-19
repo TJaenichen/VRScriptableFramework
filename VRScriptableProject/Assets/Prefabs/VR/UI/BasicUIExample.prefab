@@ -123,7 +123,6 @@ GameObject:
   m_Component:
   - component: {fileID: 224787354695974718}
   - component: {fileID: 114349248092998186}
-  - component: {fileID: 114804497842218812}
   m_Layer: 5
   m_Name: GameEventListenersUIExample
   m_TagString: Untagged
@@ -337,8 +336,8 @@ GameObject:
   - component: {fileID: 114095577540430394}
   - component: {fileID: 222040006596751824}
   - component: {fileID: 114771041863158868}
-  - component: {fileID: 114297626087160882}
   - component: {fileID: 114992422381929042}
+  - component: {fileID: 114865467002136922}
   m_Layer: 5
   m_Name: BasicUIExample
   m_TagString: MovableCanvas
@@ -854,21 +853,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
---- !u!114 &114297626087160882
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1689929679579476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c9162bd49b40ff4ebf218802ca2268f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
-  LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
-  HitPoint: {fileID: 11400000, guid: 59d5466b3e75ec547bb1920296fcfa00, type: 2}
-  VRKeyboard: {fileID: 0}
 --- !u!114 &114336581983649968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -927,7 +911,7 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114297626087160882}
+      - m_Target: {fileID: 114865467002136922}
         m_MethodName: CheckObjectHit
         m_Mode: 0
         m_Arguments:
@@ -1376,34 +1360,6 @@ MonoBehaviour:
   RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
   LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
   HitPoint: {fileID: 11400000, guid: 59d5466b3e75ec547bb1920296fcfa00, type: 2}
---- !u!114 &114804497842218812
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1228164725596408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b777e46842179489b7aae1d6426ef3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: de806b03a138c634fa0af69e96f16e01, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114992422381929042}
-        m_MethodName: Initialize
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114840502906598668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1453,6 +1409,21 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
+--- !u!114 &114865467002136922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1689929679579476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22f732fd3e149df4c8f5b6906771138d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
+  LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
+  HitPoint: {fileID: 11400000, guid: 59d5466b3e75ec547bb1920296fcfa00, type: 2}
+  VRKeyboard: {fileID: 0}
 --- !u!114 &114960736518419284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1675,15 +1646,15 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1689929679579476}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 7.8}
   m_LocalScale: {x: 0.012, y: 0.012, z: 0.012}
   m_Children:
   - {fileID: 224448891833099770}
   - {fileID: 224787354695974718}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -2, y: 0}

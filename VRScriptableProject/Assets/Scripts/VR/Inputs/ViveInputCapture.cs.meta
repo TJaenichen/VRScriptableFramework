@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: d30a7424daa649548aa06e490b1194c0
+timeCreated: 1517327239
+licenseType: Pro
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - LeftTrackedObject: {instanceID: 0}
+  - RightTrackedObject: {instanceID: 0}
+  - LeftEventsDictionnary: {fileID: 11400000, guid: 51a3ab5869adf9b42869262ca6898c28,
+      type: 2}
+  - RightEventsDictionnary: {fileID: 11400000, guid: 755a77ee9660ae64387f0ec4b1b54a1a,
+      type: 2}
+  - LeftVariablesDictionnary: {fileID: 11400000, guid: abaa606710f28bd42b41c9810650c384,
+      type: 2}
+  - RightVariablesDictionnary: {fileID: 11400000, guid: f89544e095cdbd14284d80f8b750d3dc,
+      type: 2}
+  - LeftThumbOrientation: {fileID: 11400000, guid: a29e5a6662438614d84e6d00582b82cb,
+      type: 2}
+  - RightThumbOrientation: {fileID: 11400000, guid: f2ca5b38feb1e4b488c75b39bacd7345,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

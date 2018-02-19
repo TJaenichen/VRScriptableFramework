@@ -129,8 +129,10 @@ GameObject:
   - component: {fileID: 114672998982363590}
   - component: {fileID: 114710163987817586}
   - component: {fileID: 222622294222182166}
+  - component: {fileID: 65311618328834844}
   - component: {fileID: 114267146347551964}
   - component: {fileID: 114400441834796186}
+  - component: {fileID: 114111819946026534}
   m_Layer: 5
   m_Name: ScrollRectExample
   m_TagString: MovableCanvas
@@ -285,7 +287,6 @@ GameObject:
   m_Component:
   - component: {fileID: 224970171613374766}
   - component: {fileID: 114803426286868578}
-  - component: {fileID: 114968119663036104}
   m_Layer: 5
   m_Name: GameEventListenersScrollRectExample
   m_TagString: Untagged
@@ -605,6 +606,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 299.81717, y: 29.700796, z: 1}
   m_Center: {x: 0.33492845, y: 172.7955, z: 0}
+--- !u!65 &65311618328834844
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1297909833261248}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65587997962840834
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -654,6 +667,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThresholdDifference: 0.005
   Speed: 0.01
+  LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
+  RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
+--- !u!114 &114111819946026534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1297909833261248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c8b79408c5919d47ac964c0535c31c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThresholdDifference: 0.005
+  Speed: 0.015
   LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
   RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
 --- !u!114 &114158084239088060
@@ -1445,17 +1473,6 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114020806975716836}
-        m_MethodName: CheckObjectHit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114267146347551964}
         m_MethodName: CheckObjectHit
         m_Mode: 0
@@ -1614,34 +1631,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114968119663036104
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1399671446249650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b777e46842179489b7aae1d6426ef3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: de806b03a138c634fa0af69e96f16e01, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114400441834796186}
-        m_MethodName: Initialize
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114993402437316818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2064,15 +2053,15 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1297909833261248}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 7.8}
   m_LocalScale: {x: 0.012, y: 0.012, z: 0.012}
   m_Children:
   - {fileID: 224920425111081248}
   - {fileID: 224970171613374766}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -6, y: 0}

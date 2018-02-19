@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 807cdac3c6fff244392010ab1cf98f25
+timeCreated: 1518791332
+licenseType: Pro
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - MovementParameters: {fileID: 11400000, guid: 1e513cd4cb3e1ff4da0395c9b3d551cc,
+      type: 2}
+  - RightThumbPosition: {fileID: 11400000, guid: f2ca5b38feb1e4b488c75b39bacd7345,
+      type: 2}
+  - LeftThumbPosition: {fileID: 11400000, guid: a29e5a6662438614d84e6d00582b82cb,
+      type: 2}
+  - RightTouchpadIsPressed: {fileID: 11400000, guid: c0085cb0e08dcad4d82d69ee72870e43,
+      type: 2}
+  - LeftTouchpadIsPressed: {fileID: 11400000, guid: 8f612cffb3bc8034a9bd2ca0408b4599,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

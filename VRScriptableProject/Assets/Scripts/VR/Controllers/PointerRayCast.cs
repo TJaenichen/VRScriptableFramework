@@ -58,6 +58,9 @@ namespace Framework.VR
             LeftPos = LeftController.transform.position;
             LeftRay = new Ray(LeftPos, LeftController.transform.TransformDirection(Vector3.forward));
             LeftHits = Physics.RaycastAll(LeftRay).OrderBy(x => x.distance).ToList();
+
+            Debug.Log(LeftHits.Count);
+            Debug.Log(RightHits.Count);
         }
 
         /// <summary>

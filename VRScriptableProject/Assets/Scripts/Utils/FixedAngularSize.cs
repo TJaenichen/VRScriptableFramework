@@ -43,8 +43,7 @@ namespace Absolute.Utils
         //EMPTY
         #region PUBLIC_METHODS
         #endregion PUBLIC_METHODS
-
-        //EMPTY
+            
         #region PRIVATE_METHODS
         /// <summary>
         /// Initialization of the references

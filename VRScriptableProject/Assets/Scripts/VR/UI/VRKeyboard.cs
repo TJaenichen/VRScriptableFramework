@@ -9,7 +9,6 @@ namespace Framework.VR.UI
     /// </summary>
     public class VRKeyboard : MonoBehaviour
     {
-        //EMPTY
         #region PUBLIC_VARIABLES
         #endregion PUBLIC_VARIABLES
 

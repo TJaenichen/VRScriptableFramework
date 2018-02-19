@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8c8b79408c5919d47ac964c0535c31c7
+timeCreated: 1518172132
+licenseType: Pro
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
+  - RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
+  - HitPoint: {fileID: 11400000, guid: 59d5466b3e75ec547bb1920296fcfa00, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

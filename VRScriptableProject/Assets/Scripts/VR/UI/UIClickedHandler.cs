@@ -1,5 +1,6 @@
 ﻿using Framework.Events;
 using Framework.Variables;
+using Framework.VR.Controllers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,13 +62,13 @@ namespace Framework.VR.UI
             {
                 Debug.DrawRay(RightHand.transform.position, RightHand.transform.TransformDirection(Vector3.forward),
                               Color.green, 5);
-                HandleHits(PointerRayCast.RightHits, "Right");
+                HandleHits(PointerRayCast.RightHits, Hand.RIGHT);
             }
             if (LeftTriggerDown.Value && !HasHitUiLeft.Value)
             {
                 Debug.DrawRay(LeftHand.transform.position, LeftHand.transform.TransformDirection(Vector3.forward),
                               Color.yellow, 5);
-                HandleHits(PointerRayCast.LeftHits, "Left");
+                HandleHits(PointerRayCast.LeftHits, Hand.LEFT);
             }
         }
         #endregion MONOBEHAVIOUR_METHODS
@@ -103,7 +104,7 @@ namespace Framework.VR.UI
         /// </summary>
         /// <param name="hits">The list hits link to the hand</param>
         /// <param name="hand">The hand to test</param>
-        private void HandleHits(List<RaycastHit> hits, string hand)
+        private void HandleHits(List<RaycastHit> hits, Hand hand)
         {
             foreach (var raycastHit in hits)
             {
@@ -123,9 +124,9 @@ namespace Framework.VR.UI
         /// Set the BoolVariable that is dragging the canvas
         /// </summary>
         /// <param name="hand">The hand that press the trigger</param>
-        void SetUiHandHit(string hand)
+        void SetUiHandHit(Hand hand)
         {
-            if (hand.Contains("Left"))
+            if (hand == Hand.LEFT)
                 HasHitUiLeft.SetValue(true);
             else
                 HasHitUiRight.SetValue(true);
