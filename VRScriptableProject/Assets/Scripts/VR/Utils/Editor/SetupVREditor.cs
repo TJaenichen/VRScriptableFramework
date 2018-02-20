@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -10,7 +9,7 @@ namespace Framework.VR.Editor
     /// Need to stay in an Editor Folder.
     /// Customize the SetupVR Prefab in the Inspector.
     /// </summary>
-    [CanEditMultipleObjects, CustomEditor(typeof(SetupVR))]
+    [CanEditMultipleObjects, CustomEditor(typeof(Utils.SetupVR))]
     public class SetupVREditor : UnityEditor.Editor
     {
         #region PRIVATE_VARIABLE

@@ -14,7 +14,7 @@ namespace Framework.VR
         #endregion PUBLIC_VARIABLE
         
         #region PRIVATE_VARIABLE
-        private PointerRayCast PointerRayCast;
+        private Utils.PointerRayCast PointerRayCast;
         private LayerMask uiLayer;
         #endregion PRIVATE_VARIABLE
 
@@ -22,7 +22,7 @@ namespace Framework.VR
         void Start()
         {
             uiLayer = LayerMask.NameToLayer("UI");
-            PointerRayCast = GetComponent<PointerRayCast>();
+            PointerRayCast = GetComponent<Utils.PointerRayCast>();
         }
 
         void Update()

@@ -50,7 +50,7 @@ namespace Absolute.Utils
         /// </summary>
         void Initialize()
         {
-            CameraRig = SetupVR.ActiveSDK;
+            CameraRig = Framework.VR.Utils.SetupVR.ActiveSDK;
             // Calculate the XYZ ratios for the transform's localScale over its initial distance from the camera.
 
             startingDistance = Vector3.Distance(CameraRig.transform.position, transform.position);

@@ -54,9 +54,9 @@ namespace Framework.VR.MoveAround
         // Use this for initialization
         void Start()
         {
-            avatarObject = SetupVR.ActiveSDK;
+            avatarObject = Utils.SetupVR.ActiveSDK;
             avatarObject.transform.localScale = Vector3.one;
-            if (!SetupVR.SDKLoaded.Contains("Oculus"))
+            if (!Utils.SetupVR.SDKLoaded.Contains("Oculus"))
                 MovementParameters.RotateCamera = false;
 
             CheckHand();

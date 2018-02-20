@@ -1,13 +1,13 @@
 ﻿#if UNITY_EDITOR
-using Framework.Events;
-using Framework.Util;
 using UnityEditor;
 #endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
+using Framework.Util;
+using Framework.Variables;
 
-namespace Framework.VR
+namespace Framework.VR.Utils
 {
     /// <summary>
     /// Script placed on the SetupVR Prefab.
@@ -19,12 +19,20 @@ namespace Framework.VR
     public class SetupVR : MonoBehaviour
     {
         #region PUBLIC_VARIABLES
+
+        #region STATIC_VARIABLES
         [Tooltip("A reference to the CameraRig object")]
         public static GameObject ActiveSDK;
 
         [Tooltip("The name of the SDK that has been loaded")]
         public static string SDKLoaded;
 
+        [Header("Choose if you want to use the Gaze, the Controllers, or both.")]
+        public BoolReference UseControllers;
+        public BoolReference UseGaze;
+        #endregion STATIC_VARIABLES
+
+        #region NON_STATIC_VARIABLES
         [Header("OPTIONAL : The World Position to set the CameraRig at runtime.")]
         public Vector3 StartingPoint;
 
@@ -36,6 +44,8 @@ namespace Framework.VR
         public GameObject OpenVR_SDK;
         public GameObject OVR_SDK;
         public GameObject Simulator_SDK;
+        #endregion NON_STATIC_VARIABLES
+
         #endregion
 
         #region PRIVATE_VARIABLES
@@ -97,7 +107,9 @@ namespace Framework.VR
 
         #region PRIVATE_METHODS
         /// <summary>
-        /// Check which SDK to Load
+        /// Check which SDK to Load from the Command Line. 
+        /// Usefull for Build if you don't want to make a starting screen where the user chose which device to use.
+        /// If you go for this option, you need to create a shortcut for each device with OVR, OPENVR or SIMULATOR at the end of the target entry.
         /// </summary>
         void CheckCommandLine()
         {
@@ -178,6 +190,7 @@ namespace Framework.VR
                 try
                 {
                     LeftControllerScripts = ActiveSDK.transform.FindDeepChild("LeftControllerScripts");
+                    RightControllerScripts = ActiveSDK.transform.FindDeepChild("RightControllerScripts");
                     RightControllerScripts = ActiveSDK.transform.FindDeepChild("RightControllerScripts");
 
                     if (LeftControllerScripts != null && RightControllerScripts != null)
