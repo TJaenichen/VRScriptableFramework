@@ -1,44 +1,46 @@
-﻿using Framework.VR.Gaze;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace Framework.VR.Utils
 {
     /// <summary>
-    /// Check the Raycast of the two controllers and the Gaze and reference them in two list of RaycastHit
+    /// Check the Raycast of the two controllers and the Gaze and reference them in three list of RaycastHit
     /// </summary>
     public class PointerRayCast : MonoBehaviour
     {
         #region PUBLIC_VARIABLES
-        [Header("The two controllers and the Camera GameObject.")]
+        [Header("The two controllers GameObject.")]
         public GameObject RightController;
         public GameObject LeftController;
 
-        [Header("List of RaycastHit from the two controllers.")]
-        public List<RaycastHit> RightHits = new List<RaycastHit>();
-        public List<RaycastHit> LeftHits = new List<RaycastHit>();
-
-        [Header("The two controllers Ray.")]
-        public Ray RightRay;
-        public Ray LeftRay;
-
-        [Header("The two controllers Position.")]
-        public Vector3 RightPos;
-        public Vector3 LeftPos;
-
-        [Header("The Gaze Raycaster if you use it.")]
-        public VREyeRaycaster GazeRaycaster;
+        [Header("The Gaze Parameters, if you use it.")]
+        [Tooltip("Set this to true if you want to use the Gaze feature.")]
+        public bool UseGaze;
         #endregion PUBLIC_VARIABLES
 
         //EMPTY
         #region PRIVATE_VARIABLES
+        [Tooltip("List of RaycastHit from the two controllers and the Gaze, if used.")]
+        private List<RaycastHit> rightHits = new List<RaycastHit>();
+        private List<RaycastHit> leftHits = new List<RaycastHit>();
+        private List<RaycastHit> gazeHits = new List<RaycastHit>();
+
+        [Tooltip("The Ray of the two controllers and the Gaze, if used.")]
+        private Ray rightRay;
+        private Ray leftRay;
+        private Ray gazeRay;
+
+        [Header("The two controllers and the gaze, if used, positions.")]
+        private Vector3 rightPos;
+        private Vector3 leftPos;
+        private Vector3 gazePos;
         #endregion PRIVATE_VARIABLES
 
         #region MONOBEHAVIOUR_METHODS
         void Update ()
         {
-            if (SetupVR.SDKLoaded.Contains("Simulator"))
+            if (SetupVR.DeviceLoaded == Device.SIMULATOR)
                 CheckMouseRays();
             else
                 CheckVRRays();
@@ -55,20 +57,20 @@ namespace Framework.VR.Utils
         /// </summary>
         void CheckVRRays()
         {
-            RightPos = RightController.transform.position;
-            RightRay = new Ray(RightPos, RightController.transform.TransformDirection(Vector3.forward));
-            RightHits = Physics.RaycastAll(RightRay).OrderBy(x => x.distance).ToList();
+            rightPos = RightController.transform.position;
+            rightRay = new Ray(rightPos, RightController.transform.TransformDirection(Vector3.forward));
+            rightHits = Physics.RaycastAll(rightRay).OrderBy(x => x.distance).ToList();
 
-            LeftPos = LeftController.transform.position;
-            LeftRay = new Ray(LeftPos, LeftController.transform.TransformDirection(Vector3.forward));
-            LeftHits = Physics.RaycastAll(LeftRay).OrderBy(x => x.distance).ToList();
+            leftPos = LeftController.transform.position;
+            leftRay = new Ray(leftPos, LeftController.transform.TransformDirection(Vector3.forward));
+            leftHits = Physics.RaycastAll(leftRay).OrderBy(x => x.distance).ToList();
 
-            //if (UseGaze)
-            //{
-            //    GazePos = CameraObject.transform.position;
-            //    GazeRay = new Ray(GazePos, CameraObject.transform.TransformDirection(Vector3.forward));
-            //    GazeHits = Physics.RaycastAll(GazeRay).OrderBy(x => x.distance).ToList();
-            //}
+            if (UseGaze)
+            {
+                gazePos = transform.position;
+                gazeRay = new Ray(gazePos, transform.TransformDirection(Vector3.forward));
+                gazeHits = Physics.RaycastAll(GazeRay).OrderBy(x => x.distance).ToList();
+            }
         }
 
         /// <summary>
@@ -76,21 +78,69 @@ namespace Framework.VR.Utils
         /// </summary>
         void CheckMouseRays()
         {
-            RightPos = RightController.transform.position;
-            RightRay = new Ray(RightPos, RightController.transform.TransformDirection(Vector3.forward));
-            RightHits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition)).OrderBy(x => x.distance).ToList();
+            rightPos = RightController.transform.position;
+            rightRay = new Ray(rightPos, RightController.transform.TransformDirection(Vector3.forward));
+            rightHits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition)).OrderBy(x => x.distance).ToList();
 
-            LeftPos = LeftController.transform.position;
-            LeftRay = new Ray(LeftPos, LeftController.transform.TransformDirection(Vector3.forward));
-            LeftHits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition)).OrderBy(x => x.distance).ToList();
+            leftPos = LeftController.transform.position;
+            leftRay = new Ray(leftPos, LeftController.transform.TransformDirection(Vector3.forward));
+            leftHits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition)).OrderBy(x => x.distance).ToList();
 
-            //if (UseGaze)
-            //{
-            //    GazePos = CameraObject.transform.position;
-            //    GazeRay = new Ray(GazePos, CameraObject.transform.TransformDirection(Vector3.forward));
-            //    GazeHits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition)).OrderBy(x => x.distance).ToList();
-            //}
+            if (UseGaze)
+            {
+                gazePos = transform.position;
+                gazeRay = new Ray(gazePos, transform.TransformDirection(Vector3.forward));
+                gazeHits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition)).OrderBy(x => x.distance).ToList();
+            }
         }
         #endregion PRIVATE_METHODS
+
+        #region GETTERS_SETTERS
+
+        public List<RaycastHit> RightHits
+        {
+            get { return rightHits; }
+        }
+
+        public List<RaycastHit> LeftHits
+        {
+            get { return leftHits; }
+        }
+
+        public List<RaycastHit> GazeHits
+        {
+            get { return gazeHits; }
+        }
+
+        public Ray RightRay
+        {
+            get { return rightRay; }
+        }
+
+        public Ray LeftRay
+        {
+            get { return leftRay; }
+        }
+
+        public Ray GazeRay
+        {
+            get { return gazeRay; }
+        }
+
+        public Vector3 RightPos
+        {
+            get { return rightPos; }
+        }
+
+        public Vector3 LeftPos
+        {
+            get { return leftPos; }
+        }
+
+        public Vector3 GazePos
+        {
+            get { return gazePos; }
+        }
+        #endregion GETTERS_SETTERS
     }
 }

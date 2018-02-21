@@ -25,14 +25,18 @@ namespace Framework.VR.Utils
         public static GameObject ActiveSDK;
 
         [Tooltip("The name of the SDK that has been loaded")]
-        public static string SDKLoaded;
-
-        [Header("Choose if you want to use the Gaze, the Controllers, or both.")]
-        public BoolReference UseControllers;
-        public BoolReference UseGaze;
+        public static Device DeviceLoaded;
         #endregion STATIC_VARIABLES
 
         #region NON_STATIC_VARIABLES
+        [Header("The Device you wanna use.")]
+        public Device device;
+
+        [Header("The 3 prefabs to load for the Vive, Oculus and Simulator.")]
+        public GameObject OpenVR_SDK;
+        public GameObject OVR_SDK;
+        public GameObject Simulator_SDK;
+
         [Header("OPTIONAL : The World Position to set the CameraRig at runtime.")]
         public Vector3 StartingPoint;
 
@@ -40,18 +44,15 @@ namespace Framework.VR.Utils
         [Tooltip("If Empty, the current scene will be use")]
         public string SceneToUse;
 
-        [Header("The 3 prefabs to load for the Vive, Oculus and Simulator.")]
-        public GameObject OpenVR_SDK;
-        public GameObject OVR_SDK;
-        public GameObject Simulator_SDK;
+        [Header("Choose if you want to use the Gaze, the Controllers, or both.")]
+        public BoolReference UseControllers;
+        public BoolReference UseGaze;
         #endregion NON_STATIC_VARIABLES
 
         #endregion
 
         #region PRIVATE_VARIABLES
-        [Tooltip("The name of the SDK that needs to be loaded")]
-        [SerializeField] [HideInInspector]
-        private string SDKToLoad;
+        private static Device DeviceToLoad;
 
         private static Transform RightControllerScripts;
         private static Transform LeftControllerScripts;
@@ -117,17 +118,17 @@ namespace Framework.VR.Utils
             {
                 if (commandLineArg.ToUpper().Contains("OVR"))
                 {
-                    SDKToLoad = "Oculus";
+                    DeviceToLoad = Device.OVR;
                     break;
                 }
                 else if (commandLineArg.ToUpper().Contains("OPENVR"))
                 {
-                    SDKToLoad = "OpenVR";
+                    DeviceToLoad = Device.OPENVR;
                     break;
                 }
                 else if (commandLineArg.ToUpper().Contains("SIMULATOR"))
                 {
-                    SDKToLoad = "Simulator";
+                    DeviceToLoad = Device.SIMULATOR;
                     break;
                 }
             }
@@ -138,45 +139,45 @@ namespace Framework.VR.Utils
         /// </summary>
         void LoadCorrespondingSDK()
         {
-            // Default to Simulator
-            if (!string.IsNullOrEmpty(SDKToLoad))
+            switch (DeviceToLoad)
             {
-                if (SDKToLoad.Contains("OVR"))
-                {
+                case (Device.OVR):
                     XRSettings.enabled = true;
                     _sdk = Instantiate(OVR_SDK);
                     _sdk.transform.name = OVR_SDK.name;
                     //Active SDK is set to the cameraRig, as it's the only object that will be moved
                     ActiveSDK = _sdk.transform.GetChild(0).gameObject;
-                    SDKLoaded = "Oculus";
-                }
-                else if (SDKToLoad.Contains("OpenVR"))
-                {
+                    DeviceLoaded = DeviceToLoad;
+                    break;
+
+                case (Device.OPENVR):
                     XRSettings.enabled = true;
-                    GameObject sdk = Instantiate(OpenVR_SDK);
-                    sdk.transform.name = OpenVR_SDK.name;
+                    _sdk = Instantiate(OpenVR_SDK);
+                    _sdk.transform.name = OpenVR_SDK.name;
                     //Active SDK is set to the cameraRig, as it's the only object that will be moved
-                    ActiveSDK = sdk.transform.GetChild(0).gameObject;
-                    SDKLoaded = "OpenVR";
-                }
-                else if (SDKToLoad.Contains("Simulator"))
-                {
+                    ActiveSDK = _sdk.transform.GetChild(0).gameObject;
+                    DeviceLoaded = DeviceToLoad;
+                    break;
+
+                case (Device.SIMULATOR):
                     XRSettings.enabled = false;
-                    GameObject sdk = Instantiate(Simulator_SDK);
-                    sdk.transform.name = Simulator_SDK.name;
+                    _sdk = Instantiate(Simulator_SDK);
+                    _sdk.transform.name = Simulator_SDK.name;
                     //Active SDK is set to the cameraRig, as it's the only object that will be moved
-                    ActiveSDK = sdk.transform.GetChild(0).gameObject;
-                    SDKLoaded = "Simulator";
-                }
-            }
-            else
-            {
-                XRSettings.enabled = false;
-                GameObject sdk = Instantiate(Simulator_SDK);
-                sdk.transform.name = Simulator_SDK.name;
-                //Active SDK is set to the cameraRig, as it's the only object that will be moved
-                ActiveSDK = sdk.transform.GetChild(0).gameObject;
-                SDKLoaded = "Simulator";
+                    ActiveSDK = _sdk.transform.GetChild(0).gameObject;
+                    DeviceLoaded = DeviceToLoad;
+                    break;
+
+                default:
+                    Debug.LogError("Device is null");
+                    XRSettings.enabled = false;
+                    _sdk = Instantiate(Simulator_SDK);
+                    _sdk.transform.name = Simulator_SDK.name;
+                    //Active SDK is set to the cameraRig, as it's the only object that will be moved
+                    ActiveSDK = _sdk.transform.GetChild(0).gameObject;
+                    DeviceLoaded = DeviceToLoad;
+                    break;
+
             }
         }
 

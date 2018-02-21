@@ -68,9 +68,10 @@ namespace Framework.VR.Gaze
         }
         
         /// <summary>
-        /// This overload of SetPosition is used when the VREyeRaycaster hasn't hit anything.
+        /// This method is called when the reticle didn't hit anything.
+        /// It set it back to the "normal" position.
         /// </summary>
-        public void SetPosition()
+        public void SetPositionToNormal()
         {
             // Set the position of the reticle to the default distance in front of the camera.
             m_ReticleTransform.position = m_Camera.position + m_Camera.forward * m_DefaultDistance;
@@ -84,7 +85,7 @@ namespace Framework.VR.Gaze
 
 
         /// <summary>
-        /// This overload of SetPosition is used when the VREyeRaycaster has hit something.
+        /// This overload of SetPosition is used when the Gaze Raycast has hit something.
         /// </summary>
         public void SetPosition(RaycastHit hit)
         {

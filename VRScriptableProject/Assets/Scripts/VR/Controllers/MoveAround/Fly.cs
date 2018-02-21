@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Framework.Variables;
 using Framework.VR.Controllers;
+using Framework.VR.Utils;
 
 namespace Framework.VR.MoveAround
 {
@@ -54,9 +55,9 @@ namespace Framework.VR.MoveAround
         // Use this for initialization
         void Start()
         {
-            avatarObject = Utils.SetupVR.ActiveSDK;
+            avatarObject = SetupVR.ActiveSDK;
             avatarObject.transform.localScale = Vector3.one;
-            if (!Utils.SetupVR.SDKLoaded.Contains("Oculus"))
+            if (SetupVR.DeviceLoaded != Device.OVR)
                 MovementParameters.RotateCamera = false;
 
             CheckHand();

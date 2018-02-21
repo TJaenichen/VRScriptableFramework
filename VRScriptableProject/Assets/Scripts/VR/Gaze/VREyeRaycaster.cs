@@ -111,7 +111,7 @@ namespace Framework.VR.Gaze
 
                 // Position the reticle at default distance.
                 if (m_Reticle)
-                    m_Reticle.SetPosition();
+                    m_Reticle.SetPositionToNormal();
             }
         }
 

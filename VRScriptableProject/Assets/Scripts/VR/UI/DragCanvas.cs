@@ -1,4 +1,5 @@
 ﻿using Framework.Variables;
+using Framework.VR.Controllers;
 using Framework.VR.Utils;
 using UnityEngine;
 
@@ -34,6 +35,8 @@ namespace Framework.VR.UI
 
         private Transform RightHand;
         private Transform LeftHand;
+
+        private Hand hand; 
         #endregion
 
         #region MONOBEHAVIOUR_METHODS
@@ -57,9 +60,9 @@ namespace Framework.VR.UI
             if (objectHit.tag == "UIBorder")
             {
                 if (LeftTriggerDown.Value)
-                    StartDragging(HitPoint.Value, "Left");
+                    StartDragging(HitPoint.Value, Hand.LEFT);
                 else
-                    StartDragging(HitPoint.Value, "Right");
+                    StartDragging(HitPoint.Value, Hand.RIGHT);
             }
         }
         #endregion
@@ -95,7 +98,7 @@ namespace Framework.VR.UI
         /// </summary>
         /// <param name="raycastHit">The raycastHit hitting the UI</param>
         /// <param name="hand">The hand with which the user is dragging the Canvas</param>
-        void StartDragging(RaycastHit raycastHit, string hand)
+        void StartDragging(RaycastHit raycastHit, Hand hand)
         {
             if (!(_draggingLeft || _draggingRight))
             {
@@ -103,7 +106,7 @@ namespace Framework.VR.UI
                 _curDragPos = raycastHit.point;
             }
 
-            if (hand.Contains("Left"))
+            if (hand == Hand.LEFT)
             {
                 _draggingLeft = true;
                 _distance = Vector3.Distance(PointerRayCast.LeftPos, raycastHit.point);
