@@ -15,12 +15,13 @@ namespace Framework.VR.UI
     public class DragCanvas : MonoBehaviour
     {
         #region PUBLIC_VARIABLES
-        [Header("BoolVariable to check if the Trigger is down")]
-        public BoolVariable RightTriggerDown;
-        public BoolVariable LeftTriggerDown;
+        [Header("BoolVariable to check if the user is clicking")]
+        public BoolVariable RightClickDown;
+        public BoolVariable LeftClickDown;
 
         [Header("RaycastHitVariable to where the user has clicked")]
-        public RaycastHitVariable HitPoint;
+        public RaycastHitVariable RightHitPoint;
+        public RaycastHitVariable LeftHitPoint;
         #endregion
 
         #region PRIVATE_VARIABLES
@@ -59,10 +60,10 @@ namespace Framework.VR.UI
         {
             if (objectHit.tag == "UIBorder")
             {
-                if (LeftTriggerDown.Value)
-                    StartDragging(HitPoint.Value, Hand.LEFT);
+                if (LeftClickDown.Value)
+                    StartDragging(LeftHitPoint.Value, Hand.LEFT);
                 else
-                    StartDragging(HitPoint.Value, Hand.RIGHT);
+                    StartDragging(RightHitPoint.Value, Hand.RIGHT);
             }
         }
         #endregion
@@ -74,11 +75,11 @@ namespace Framework.VR.UI
         /// <returns>true if the user is dragging a canvas</returns>
         void CheckDragging()
         {
-            if (_draggingLeft && !LeftTriggerDown.Value)
+            if (_draggingLeft && !LeftClickDown.Value)
             {
                 _draggingLeft = false;
             }
-            if (_draggingRight && !RightTriggerDown.Value)
+            if (_draggingRight && !RightClickDown.Value)
             {
                 _draggingRight = false;
             }

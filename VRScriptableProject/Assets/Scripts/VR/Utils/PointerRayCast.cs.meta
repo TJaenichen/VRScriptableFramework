@@ -5,7 +5,10 @@ licenseType: Pro
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - RightController: {instanceID: 0}
+  - LeftController: {instanceID: 0}
+  - UseGaze: {fileID: 11400000, guid: 7571193aca0d3ae4f80d53954e42f357, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

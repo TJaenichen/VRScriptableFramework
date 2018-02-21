@@ -11,8 +11,8 @@ MonoImporter:
   - MatOn: {fileID: 2100000, guid: f704dcd2dfa818a4abe8f7bd648e64c3, type: 2}
   - MatOff: {fileID: 2100000, guid: fb766f2bde315db49a0ee8ff016cd289, type: 2}
   - MatSelectable: {fileID: 2100000, guid: fb766f2bde315db49a0ee8ff016cd289, type: 2}
-  - HasHitUiRight: {fileID: 11400000, guid: 53fc7375e651fb949bb4d4ddcb235110, type: 2}
-  - HasHitUiLeft: {fileID: 11400000, guid: 618ea11461b082f49a6fa75558d2c447, type: 2}
+  - IsOverRight: {fileID: 11400000, guid: e4af7546d84d07a4eabe05d5d54a7986, type: 2}
+  - IsOverLeft: {fileID: 11400000, guid: 0daffa7486ad84748897c181625ce7b7, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

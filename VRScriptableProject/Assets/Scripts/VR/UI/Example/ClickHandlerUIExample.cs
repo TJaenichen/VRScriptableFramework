@@ -1,5 +1,4 @@
-﻿using Framework.Variables;
-using Framework.VR.Utils;
+﻿using Framework.VR.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,22 +11,12 @@ namespace Framework.VR.UI.Example
     public class ClickHandlerUIExample : MonoBehaviour
     {
         #region PUBLIC_VARIABLES
-        [Header("BoolReference to check if the Trigger is down")]
-        public BoolVariable RightTriggerDown;
-        public BoolVariable LeftTriggerDown;
-
-        [Header("RaycastHitReference to where the user has clicked")]
-        public RaycastHitVariable HitPoint;
-
         [Header("The VRKeyboard in the Scene")]
         public GameObject VRKeyboard;
         #endregion PUBLIC_VARIABLES
 
         #region PRIVATE_VARIABLES
         private PointerRayCast PointerRayCast;
-
-        private Transform RightHand;
-        private Transform LeftHand;
         #endregion PRIVATE_VARIABLES
 
         #region MONOBEHAVIOUR_METHODS
@@ -102,21 +91,15 @@ namespace Framework.VR.UI.Example
         }
 
         /// <summary>
-        /// Set the references for the pointerRayCast, the LeftHand and the RightHand
+        /// Set the references for the pointerRayCast
         /// </summary>
         /// <returns>True if everything is setup</returns>
         private bool CheckReferences()
         {
-            if (RightHand == null)
-                RightHand = SetupVR.RightControllerTransform;
-
-            if (LeftHand == null)
-                LeftHand = SetupVR.LeftControllerTransform;
-
             if (SetupVR.ActiveSDK != null && PointerRayCast == null)
                 PointerRayCast = SetupVR.ActiveSDK.GetComponent<PointerRayCast>();
 
-            if (PointerRayCast == null || LeftHand == null || RightHand == null)
+            if (PointerRayCast == null)
                 return false;
 
             return true;

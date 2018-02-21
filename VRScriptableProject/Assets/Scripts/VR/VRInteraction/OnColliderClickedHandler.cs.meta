@@ -1,0 +1,28 @@
+fileFormatVersion: 2
+guid: 43ce60615c96981468036900d4ebc654
+timeCreated: 1518191866
+licenseType: Pro
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - RightClickDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
+  - LeftClickDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
+  - GazeClickDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
+  - HasClickSomethingRight: {fileID: 11400000, guid: 53fc7375e651fb949bb4d4ddcb235110,
+      type: 2}
+  - HasClickSomethingLeft: {fileID: 11400000, guid: 618ea11461b082f49a6fa75558d2c447,
+      type: 2}
+  - HasClickSomethingGaze: {fileID: 11400000, guid: d5394cbe21ad8ae45b561f17c385456a,
+      type: 2}
+  - RightObjectClicked: {fileID: 11400000, guid: 637cd2cc15056fc4897fc5cd10c14288,
+      type: 2}
+  - LeftObjectClicked: {fileID: 11400000, guid: 15ddfd9adffbaa74da38eada75f74d63,
+      type: 2}
+  - GazeObjectClicked: {fileID: 11400000, guid: 80b7c4c0489ac954d9c9cf6ab954e431,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

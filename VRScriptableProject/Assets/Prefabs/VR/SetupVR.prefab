@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114386473515599950}
   - component: {fileID: 114470361991225018}
   - component: {fileID: 114009383480493634}
+  - component: {fileID: 114581928095910928}
   m_Layer: 0
   m_Name: SetupVR
   m_TagString: Untagged
@@ -53,12 +54,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ce60615c96981468036900d4ebc654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
-  LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
-  HasHitUiRight: {fileID: 11400000, guid: 53fc7375e651fb949bb4d4ddcb235110, type: 2}
-  HasHitUiLeft: {fileID: 11400000, guid: 618ea11461b082f49a6fa75558d2c447, type: 2}
-  ObjectHit: {fileID: 11400000, guid: 15ddfd9adffbaa74da38eada75f74d63, type: 2}
-  HitPoint: {fileID: 11400000, guid: 59d5466b3e75ec547bb1920296fcfa00, type: 2}
+  RightClickDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
+  LeftClickDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
+  GazeClickDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
+  HasClickSomethingRight: {fileID: 11400000, guid: 53fc7375e651fb949bb4d4ddcb235110,
+    type: 2}
+  HasClickSomethingLeft: {fileID: 11400000, guid: 618ea11461b082f49a6fa75558d2c447,
+    type: 2}
+  HasClickSomethingGaze: {fileID: 11400000, guid: d5394cbe21ad8ae45b561f17c385456a,
+    type: 2}
+  RightObjectClicked: {fileID: 11400000, guid: 637cd2cc15056fc4897fc5cd10c14288, type: 2}
+  LeftObjectClicked: {fileID: 11400000, guid: 15ddfd9adffbaa74da38eada75f74d63, type: 2}
+  GazeObjectClicked: {fileID: 11400000, guid: 80b7c4c0489ac954d9c9cf6ab954e431, type: 2}
 --- !u!114 &114386473515599950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,13 +77,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b806b447e15b7c4b9480adfe25aca12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingPoint: {x: 0, y: 0, z: 16}
-  SceneToUse: 
+  device: 2
   OpenVR_SDK: {fileID: 1418385961867718, guid: 0d75aa34135783b42902b783e8aec06f, type: 2}
   OVR_SDK: {fileID: 1024987474634616, guid: e904b3b8f1309244a99b76f0f02e6a74, type: 2}
   Simulator_SDK: {fileID: 1418125392740358, guid: b979e6804adc6604385ff362628275cc,
     type: 2}
-  SDKToLoad: OVR
+  StartingPoint: {x: 0, y: 0, z: 0}
+  SceneToUse: 
+  UseGaze: {fileID: 11400000, guid: 7571193aca0d3ae4f80d53954e42f357, type: 2}
 --- !u!114 &114470361991225018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -88,3 +96,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec19f0f501fc07408f2e9a4fd74313e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114581928095910928
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1147815568228318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e09f441a6451494099c46033aa632d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsOverSomethingRight: {fileID: 11400000, guid: e4af7546d84d07a4eabe05d5d54a7986,
+    type: 2}
+  IsOverSomethingLeft: {fileID: 11400000, guid: 0daffa7486ad84748897c181625ce7b7,
+    type: 2}
+  IsOverSomethingGaze: {fileID: 11400000, guid: e02255ccfbf76d948a328cfb0301b382,
+    type: 2}
+  RightHitPoint: {fileID: 11400000, guid: 59d5466b3e75ec547bb1920296fcfa00, type: 2}
+  LeftHitPoint: {fileID: 11400000, guid: d16c4f1f1f37d42419d9fa8f6b050802, type: 2}
+  GazeHitPoint: {fileID: 11400000, guid: a37975abb0fc52843a2064290bb07819, type: 2}
+  RightOverObject: {fileID: 11400000, guid: 727e4033ea83fee43a190ca7f021c4e2, type: 2}
+  LeftOverObject: {fileID: 11400000, guid: 1d0f1345b760b4d40b2f15fc143005ef, type: 2}
+  GazeOverObject: {fileID: 11400000, guid: 3c6a71e81ab29f24c9b1b0ec66411bdc, type: 2}

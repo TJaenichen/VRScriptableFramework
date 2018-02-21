@@ -15,19 +15,16 @@ namespace Framework.VR
         
         [Header("OPTIONAL : The reticle for the Gaze.")]
         public Reticle Reticle;
-        
-        [Header("OPTIONAL : Layer to exclude from the raycast.")]
-        public LayerMask ExclusionLayer;
         #endregion PUBLIC_VARIABLE
 
         #region PRIVATE_VARIABLE
-        private Utils.PointerRayCast PointerRayCast;
+        private Utils.PointerRayCast pointerRayCast;
         #endregion PRIVATE_VARIABLE
 
         #region MONOBEHAVIOUR_METHODS
         void Start()
         {
-            PointerRayCast = GetComponent<Utils.PointerRayCast>();
+            pointerRayCast = GetComponent<Utils.PointerRayCast>();
         }
 
         void Update()
@@ -35,7 +32,7 @@ namespace Framework.VR
             CheckRightController();
             CheckLeftController();
 
-            if (PointerRayCast.UseGaze && Reticle != null)
+            if (pointerRayCast.UseGaze && Reticle != null)
                 CheckGaze();
         }
         #endregion MONOBEHAVIOUR_METHODS
@@ -50,15 +47,15 @@ namespace Framework.VR
         /// </summary>
         void CheckRightController()
         {
-            foreach (var hit in PointerRayCast.RightHits)
+            foreach (var hit in pointerRayCast.RightHits)
             {
-                if (hit.collider.gameObject.layer != ExclusionLayer)
+                if (hit.collider.gameObject.layer != pointerRayCast.ExclusionLayer)
                 {
                     //Reduce lineRenderer from the controllers position to the object that was hit
-                    PointerRayCast.RightController.GetComponent<LineRenderer>().SetPositions(new Vector3[]
+                    pointerRayCast.RightController.GetComponent<LineRenderer>().SetPositions(new Vector3[]
                     {
                         new Vector3(0, 0, 0),
-                        PointerRayCast.RightController.transform.InverseTransformPoint(hit.point),
+                        pointerRayCast.RightController.transform.InverseTransformPoint(hit.point),
                     });
                 }
                 
@@ -66,7 +63,7 @@ namespace Framework.VR
             }
             
             //put back lineRenderer to its normal length if nothing was hit
-            PointerRayCast.RightController.GetComponent<LineRenderer>().SetPositions(new Vector3[]
+            pointerRayCast.RightController.GetComponent<LineRenderer>().SetPositions(new Vector3[]
             {
                 new Vector3(0, 0, 0),
                 new Vector3(0, 0, MaxLengthLineRenderer),
@@ -78,15 +75,15 @@ namespace Framework.VR
         /// </summary>
         void CheckLeftController()
         {
-            foreach (var hit in PointerRayCast.LeftHits)
+            foreach (var hit in pointerRayCast.LeftHits)
             {
-                if (hit.collider.gameObject.layer != ExclusionLayer)
+                if (hit.collider.gameObject.layer != pointerRayCast.ExclusionLayer)
                 {
                     //Reduce lineRenderer from the controllers position to the object that was hit
-                    PointerRayCast.LeftController.GetComponent<LineRenderer>().SetPositions(new Vector3[]
+                    pointerRayCast.LeftController.GetComponent<LineRenderer>().SetPositions(new Vector3[]
                     {
                         new Vector3(0, 0, 0),
-                        PointerRayCast.LeftController.transform.InverseTransformPoint(hit.point),
+                        pointerRayCast.LeftController.transform.InverseTransformPoint(hit.point),
                     });
                 }
 
@@ -94,7 +91,7 @@ namespace Framework.VR
             }
 
             //put back lineRenderer to its normal length if nothing was hit
-            PointerRayCast.LeftController.GetComponent<LineRenderer>().SetPositions(new Vector3[]
+            pointerRayCast.LeftController.GetComponent<LineRenderer>().SetPositions(new Vector3[]
             {
                 new Vector3(0, 0, 0),
                 new Vector3(0, 0, MaxLengthLineRenderer),
@@ -106,9 +103,9 @@ namespace Framework.VR
         /// </summary>
         void CheckGaze()
         {
-            foreach (var hit in PointerRayCast.LeftHits)
+            foreach (var hit in pointerRayCast.LeftHits)
             {
-                if (hit.collider.gameObject.layer != ExclusionLayer)
+                if (hit.collider.gameObject.layer != pointerRayCast.ExclusionLayer)
                 {
                     //Reduce the reticle positon to the object that was hit
                     Reticle.SetPosition(hit);

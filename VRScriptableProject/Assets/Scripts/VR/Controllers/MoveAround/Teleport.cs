@@ -1,7 +1,6 @@
 ﻿using Framework.Variables;
 using Framework.VR.Controllers;
 using Framework.VR.Utils;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,18 +14,24 @@ namespace Framework.VR.MoveAround
     public class Teleport : MonoBehaviour 
 	{
         #region PUBLIC_VARIABLES
-        [Header("BoolVariable to check if the user aim to the UI")]
-        public BoolVariable HasHitUiRight;
-        public BoolVariable HasHitUiLeft;
+        [Header("BoolVariable to check if the user aim at something")]
+        public BoolVariable RightIsOver;
+        public BoolVariable LeftIsOver;
 
         [Header("The Hand this script is assign to")]
         public Hand hand;
+
+        [Header("Height Adjusting Parameters")]
+        [Tooltip("If you want to adjust the height to the point that was hit.")]
+        public bool AdjustHeight = false;
+        [Tooltip("The height at which the user is teleported above the ground.")]
+        public float HeightAboveGround = 1.5f;
         #endregion
 
 
         #region PRIVATE_VARIABLES
         private LayerMask groundLayer;                  // The Layer for the Ground
-        private GameObject avatarObject;                //The CameraRig object
+        private GameObject avatarObject;                // The CameraRig object
         private List<RaycastHit> raycastHits;
         #endregion
 
@@ -37,15 +42,6 @@ namespace Framework.VR.MoveAround
         {
             groundLayer = LayerMask.NameToLayer("Ground");
             avatarObject = SetupVR.ActiveSDK;
-        }
-
-        void Update()
-        {
-            if (avatarObject == null) 
-            {
-                avatarObject = SetupVR.ActiveSDK;
-                return;
-            }
         }
         #endregion
 
@@ -59,12 +55,13 @@ namespace Framework.VR.MoveAround
             raycastHits = GetRaycastHits();
             foreach (RaycastHit hit in raycastHits)
             {
-                Debug.Log(hit.collider.gameObject);
-                Debug.Log(hit.collider.gameObject.layer);
                 if (hit.collider.gameObject.layer == groundLayer.value)
                 {
-                    avatarObject.transform.position = new Vector3(hit.point.x, avatarObject.transform.position.y,
-                        hit.point.z);
+                    if (AdjustHeight)
+                        avatarObject.transform.position = new Vector3(hit.point.x, avatarObject.transform.position.y, hit.point.z);
+                    else
+                        avatarObject.transform.position = new Vector3(hit.point.x, hit.point.y + HeightAboveGround, hit.point.z);
+
                     return;
                 }
             }
@@ -83,16 +80,6 @@ namespace Framework.VR.MoveAround
                 return avatarObject.GetComponent<PointerRayCast>().LeftHits;
             else
                 return avatarObject.GetComponent<PointerRayCast>().RightHits;
-        }
-
-        bool CheckReferences()
-        {
-            if (avatarObject != null)
-                return true;
-
-            groundLayer = LayerMask.NameToLayer("Ground");
-            Debug.Log("Return False");
-            return false;
         }
         #endregion
 

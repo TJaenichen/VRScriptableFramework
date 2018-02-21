@@ -21,9 +21,9 @@ namespace Framework.VR.UI
         [Tooltip("The speed at which the view is scrolling.")]
         public float Speed = 0.015f;
 
-        [Header("BoolVariable for the Triggers")]
-        public BoolVariable LeftTriggerDown;
-        public BoolVariable RightTriggerDown;
+        [Header("BoolVariable for the Click")]
+        public BoolVariable LeftClickDown;
+        public BoolVariable RightClickDown;
         #endregion PUBLIC_VARIABLES
 
         #region PRIVATE_VARIABLES
@@ -50,10 +50,10 @@ namespace Framework.VR.UI
         {
             if(controllerAreSetup)
             {
-                if (LeftTriggerDown.Value)
+                if (LeftClickDown.Value)
                     CheckRayCast(pointerRayCast.LeftHits);
 
-                if (RightTriggerDown.Value)
+                if (RightClickDown.Value)
                     CheckRayCast(pointerRayCast.RightHits);
             }
             else
@@ -114,7 +114,7 @@ namespace Framework.VR.UI
             }
             catch
             {
-                Debug.Log("Couldn't find the ActiveSDK");
+                Debug.Log("CameraRig is not on Scene yet.");
             }
         }
         #endregion PRIVATE_METHODS

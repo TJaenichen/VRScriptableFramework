@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Framework.Variables;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -16,10 +17,13 @@ namespace Framework.VR.Utils
 
         [Header("The Gaze Parameters, if you use it.")]
         [Tooltip("Set this to true if you want to use the Gaze feature.")]
-        public bool UseGaze;
+        public BoolVariable UseGaze;
+        
+        [Header("OPTIONAL : Layer to exclude from the raycast.")]
+        [Tooltip("Everything link to this layer will be ignored by the Raycast and the Raycast Hit")]
+        public LayerMask ExclusionLayer;
         #endregion PUBLIC_VARIABLES
-
-        //EMPTY
+        
         #region PRIVATE_VARIABLES
         [Tooltip("List of RaycastHit from the two controllers and the Gaze, if used.")]
         private List<RaycastHit> rightHits = new List<RaycastHit>();

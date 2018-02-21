@@ -50,14 +50,20 @@ namespace Absolute.Utils
         /// </summary>
         void Initialize()
         {
-            CameraRig = Framework.VR.Utils.SetupVR.ActiveSDK;
-            // Calculate the XYZ ratios for the transform's localScale over its initial distance from the camera.
+            try
+            {
+                CameraRig = Framework.VR.Utils.SetupVR.ActiveSDK;
+                // Calculate the XYZ ratios for the transform's localScale over its initial distance from the camera.
 
-            startingDistance = Vector3.Distance(CameraRig.transform.position, transform.position);
+                startingDistance = Vector3.Distance(CameraRig.transform.position, transform.position);
 
-            startingScale = transform.localScale;
+                startingScale = transform.localScale;
 
-            SetSizeRatio(SizeRatio);
+                SetSizeRatio(SizeRatio);
+            } catch
+            {
+                Debug.Log("CameraRig is not on Scene yet.");
+            }
         }
 
         /// <summary>

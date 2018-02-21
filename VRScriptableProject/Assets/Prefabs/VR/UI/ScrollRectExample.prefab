@@ -129,10 +129,8 @@ GameObject:
   - component: {fileID: 114672998982363590}
   - component: {fileID: 114710163987817586}
   - component: {fileID: 222622294222182166}
-  - component: {fileID: 65311618328834844}
   - component: {fileID: 114267146347551964}
   - component: {fileID: 114400441834796186}
-  - component: {fileID: 114111819946026534}
   m_Layer: 5
   m_Name: ScrollRectExample
   m_TagString: MovableCanvas
@@ -287,6 +285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224970171613374766}
   - component: {fileID: 114803426286868578}
+  - component: {fileID: 114003495801047124}
   m_Layer: 5
   m_Name: GameEventListenersScrollRectExample
   m_TagString: Untagged
@@ -606,18 +605,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 299.81717, y: 29.700796, z: 1}
   m_Center: {x: 0.33492845, y: 172.7955, z: 0}
---- !u!65 &65311618328834844
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1297909833261248}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65587997962840834
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -654,6 +641,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 23.980478, y: 375.5247, z: 1}
   m_Center: {x: -138.02493, y: 0.00020861626, z: 0}
+--- !u!114 &114003495801047124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1399671446249650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ce43305813d064a88068c35a07d1c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 637cd2cc15056fc4897fc5cd10c14288, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114267146347551964}
+        m_MethodName: CheckObjectHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Framework.Events.UnityEvents.EventTransform, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114020806975716836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -666,24 +681,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThresholdDifference: 0.005
-  Speed: 0.01
-  LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
-  RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
---- !u!114 &114111819946026534
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1297909833261248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c8b79408c5919d47ac964c0535c31c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ThresholdDifference: 0.005
   Speed: 0.015
-  LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
-  RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
+  LeftClickDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
+  RightClickDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
 --- !u!114 &114158084239088060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -829,9 +829,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116ef2cb6e17c4143b7565c69ab26b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RightTriggerDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
-  LeftTriggerDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
-  HitPoint: {fileID: 11400000, guid: 59d5466b3e75ec547bb1920296fcfa00, type: 2}
+  RightClickDown: {fileID: 11400000, guid: 24671222ab3e7ab49aa70caf83e5456a, type: 2}
+  LeftClickDown: {fileID: 11400000, guid: bd8f74b363e67a345b3ff5f3aaa5c32d, type: 2}
+  RightHitPoint: {fileID: 11400000, guid: 59d5466b3e75ec547bb1920296fcfa00, type: 2}
+  LeftHitPoint: {fileID: 11400000, guid: d16c4f1f1f37d42419d9fa8f6b050802, type: 2}
 --- !u!114 &114274077550715812
 MonoBehaviour:
   m_ObjectHideFlags: 1

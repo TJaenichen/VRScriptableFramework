@@ -26,33 +26,21 @@ namespace Framework.VR
         public Material MatSelectable;
 
         [Header("BoolVariable to check if the user aim to the UI")]
-        public BoolVariable HasHitUiRight;
-        public BoolVariable HasHitUiLeft;
+        public BoolVariable IsOverRight;
+        public BoolVariable IsOverLeft;
         #endregion PUBLIC_VARIABLES
 
         #region PRIVATE_VARIABLES
         UIPointerState RightState = UIPointerState.On;
         UIPointerState LeftState = UIPointerState.On;
-
-        private PointerRayCast pointerRayCast;
         #endregion PRIVATE_VARIABLES
 
         #region MONOBEHAVIOUR_METHODS
-        private void Start()
-        {
-            pointerRayCast = GetComponent<PointerRayCast>();
-        }
-
         void Update ()
         {
-            if (!HasHitUiRight.Value)
-            {
-                RightState = CheckPointer(pointerRayCast.RightHits, RightState, RightHandPointer);
-            }
-            if (!HasHitUiLeft.Value)
-            {
-                LeftState = CheckPointer(pointerRayCast.LeftHits, LeftState, LeftHandPointer);
-            }
+            RightState = CheckPointer(IsOverRight, RightState, RightHandPointer);
+            LeftState = CheckPointer(IsOverLeft, LeftState, LeftHandPointer);
+
             CheckPointerScale();
         }
         #endregion MONOBEHAVIOUR_METHODS
@@ -65,31 +53,21 @@ namespace Framework.VR
         /// <summary>
         /// Check if the pointer is touching the UI
         /// </summary>
-        /// <param name="hits">The list of RayCastHit, from the PointerRayCast Script</param>
+        /// <param name="isOver">If the Raycast is over something</param>
         /// <param name="pointerState">The current state of the pointer</param>
         /// <param name="pointer">The linerenderer to which the material is attached</param>
         /// <returns>The new state of the pointer</returns>
-        private UIPointerState CheckPointer(List<RaycastHit> hits, UIPointerState pointerState, LineRenderer pointer)
+        private UIPointerState CheckPointer(BoolVariable isOver, UIPointerState pointerState, LineRenderer pointer)
         {
-            var uiHit = false;
-
-            foreach (var raycastHit in hits)
-            {
-                if (raycastHit.collider.gameObject.GetComponentInParent<Canvas>() != null)
-                {
-                    uiHit = true;
-                }
-            }
-
-            if (uiHit && pointerState != UIPointerState.Selectable)
+            if (isOver.Value && pointerState != UIPointerState.Selectable)
             {
                 pointer.material = MatSelectable;
                 return UIPointerState.Selectable;
             }
-            else if (!uiHit && pointerState != UIPointerState.On)
+            else if (!isOver.Value && pointerState != UIPointerState.On)
             {
                 pointer.material = MatOn;
-                return  UIPointerState.On;
+                return UIPointerState.On;
             }
             return pointerState;
         }

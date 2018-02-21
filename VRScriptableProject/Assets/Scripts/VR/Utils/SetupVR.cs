@@ -30,7 +30,7 @@ namespace Framework.VR.Utils
 
         #region NON_STATIC_VARIABLES
         [Header("The Device you wanna use.")]
-        public Device device;
+        public Device DeviceToLoad;
 
         [Header("The 3 prefabs to load for the Vive, Oculus and Simulator.")]
         public GameObject OpenVR_SDK;
@@ -44,16 +44,13 @@ namespace Framework.VR.Utils
         [Tooltip("If Empty, the current scene will be use")]
         public string SceneToUse;
 
-        [Header("Choose if you want to use the Gaze, the Controllers, or both.")]
-        public BoolReference UseControllers;
-        public BoolReference UseGaze;
+        [Header("Choose if you want to use the Gaze.")]
+        public BoolVariable UseGaze;
         #endregion NON_STATIC_VARIABLES
 
         #endregion
 
         #region PRIVATE_VARIABLES
-        private static Device DeviceToLoad;
-
         private static Transform RightControllerScripts;
         private static Transform LeftControllerScripts;
 
