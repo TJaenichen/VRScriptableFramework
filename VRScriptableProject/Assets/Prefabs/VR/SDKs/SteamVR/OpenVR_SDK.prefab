@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 114532787045288036}
   - component: {fileID: 114544394959559146}
   - component: {fileID: 114278430738702390}
+  - component: {fileID: 114406620368136756}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: CameraRig
@@ -654,6 +655,22 @@ MonoBehaviour:
   verbose: 0
   createComponents: 1
   updateDynamically: 1
+--- !u!114 &114406620368136756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1846798760714814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bf6fe655e60bc4688d038170aae827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DefaultDistance: 200
+  m_UseNormal: 1
+  m_Image: {fileID: 0}
+  m_ReticleTransform: {fileID: 0}
+  m_Camera: {fileID: 0}
 --- !u!114 &114528155978153180
 MonoBehaviour:
   m_ObjectHideFlags: 1

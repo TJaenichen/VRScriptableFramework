@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114510396157685742}
   - component: {fileID: 114785742827916376}
   - component: {fileID: 114458212381846282}
+  - component: {fileID: 114757209151781816}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: CameraRig
@@ -417,6 +418,22 @@ MonoBehaviour:
   LeftTouchpadIsPressed: {fileID: 11400000, guid: 8f612cffb3bc8034a9bd2ca0408b4599,
     type: 2}
   Hand: 1
+--- !u!114 &114757209151781816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1119835711674316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bf6fe655e60bc4688d038170aae827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DefaultDistance: 200
+  m_UseNormal: 1
+  m_Image: {fileID: 0}
+  m_ReticleTransform: {fileID: 0}
+  m_Camera: {fileID: 0}
 --- !u!114 &114785742827916376
 MonoBehaviour:
   m_ObjectHideFlags: 1

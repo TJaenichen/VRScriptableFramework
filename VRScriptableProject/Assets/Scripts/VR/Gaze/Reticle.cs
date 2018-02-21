@@ -17,7 +17,7 @@ namespace Framework.VR.Gaze
         #region SERIALIZED_FIELDS
         [Header("Reticle Parameters")]
         [Tooltip("The default distance away from the camera the reticle is placed.")]
-        [SerializeField] private float m_DefaultDistance = 5f;
+        [SerializeField] private float m_DefaultDistance = 200.0f;
 
         [Tooltip("Whether the reticle should be placed parallel to a surface.")]
         [SerializeField] private bool m_UseNormal;                  

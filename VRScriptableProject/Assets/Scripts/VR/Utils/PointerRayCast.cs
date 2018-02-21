@@ -1,4 +1,5 @@
 ﻿using Framework.Variables;
+using Framework.VR.Gaze;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace Framework.VR.Utils
         [Header("The Gaze Parameters, if you use it.")]
         [Tooltip("Set this to true if you want to use the Gaze feature.")]
         public BoolVariable UseGaze;
+        public Transform VRCamera;
         
         [Header("OPTIONAL : Layer to exclude from the raycast.")]
         [Tooltip("Everything link to this layer will be ignored by the Raycast and the Raycast Hit")]
@@ -71,8 +73,8 @@ namespace Framework.VR.Utils
 
             if (UseGaze)
             {
-                gazePos = transform.position;
-                gazeRay = new Ray(gazePos, transform.TransformDirection(Vector3.forward));
+                gazePos = VRCamera.position;
+                gazeRay = new Ray(gazePos, VRCamera.forward);
                 gazeHits = Physics.RaycastAll(GazeRay).OrderBy(x => x.distance).ToList();
             }
         }
@@ -92,8 +94,8 @@ namespace Framework.VR.Utils
 
             if (UseGaze)
             {
-                gazePos = transform.position;
-                gazeRay = new Ray(gazePos, transform.TransformDirection(Vector3.forward));
+                gazePos = VRCamera.transform.position;
+                gazeRay = new Ray(gazePos, VRCamera.transform.forward);
                 gazeHits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition)).OrderBy(x => x.distance).ToList();
             }
         }
