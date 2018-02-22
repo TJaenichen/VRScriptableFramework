@@ -212,13 +212,13 @@ namespace Framework.VR.Inputs
 
             if (RightController.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                _leftEventBool = (GameEventBool)RightEventsDictionnary.Get("RightThumbTouching");
-                _leftEventBool.Raise(true);
+                _rightEventBool = (GameEventBool)RightEventsDictionnary.Get("RightThumbTouching");
+                _rightEventBool.Raise(true);
             }
             else if (RightController.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                _leftEventBool = (GameEventBool)RightEventsDictionnary.Get("RightThumbTouching");
-                _leftEventBool.Raise(false);
+                _rightEventBool = (GameEventBool)RightEventsDictionnary.Get("RightThumbTouching");
+                _rightEventBool.Raise(false);
             }
             #endregion TOUCHPAD
 

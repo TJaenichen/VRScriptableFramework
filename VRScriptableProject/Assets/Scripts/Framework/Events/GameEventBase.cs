@@ -7,6 +7,7 @@ namespace Framework.Events
     public class GameEventBase : ScriptableObject
     {
         protected List<Object> Listeners = new List<Object>();
+
         public List<Object> GetListeners()
         {
             return Listeners;
