@@ -5,13 +5,12 @@ namespace Framework.VR.MoveAround
     /// <summary>
     /// Contain all the parameters for the Flying Mode
     /// </summary>
-    [CreateAssetMenu(menuName = "Variables/Flying Parameters")]
+    [CreateAssetMenu(menuName = "Variables/VR/Flying Parameters")]
     public class FlyingParametersVariable : ScriptableObject
     {
         [Multiline]
         public string DeveloperDescription = "";
-
-        [Header("Flying Settings")]
+        
         [Tooltip("The maximum speed at which the user can go in the X and Z axis.")]
         public float MaxFlightSpeed = 8.0f;
 

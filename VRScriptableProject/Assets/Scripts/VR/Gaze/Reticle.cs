@@ -12,30 +12,25 @@ namespace Framework.VR.Gaze
     /// </summary>
     public class Reticle : MonoBehaviour
     {
-        #region PRIVATE_VARIABLES
+        #region PUBLIC_VARIABLES
+        [Header("The Scriptable Object containing the reticle parameters")]
+        public ReticleParametersVariable ReticleVariables;
 
-        #region SERIALIZED_FIELDS
-        [Header("Reticle Parameters")]
-        [Tooltip("The default distance away from the camera the reticle is placed.")]
-        [SerializeField] private float m_DefaultDistance = 200.0f;
+        [Header("References linked to SDK")]
+        [Tooltip("We need to affect the reticle's transform.")]
+        public Transform m_ReticleTransform;
 
-        [Tooltip("Whether the reticle should be placed parallel to a surface.")]
-        [SerializeField] private bool m_UseNormal;                  
+        [Tooltip("The reticle is always placed relative to the camera.")]
+        public Transform m_Camera;
 
         [Tooltip("Reference to the image component that represents the reticle.")]
-        [SerializeField] private Image m_Image;
+        public Image m_Image;
+        #endregion PUBLIC_VARIABLES
 
-        [Tooltip("We need to affect the reticle's transform.")]
-        [SerializeField] private Transform m_ReticleTransform;   
-        
-        [Tooltip("The reticle is always placed relative to the camera.")]
-        [SerializeField] private Transform m_Camera;
-        #endregion SERIALIZED_FIELDS
+        #region PRIVATE_VARIABLES
 
-        #region NON_SERIALIZED_FIELDS
         private Vector3 m_OriginalScale;        // Since the scale of the reticle changes, the original scale needs to be stored.
         private Quaternion m_OriginalRotation;  // Used to store the original rotation of the reticle.
-        #endregion NON_SERIALIZED_FIELDS
 
         #endregion PRIVATE_VARIABLES
 
@@ -74,10 +69,11 @@ namespace Framework.VR.Gaze
         public void SetPositionToNormal()
         {
             // Set the position of the reticle to the default distance in front of the camera.
-            m_ReticleTransform.position = m_Camera.position + m_Camera.forward * m_DefaultDistance;
+            m_ReticleTransform.position = 
+                m_Camera.position + m_Camera.forward * ReticleVariables.m_DefaultDistance;
 
             // Set the scale based on the original and the distance from the camera.
-            m_ReticleTransform.localScale = m_OriginalScale * m_DefaultDistance;
+            m_ReticleTransform.localScale = m_OriginalScale * ReticleVariables.m_DefaultDistance;
 
             // The rotation should just be the default.
             m_ReticleTransform.localRotation = m_OriginalRotation;
@@ -93,7 +89,7 @@ namespace Framework.VR.Gaze
             m_ReticleTransform.localScale = m_OriginalScale * hit.distance;
 
             // If the reticle should use the normal of what has been hit...
-            if (m_UseNormal)
+            if (ReticleVariables.m_UseNormal)
                 // ... set it's rotation based on it's forward vector facing along the normal.
                 m_ReticleTransform.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
             else
@@ -102,18 +98,9 @@ namespace Framework.VR.Gaze
         }
 
         #endregion PUBLIC_METHODS
-
+        
         #region GETTERS_SETTERS
-
-        public bool UseNormal
-        {
-            get { return m_UseNormal; }
-            set { m_UseNormal = value; }
-        }
-
-
         public Transform ReticleTransform { get { return m_ReticleTransform; } }
-
         #endregion GETTERS_SETTERS
     }
 }
