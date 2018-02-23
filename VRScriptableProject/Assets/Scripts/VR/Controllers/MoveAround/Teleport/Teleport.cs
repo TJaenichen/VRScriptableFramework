@@ -14,18 +14,11 @@ namespace Framework.VR.MoveAround
     public class Teleport : MonoBehaviour 
 	{
         #region PUBLIC_VARIABLES
-        [Header("BoolVariable to check if the user aim at something")]
-        public BoolVariable RightIsOver;
-        public BoolVariable LeftIsOver;
+        [Header("Scriptable Objects for this script")]
+        public TeleportParametersVariable TeleportParameters;
 
         [Header("The Hand this script is assign to")]
         public Hand hand;
-
-        [Header("Height Adjusting Parameters")]
-        [Tooltip("If you want to adjust the height to the point that was hit.")]
-        public bool AdjustHeight = false;
-        [Tooltip("The height at which the user is teleported above the ground.")]
-        public float HeightAboveGround = 1.5f;
         #endregion
 
 
@@ -57,10 +50,10 @@ namespace Framework.VR.MoveAround
             {
                 if (hit.collider.gameObject.layer == groundLayer.value)
                 {
-                    if (AdjustHeight)
+                    if (TeleportParameters.AdjustHeight)
                         avatarObject.transform.position = new Vector3(hit.point.x, avatarObject.transform.position.y, hit.point.z);
                     else
-                        avatarObject.transform.position = new Vector3(hit.point.x, hit.point.y + HeightAboveGround, hit.point.z);
+                        avatarObject.transform.position = new Vector3(hit.point.x, hit.point.y + TeleportParameters.HeightAboveGround, hit.point.z);
 
                     return;
                 }

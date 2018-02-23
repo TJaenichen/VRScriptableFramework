@@ -15,8 +15,8 @@ MonoBehaviour:
     check the tooltips for each parameters"
   MaxFlightSpeed: 8
   BasicFlightVelocityFactor: 1
-  YAxisSpeed: 0.001
+  YAxisSpeed: 1
   MinAvatarPositionY: 0
-  MaxAvatarPositionY: 1000
+  MaxAvatarPositionY: 50
   SlidingEffectFactor: 5
   RotateCamera: 1

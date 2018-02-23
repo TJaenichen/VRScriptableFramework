@@ -187,7 +187,7 @@ namespace Framework.VR.MoveAround
             
             avatarObject.transform.localPosition += _currentFlightVelocity * scaleTimesdeltaTIme * movementOnGroundPlane;
 
-            float mappedAngle = MapRangeClamped(angleInDegrees, 60.0f, 120.0f, -1.0f, 1.0f) * MovementParameters.YAxisSpeed * scaleTimesdeltaTIme;
+            float mappedAngle = MapRangeClamped(angleInDegrees, 60.0f, 120.0f, -1.0f, 1.0f) * MovementParameters.GetVerticalSpeed() * scaleTimesdeltaTIme;
             float newAvatarPositionY = avatarObject.transform.localPosition.y - mappedAngle * MovementParameters.MaxAvatarPositionY;
 
             newAvatarPositionY = Mathf.Clamp(newAvatarPositionY, MovementParameters.MinAvatarPositionY, MovementParameters.MaxAvatarPositionY);

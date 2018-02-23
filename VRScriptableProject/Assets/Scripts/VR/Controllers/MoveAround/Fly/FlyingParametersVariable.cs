@@ -18,7 +18,7 @@ namespace Framework.VR.MoveAround
         public float BasicFlightVelocityFactor = 1.0f;
 
         [Tooltip("The speed factor for the speed in the X and Z axis.")]
-        public float YAxisSpeed = 0.02f;
+        public float YAxisSpeed = 1.0f;
 
         [Tooltip("The minimun local position at which the user can go in the Y axis.")]
         public float MinAvatarPositionY = -5.0f;
@@ -31,5 +31,10 @@ namespace Framework.VR.MoveAround
 
         [Tooltip("Only relevant for Oculus, as sensors can lose track of the Controllers when the user is not facing them.")]
         public bool RotateCamera = false;
+
+        public float GetVerticalSpeed()
+        {
+            return YAxisSpeed / 1000;
+        }
 	}
 }
