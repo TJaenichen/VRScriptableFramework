@@ -138,6 +138,8 @@ namespace Framework.VR.UI
             var delta = _curDragPos - _lastDragPos;
             _draggedThing.transform.root.position += delta;
 
+            Debug.Log("Drag thing : " + _draggedThing.name);
+
             if (_draggingLeft)
             {
                 _draggedThing.transform.root.rotation =

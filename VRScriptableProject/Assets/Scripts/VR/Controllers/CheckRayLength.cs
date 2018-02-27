@@ -105,7 +105,6 @@ namespace Framework.VR
         {
             foreach (var hit in pointerRayCast.GazeHits)
             {
-                Debug.Log(hit.collider);
                 if (hit.collider.gameObject.layer != pointerRayCast.ExclusionLayer)
                 {
                     //Reduce the reticle positon to the object that was hit
